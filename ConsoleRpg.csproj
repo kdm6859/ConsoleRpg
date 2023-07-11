@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DongMin\Map.cs" />
     <Compile Include="Info.cs" />
     <Compile Include="Monster.cs" />
     <Compile Include="Program.cs" />
