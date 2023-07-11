@@ -12,6 +12,7 @@ namespace TeamRPG
         public int pHp;
         public int pAttack;
         public string pName;
+        public int pMp;
 
         public int pX;
         public int pY;

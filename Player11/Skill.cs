@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace TeamRPG
@@ -23,35 +24,48 @@ namespace TeamRPG
         public bool sAttack;  //근거리 스킬 공격
 
         Player m_player = new Player();
+
+        public int Current;
         
-        public Skill()
+        public Skill(Player player)
         {
+            Current = Environment.TickCount;
+
             SkillX = 0;
             SkillY = 0;
             isActive = false;
+            m_player = player;
         }
         public void Activate(int playerX, int playerY)
         {
-            SkillX = playerX+5; //스킬 발사되는 위치 설정
-            SkillY = playerY;
             isActive = true;
+            SkillX = playerX+5; //스킬 발사되는 위치 설정
+            SkillY = playerY;            
         }
         public void Progress()
-        {
+        {           
             if(isActive)
-            {
-                SkillX += 1;
-
+            {                                       
                 if (m_player.sWeapon)
                 {
-                    SkillX = m_player.playerX + 5;                   
-                }
+                    SkillX = m_player.playerX + 5;
 
+                    //if (Current+1000 > Environment.TickCount) 
+                    //{                                             
+                    //    m_player.sWeapon = false;                                             
+                    //}                                                           
+                }
+                else
+                {
+                    SkillX += 1;
+                }
+                
                 if(SkillX > 145)
                 {
                     isActive = false;
                 }
             }
+            Current = Environment.TickCount;
         }       
         public void lSkillDraw()
         {
@@ -92,7 +106,7 @@ namespace TeamRPG
             if (sAttack)  //근거리 일반공격
             {
                 Console.SetCursorPosition(SkillX, SkillY + 1);
-                Console.Write("-->");
+                Console.Write("--->");
             }
         }
 
