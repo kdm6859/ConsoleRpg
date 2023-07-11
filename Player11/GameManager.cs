@@ -21,6 +21,7 @@ namespace TeamRPG
         }
         public void Render()
         {
+            Console.Clear();
             player.Render();
         }
             

@@ -9,13 +9,20 @@ namespace TeamRPG
 {
     internal class Skill
     {       
-        public int nAttack;
-        public int sAttack;
-        public int SkillX;
+        public int nAttack;   //스킬 공격력
+        public int SkillAtaack;
+
+        public int SkillX;    //스킬 좌표
         public int SkillY;
-        public bool isActive;
-        public bool nSkill;
-        public bool sSkill;
+
+        public bool isActive; //스킬 준비상태
+
+        public bool lAttack;  // 원거리 노말 공격
+        public bool lSkill;   //원거리 스킬 공격
+        public bool sSkill;   //근거리 노말공격
+        public bool sAttack;  //근거리 스킬 공격
+
+        Player m_player = new Player();
         
         public Skill()
         {
@@ -25,7 +32,7 @@ namespace TeamRPG
         }
         public void Activate(int playerX, int playerY)
         {
-            SkillX = playerX+5;
+            SkillX = playerX+5; //스킬 발사되는 위치 설정
             SkillY = playerY;
             isActive = true;
         }
@@ -34,15 +41,21 @@ namespace TeamRPG
             if(isActive)
             {
                 SkillX += 1;
+
+                if (m_player.sWeapon)
+                {
+                    SkillX = m_player.playerX + 5;                   
+                }
+
                 if(SkillX > 145)
                 {
                     isActive = false;
                 }
             }
         }       
-        public void LSkillDraw()
+        public void lSkillDraw()
         {
-            if(sSkill)
+            if(lSkill) //원거리 스킬공격
             {
                 string[] sMagic = new string[]
                 {
@@ -57,24 +70,41 @@ namespace TeamRPG
                 }
             }
             
-
-            if (nSkill) 
-            {
-                string[] nMagic = new string[] { "★" };
-                for (int i = 0; i < nMagic.Length; i++)
-                {
-                    Console.SetCursorPosition(SkillX, SkillY+1);
-                    Console.WriteLine(nMagic[i]);
-                }
+            if (lAttack)  //원거리 일반공격
+            {               
+                Console.SetCursorPosition(SkillX, SkillY+1);
+                Console.Write("★");                 
             }
-            
+
+
+            if (sSkill) //근거리 스킬공격
+            {
+                string[] sMagic = new string[]{ "->","->->","->->->"};
+
+
+                for (int i = 0; i < sMagic.Length; i++)
+                {
+                    Console.SetCursorPosition(SkillX, SkillY + i);
+                    Console.WriteLine(sMagic[i]);
+                }
+
+            }
+            if (sAttack)  //근거리 일반공격
+            {
+                Console.SetCursorPosition(SkillX, SkillY + 1);
+                Console.Write("-->");
+            }
+        }
+
+        public void sSkillDraw()
+        {
 
         }
         public void Render()
         {
             if(isActive)
             {                                         
-                LSkillDraw();
+                lSkillDraw();
             }               
         }
         public void Skillinfo()
