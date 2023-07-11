@@ -104,23 +104,33 @@ namespace TeamRPG
        
         public void Render()
         {
+           
             if(isActive)
             {                                         
                 SkillDraw();
 
                 Current = Environment.TickCount;
 
-                if (sAttack||sSkill && Current+2000 <= Environment.TickCount)
+                if ((sAttack||sSkill) && Current+2000 > Environment.TickCount)
                 {
                     ClearsSkillAndsAttack();
                 }
             }               
         }
         public void ClearsSkillAndsAttack()
-        {        
-            // 스킬/공격 플래그 초기화
-            sSkill = false;
-            sAttack = false;            
+        {
+            if (sSkill)
+            {
+                // sSkill 지우기
+                Console.SetCursorPosition(SkillX + 2, SkillY + 1);                
+                sSkill = false;
+            }
+            if (sAttack)
+            {
+                // sAttack 지우기
+                Console.SetCursorPosition(SkillX+3, SkillY + 1);
+                sAttack = false;
+            }                 
         }
             
     }

@@ -33,7 +33,7 @@ namespace TeamRPG
 
             Select();
 
-            skill = new Skill[50];
+            skill = new Skill[5];
 
                       
             for (int i = 0; i < skill.Length; i++)
@@ -152,12 +152,15 @@ namespace TeamRPG
 
                         if (lWeapon) // 지팡이 트루일떄
                         {
-                            if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
+                            for (skillIndex = 0; skillIndex < skill.Length; skillIndex++)
                             {
-                                skill[skillIndex].lAttack = true;
-                                skill[skillIndex].Activate(playerX, playerY);
-                                skillIndex++;
-                            }
+                                if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
+                                {
+                                    skill[skillIndex].lAttack = true;
+                                    skill[skillIndex].Activate(playerX, playerY);
+                                    skillIndex++;
+                                }
+                            }                             
                         }
 
                         if (sWeapon) //근접무기 트루일떄
@@ -176,14 +179,17 @@ namespace TeamRPG
 
                         if (lWeapon) //지팡이 트루일 때
                         {
-                            if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
+                            for(skillIndex=0; skillIndex<skill.Length; skillIndex++)
                             {
-                                skill[skillIndex].lSkill = true;
-                                skill[skillIndex].Activate(playerX, playerY);
-                                skillIndex++;
+                                if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
+                                {
+                                    skill[skillIndex].lSkill = true;
+                                    skill[skillIndex].Activate(playerX, playerY);
+                                    skillIndex++;
+                                }
                             }
+                           
                         }
-
                         if (sWeapon)
                         {
                             if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
