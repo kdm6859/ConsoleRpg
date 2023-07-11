@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace TeamRPG
@@ -23,9 +24,13 @@ namespace TeamRPG
         public bool sAttack;  //근거리 스킬 공격
 
         Player m_player = new Player();
+
+        public int Current;
         
         public Skill(Player player)
         {
+            Current = Environment.TickCount;
+
             SkillX = 0;
             SkillY = 0;
             isActive = false;
@@ -42,8 +47,13 @@ namespace TeamRPG
             if(isActive)
             {                                       
                 if (m_player.sWeapon)
-                {                   
-                   SkillX = m_player.playerX + 5;                                        
+                {
+                    SkillX = m_player.playerX + 5;
+
+                    //if (Current+1000 > Environment.TickCount) 
+                    //{                                             
+                    //    m_player.sWeapon = false;                                             
+                    //}                                                           
                 }
                 else
                 {
@@ -55,6 +65,7 @@ namespace TeamRPG
                     isActive = false;
                 }
             }
+            Current = Environment.TickCount;
         }       
         public void lSkillDraw()
         {

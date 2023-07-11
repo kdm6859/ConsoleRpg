@@ -17,7 +17,7 @@ namespace TeamRPG
         public int playerY;
 
         public void SetDamage(int iAttack) { m_player.pHp -= iAttack; } //데미지 받는 함수
-       
+        public INFO GetINFO() { return m_player; }
 
         public bool sWeapon=false; //근접 무기
         public bool lWeapon=false; //원거리 무기
@@ -32,7 +32,7 @@ namespace TeamRPG
 
             Select();
 
-            skill = new Skill[20];
+            skill = new Skill[50];
 
                       
             for (int i = 0; i < skill.Length; i++)
@@ -62,12 +62,14 @@ namespace TeamRPG
                 case 1:
                     m_player.pName = "전사";
                     m_player.pHp = 100;
+                    m_player.pMp = 100;
                     m_player.pAttack = 100;
                     sWeapon = true;
                     break;
                 case 2:
                     m_player.pName = "마법사";
                     m_player.pHp = 80;
+                    m_player.pMp = 120;
                     m_player.pAttack = 120;
                     lWeapon = true;
                     break;
@@ -140,8 +142,12 @@ namespace TeamRPG
                     case ConsoleKey.LeftArrow:
                         playerX -= 1;
                         break;
+                    case ConsoleKey.Spacebar:
+                        playerX += 1;
+                        playerY -= 1;
+                        break;
 
-                    case ConsoleKey.Spacebar: //스페이스바 노말 공격 발사  
+                    case ConsoleKey.Z: // z 노말 공격 발사  
                        
                         if (lWeapon) // 지팡이 트루일떄
                         {                                              
@@ -165,7 +171,7 @@ namespace TeamRPG
                         }
                         break;
                     
-                    case ConsoleKey.Enter:  //엔터 누르면 스킬 발사
+                    case ConsoleKey.X:  // x 누르면 스킬 발사
                         
                         if (lWeapon) //지팡이 트루일 때
                         {
