@@ -24,29 +24,32 @@ namespace TeamRPG
 
         Player m_player = new Player();
         
-        public Skill()
+        public Skill(Player player)
         {
             SkillX = 0;
             SkillY = 0;
             isActive = false;
+            m_player = player;
         }
         public void Activate(int playerX, int playerY)
         {
-            SkillX = playerX+5; //스킬 발사되는 위치 설정
-            SkillY = playerY;
             isActive = true;
+            SkillX = playerX+5; //스킬 발사되는 위치 설정
+            SkillY = playerY;            
         }
         public void Progress()
-        {
+        {           
             if(isActive)
-            {
-                SkillX += 1;
-
+            {                                       
                 if (m_player.sWeapon)
-                {
-                    SkillX = m_player.playerX + 5;                   
+                {                   
+                   SkillX = m_player.playerX + 5;                                        
                 }
-
+                else
+                {
+                    SkillX += 1;
+                }
+                
                 if(SkillX > 145)
                 {
                     isActive = false;
@@ -92,7 +95,7 @@ namespace TeamRPG
             if (sAttack)  //근거리 일반공격
             {
                 Console.SetCursorPosition(SkillX, SkillY + 1);
-                Console.Write("-->");
+                Console.Write("--->");
             }
         }
 

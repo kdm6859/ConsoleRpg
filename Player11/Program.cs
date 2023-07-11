@@ -24,9 +24,7 @@ namespace TeamRPG
                     gm.Render();
                     
                 }
-            }
-            
-            
+            }                        
         }
     }
 }

@@ -37,7 +37,7 @@ namespace TeamRPG
                       
             for (int i = 0; i < skill.Length; i++)
             {
-                skill[i] = new Skill();
+                skill[i] = new Skill(this);
                 skill[i].SkillX = playerX+5;
                 skill[i].SkillY = playerY;
                 skill[i].isActive = false;
@@ -100,7 +100,7 @@ namespace TeamRPG
             
         }
         public void Render() 
-        {
+        {           
                    
             DrawPlayer();  //플레이어 출력           
 
@@ -161,6 +161,7 @@ namespace TeamRPG
                                 skill[skillIndex].Activate(playerX, playerY);
                                 skillIndex++;
                             }
+                     
                         }
                         break;
                     
