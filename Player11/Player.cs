@@ -44,8 +44,8 @@ namespace TeamRPG
             }
             
            
-            playerX = 0;  //플레이어 처음 x좌표
-            playerY = 50; //플레이어 처음 y좌표
+            playerX = 10;  //플레이어 처음 x좌표
+            playerY = 40; //플레이어 처음 y좌표
 
         }
         public void Select() //직업 선택
