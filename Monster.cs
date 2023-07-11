@@ -10,7 +10,7 @@ namespace ConsoleRpg
     {
         Info info;
 
-        
+        int a;
 
     }
 }
