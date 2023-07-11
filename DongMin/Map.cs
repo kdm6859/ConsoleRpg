@@ -3,14 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TeamRPG;
 
 namespace ConsoleRpg
 {
+    
     public class Map
     {
-        public void Test()
+        Field field;
+        //FieldObject fieldObject;
+
+
+        public void Initialize()
         {
-            Console.WriteLine("테스트입니다.");
+            
+        }
+
+        public void Progress()
+        {
+
+        }
+
+        public void Render()
+        {
+
+        }
+
+        public void Release()
+        {
+
         }
     }
 }
