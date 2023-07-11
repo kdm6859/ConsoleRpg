@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{52023584-F25A-40C1-89CC-C1F5BD5BCC2A}</ProjectGuid>
+    <ProjectGuid>{2F248854-6FEF-4B70-9878-B60A9807E1EE}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>INVENTORY</RootNamespace>
-    <AssemblyName>INVENTORY</AssemblyName>
+    <RootNamespace>INVENPANEL</RootNamespace>
+    <AssemblyName>INVENPANEL</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,13 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameManager111.cs" />
-    <Compile Include="INFO111.cs" />
-    <Compile Include="INVENPANEL.cs" />
-    <Compile Include="Player111.cs" />
-    <Compile Include="Program111.cs" />
+    <Compile Include="GameNanager11.cs" />
+    <Compile Include="INFO11.cs" />
+    <Compile Include="INVENPENAL.cs" />
+    <Compile Include="Player11.cs" />
+    <Compile Include="Program11.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Skill111.cs" />
+    <Compile Include="Skill11.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
