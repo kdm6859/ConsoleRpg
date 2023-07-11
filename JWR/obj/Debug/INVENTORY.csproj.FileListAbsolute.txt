@@ -1,8 +1,0 @@
-C:\Users\User\Desktop\unityJ\visual studio\INVENTORY\INVENTORY\bin\Debug\INVENTORY.exe.config
-C:\Users\User\Desktop\unityJ\visual studio\INVENTORY\INVENTORY\bin\Debug\INVENTORY.exe
-C:\Users\User\Desktop\unityJ\visual studio\INVENTORY\INVENTORY\bin\Debug\INVENTORY.pdb
-C:\Users\User\Desktop\unityJ\visual studio\INVENTORY\INVENTORY\obj\Debug\INVENTORY.csproj.AssemblyReference.cache
-C:\Users\User\Desktop\unityJ\visual studio\INVENTORY\INVENTORY\obj\Debug\INVENTORY.csproj.SuggestedBindingRedirects.cache
-C:\Users\User\Desktop\unityJ\visual studio\INVENTORY\INVENTORY\obj\Debug\INVENTORY.csproj.CoreCompileInputs.cache
-C:\Users\User\Desktop\unityJ\visual studio\INVENTORY\INVENTORY\obj\Debug\INVENTORY.exe
-C:\Users\User\Desktop\unityJ\visual studio\INVENTORY\INVENTORY\obj\Debug\INVENTORY.pdb
