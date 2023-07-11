@@ -29,7 +29,7 @@ namespace TeamRPG
         
         public Skill(Player player)
         {
-            Current = Environment.TickCount;
+            
 
             SkillX = 0;
             SkillY = 0;
@@ -46,28 +46,25 @@ namespace TeamRPG
         {           
             if(isActive)
             {                                       
-                if (m_player.sWeapon)
+                if (m_player.sWeapon) //근거리 무기 true일 떄
                 {
-                    SkillX = m_player.playerX + 5;
-
-                    //if (Current+1000 > Environment.TickCount) 
-                    //{                                             
-                    //    m_player.sWeapon = false;                                             
-                    //}                                                           
+                    //스킬 플레이어 x좌표 앞에서 생성
+                    SkillX = m_player.playerX + 5;                  
                 }
                 else
                 {
+                    //스킬 발사
                     SkillX += 1;
                 }
                 
-                if(SkillX > 145)
+                if(SkillX > 145) //x좌표 한계 넘어가면 초기화
                 {
                     isActive = false;
                 }
             }
-            Current = Environment.TickCount;
+            
         }       
-        public void lSkillDraw()
+        public void SkillDraw()
         {
             if(lSkill) //원거리 스킬공격
             {
@@ -92,38 +89,38 @@ namespace TeamRPG
 
 
             if (sSkill) //근거리 스킬공격
-            {
-                string[] sMagic = new string[]{ "->","->->","->->->"};
-
-
-                for (int i = 0; i < sMagic.Length; i++)
-                {
-                    Console.SetCursorPosition(SkillX, SkillY + i);
-                    Console.WriteLine(sMagic[i]);
-                }
+            {                         
+                Console.SetCursorPosition(SkillX+2, SkillY + 1);
+                Console.Write("---->->->");
 
             }
             if (sAttack)  //근거리 일반공격
             {
-                Console.SetCursorPosition(SkillX, SkillY + 1);
-                Console.Write("--->");
+                Console.SetCursorPosition(SkillX+3, SkillY + 1);
+                Console.Write("--->");                
             }
         }
 
-        public void sSkillDraw()
-        {
-
-        }
+       
         public void Render()
         {
             if(isActive)
             {                                         
-                lSkillDraw();
+                SkillDraw();
+
+                Current = Environment.TickCount;
+
+                if (sAttack||sSkill && Current+2000 <= Environment.TickCount)
+                {
+                    ClearsSkillAndsAttack();
+                }
             }               
         }
-        public void Skillinfo()
-        {
-
+        public void ClearsSkillAndsAttack()
+        {        
+            // 스킬/공격 플래그 초기화
+            sSkill = false;
+            sAttack = false;            
         }
             
     }
