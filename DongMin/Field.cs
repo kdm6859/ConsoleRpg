@@ -24,10 +24,11 @@ namespace ConsoleRpg
                 {
                     Console.Write(FieldObject.Instance().island1[j]);
                     Console.SetCursorPosition(island1Pos[i].x, island1Pos[i].y + (j + 1));
-
                 }
                 
             }
+
+
         }
     }
 }
