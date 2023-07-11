@@ -3,28 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using TeamRPG;
 
 namespace TeamRPG
 {
     internal class Player
-    {       
+    {
         Skill[] skill = null;
         INFO m_player = null;
-        
+
         public int playerX;
         public int playerY;
 
         public void SetDamage(int iAttack) { m_player.pHp -= iAttack; } //데미지 받는 함수
-        public INFO GetINFO() { return m_player; }
 
-        public bool sWeapon=false; //근접 무기
-        public bool lWeapon=false; //원거리 무기
+
+        public bool sWeapon = false; //근접 무기
+        public bool lWeapon = false; //원거리 무기
 
         int skillIndex = 0;
-        
+
         public void Initailize()
         {
             m_player = new INFO();
@@ -33,20 +32,20 @@ namespace TeamRPG
 
             Select();
 
-            skill = new Skill[50];
+            skill = new Skill[20];
 
-                      
+
             for (int i = 0; i < skill.Length; i++)
             {
-                skill[i] = new Skill(this);
-                skill[i].SkillX = playerX+5;
+                skill[i] = new Skill();
+                skill[i].SkillX = playerX + 5;
                 skill[i].SkillY = playerY;
                 skill[i].isActive = false;
             }
-            
-           
+
+
             playerX = 0;  //플레이어 처음 x좌표
-            playerY = 40; //플레이어 처음 y좌표
+            playerY = 50; //플레이어 처음 y좌표
 
         }
         public void Select() //직업 선택
@@ -63,14 +62,12 @@ namespace TeamRPG
                 case 1:
                     m_player.pName = "전사";
                     m_player.pHp = 100;
-                    m_player.pMp = 100;
                     m_player.pAttack = 100;
                     sWeapon = true;
                     break;
                 case 2:
                     m_player.pName = "마법사";
                     m_player.pHp = 80;
-                    m_player.pMp = 120;
                     m_player.pAttack = 120;
                     lWeapon = true;
                     break;
@@ -79,7 +76,7 @@ namespace TeamRPG
         public void Progress()
         {
 
-            KeyControl();        
+            KeyControl();
 
             for (int i = 0; i < skill.Length; i++)
             {
@@ -87,30 +84,30 @@ namespace TeamRPG
                 if (skill[i].SkillX > 145)
                 {
                     skill[i].isActive = false;
-                }                   
+                }
             }
-            
-            
+
+
 
             if (playerX < 0) //플레이어 x좌 0 밑으로 가면 x좌표 초기화
             {
                 playerX = 0;
             }
-            if(playerX > 140)
+            if (playerX > 140)
             {
                 playerX = 140;
-            }  
-            
+            }
+
         }
-        public void Render() 
-        {           
-                   
+        public void Render()
+        {
+
             DrawPlayer();  //플레이어 출력           
 
             for (int i = 0; i < skill.Length; i++)  // 스킬 출력
             {
                 skill[i].Render();
-            }                                       
+            }
         }
         public void DrawPlayer() //플레이어 그리기
         {
@@ -122,34 +119,29 @@ namespace TeamRPG
                 " ┘ └",
             };
 
-            for(int i=0; i<player.Length; i++)
+            for (int i = 0; i < player.Length; i++)
             {
-                Console.SetCursorPosition(playerX, playerY+i);
+                Console.SetCursorPosition(playerX, playerY + i);
                 Console.WriteLine(player[i]);
             }
-        }                                              
+        }
         public void KeyControl()
         {
             if (Console.KeyAvailable)
             {
-                                             
                 ConsoleKey pressKey = Console.ReadKey(true).Key;
-                
+
                 switch (pressKey)
                 {
-                    case ConsoleKey.RightArrow:                       
-                        playerX += 1;                       
+                    case ConsoleKey.RightArrow:
+                        playerX += 1;
                         break;
 
                     case ConsoleKey.LeftArrow:
                         playerX -= 1;
                         break;
-                    case ConsoleKey.Spacebar:
-                        playerX += 1;
-                        playerY -= 1;
-                        break;
 
-                    case ConsoleKey.Z: // z 노말 공격 발사  
+                    case ConsoleKey.Spacebar: //스페이스바 노말 공격 발사  
 
                         if (lWeapon) // 지팡이 트루일떄
                         {
@@ -169,11 +161,10 @@ namespace TeamRPG
                                 skill[skillIndex].Activate(playerX, playerY);
                                 skillIndex++;
                             }
-
                         }
                         break;
 
-                    case ConsoleKey.X:  // x 누르면 스킬 발사
+                    case ConsoleKey.Enter:  //엔터 누르면 스킬 발사
 
                         if (lWeapon) //지팡이 트루일 때
                         {
@@ -196,7 +187,7 @@ namespace TeamRPG
                         }
                         break;
                 }
-            }   
+            }
         }
     }
 }
