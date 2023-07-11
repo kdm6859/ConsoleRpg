@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TeamRPG;
 
@@ -44,7 +45,7 @@ namespace TeamRPG
             }
             
            
-            playerX = 10;  //플레이어 처음 x좌표
+            playerX = 0;  //플레이어 처음 x좌표
             playerY = 40; //플레이어 처음 y좌표
 
         }
@@ -131,68 +132,79 @@ namespace TeamRPG
         {
             if (Console.KeyAvailable)
             {
-                ConsoleKey pressKey = Console.ReadKey(true).Key;
+                int input;
 
-                switch (pressKey)
+                input = Program._getch();
+                
+                if (input == 224)
                 {
-                    case ConsoleKey.RightArrow:
+                    input = Program._getch();
+                }
+
+                //ConsoleKey pressKey = Console.ReadKey(true).Key;
+                
+                switch (input)
+                {
+                    case 72:
+                        playerY -= 1;
                         playerX += 1;
+                        Console.WriteLine("as");
                         break;
 
-                    case ConsoleKey.LeftArrow:
+                    case 80:
                         playerX -= 1;
                         break;
-                    case ConsoleKey.Spacebar:
-                        playerX += 1;
-                        playerY -= 1;
-                        break;
+                    //case ConsoleKey.Spacebar:
+                    //    playerX += 1;
+                    //    playerY -= 1;
+                    //    break;
 
-                    case ConsoleKey.Z: // z 노말 공격 발사  
+                    //case ConsoleKey.Z: // z 노말 공격 발사  
                        
-                        if (lWeapon) // 지팡이 트루일떄
-                        {                                              
-                            if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
-                            {
-                                 skill[skillIndex].lAttack = true;
-                                 skill[skillIndex].Activate(playerX, playerY);
-                                 skillIndex++;
-                            }                           
-                        }
+                    //    if (lWeapon) // 지팡이 트루일떄
+                    //    {                                              
+                    //        if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
+                    //        {
+                    //             skill[skillIndex].lAttack = true;
+                    //             skill[skillIndex].Activate(playerX, playerY);
+                    //             skillIndex++;
+                    //        }                           
+                    //    }
 
-                        if (sWeapon) //근접무기 트루일떄
-                        {
-                            if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
-                            {
-                                skill[skillIndex].sAttack = true;
-                                skill[skillIndex].Activate(playerX, playerY);
-                                skillIndex++;
-                            }
+                        //if (sWeapon) //근접무기 트루일떄
+                        //{
+                        //    if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
+                        //    {
+                        //        skill[skillIndex].sAttack = true;
+                        //        skill[skillIndex].Activate(playerX, playerY);
+                        //        skillIndex++;
+                        //    }
                      
-                        }
-                        break;
+                        //}
+                        //break;
                     
-                    case ConsoleKey.X:  // x 누르면 스킬 발사
+                    //case ConsoleKey.X:  // x 누르면 스킬 발사
                         
-                        if (lWeapon) //지팡이 트루일 때
-                        {
-                            if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
-                            {
-                                skill[skillIndex].lSkill = true;
-                                skill[skillIndex].Activate(playerX, playerY);
-                                skillIndex++;
-                            }
-                        }
+                    //    if (lWeapon) //지팡이 트루일 때
+                    //    {
+                    //        if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
+                    //        {
+                    //            skill[skillIndex].lSkill = true;
+                    //            skill[skillIndex].Activate(playerX, playerY);
+                    //            skillIndex++;
+                    //        }
+                    //    }
 
-                        if (sWeapon)
-                        {
-                            if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
-                            {
-                                skill[skillIndex].sSkill = true;
-                                skill[skillIndex].Activate(playerX, playerY);
-                                skillIndex++;
-                            }
-                        }
-                        break;
+                    //    if (sWeapon)
+                    //    {
+                    //        if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
+                    //        {
+                    //            skill[skillIndex].sSkill = true;
+                    //            skill[skillIndex].Activate(playerX, playerY);
+                    //            skillIndex++;
+                    //        }
+                    //    }
+                    //    break;
                 }
             }   
         }
