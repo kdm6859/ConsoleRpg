@@ -16,7 +16,7 @@ namespace TeamRPG
             player = new Player();
             player.Initailize();
 
-            mon  = new Monster("Monster",40,30,"☆",1);
+            mon  = new Monster("Monster",40,25,"☆",1);
          
            
 
@@ -24,14 +24,16 @@ namespace TeamRPG
         public void Progress()
         {
             player.Progress();
+            mon.Progress(player);
         }
         public void Render()
         {
             Console.Clear();
+            Console.Write(player.GetINFO().pMp);
             player.Render();
             mon.Render();
             mon.PrintLocation();
-            mon.Progress(player);
+            
             
         }
             

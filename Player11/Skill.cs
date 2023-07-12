@@ -15,6 +15,9 @@ namespace TeamRPG
         public int SkillX;    //스킬 좌표
         public int SkillY;
 
+        public bool dir = true;
+        
+
         public bool isActive; //스킬 준비상태
 
         public bool lAttack;  // 원거리 노말 공격
@@ -88,17 +91,45 @@ namespace TeamRPG
 
             if (sSkill) //근거리 스킬공격
             {
-                string[] sMagic = new string[]
-               {
-                    "---->->->",
-                    "---->->->",
-                    "---->->->"
-               };
-                for (int i = 0; i < sMagic.Length; i++)
+                if (dir)
                 {
-                    Console.SetCursorPosition(SkillX+3, SkillY + i);
-                    Console.WriteLine(sMagic[i]);
-                }              
+
+                    string[] sMagic = new string[]
+                    {
+                        "---->->->",
+                        "---->->->",
+                        "---->->->"
+                    
+                    };
+
+                    for (int i = 0; i < sMagic.Length; i++)
+                    {
+                        Console.SetCursorPosition(SkillX + 3, SkillY + i);
+                        Console.WriteLine(sMagic[i]);
+                    }
+
+                }
+                //else
+                //{
+                //    string[] sMagic = new string[]
+                //    {
+                     
+                //       "<-<-<----",
+                //       "<-<-<----",
+                //       "<-<-<----"
+                //    };
+
+                //    for (int i = 0; i < sMagic.Length; i++)
+                //    {
+                //        Console.SetCursorPosition(SkillX - 5, SkillY + i);
+                //        Console.WriteLine(sMagic[i]);
+                //    }
+                //}
+                 
+
+            }
+            else if (sSkill)
+            {
 
             }
             if (sAttack)  //근거리 일반공격

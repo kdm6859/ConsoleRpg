@@ -162,18 +162,22 @@ namespace TeamRPG
                 switch (input)
                 {
                     case 77:                       
-                        playerX += 1;                       
+                        playerX += 3;                       
                         break;
 
                     case 75:
-                        playerX -= 1;
+                        playerX -= 3;
+                        if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
+                        { skill[skillIndex].dir = true;
+                            skillIndex++;
+                        }
                         break;
 
                     case 32:
                         isJumping = true;                                                                     
                         break;
 
-                    case 90: // z 노말 공격 발사  
+                    case 122: // z 노말 공격 발사  
 
                         if (lWeapon) // 지팡이 트루일떄
                         {
@@ -197,7 +201,7 @@ namespace TeamRPG
                         }
                         break;
 
-                    case 88:  // x 누르면 스킬 발사
+                    case 120:  // x 누르면 스킬 발사
 
                         if (lWeapon) //지팡이 트루일 때
                         {
