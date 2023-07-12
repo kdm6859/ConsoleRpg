@@ -28,9 +28,6 @@
 //        {
 //            map = new Map();
 //            player = new Player();
-
-//            map.Initialize();
-//            player.Initailize();
             
 //        }
 
@@ -39,10 +36,11 @@
             
 //        }
 
-//        public void Render()
-//        {
-            
-//        }
+        //public void Render(Map.StageNum stageNUm)
+        //{
+        //    map.Render(stageNUm);
+        //}
+
 
 //        public void Release()
 //        {
