@@ -28,14 +28,6 @@
 //        {
 //            map = new Map();
 //            player = new Player();
-
-<<<<<<< HEAD
-            //map.Initialize();
-            player.Initailize();
-=======
-//            map.Initialize();
-//            player.Initailize();
->>>>>>> d60a74c18dcf4fa8cf8c86f5f3f8ed14e90a6e8e
             
 //        }
 
@@ -44,17 +36,11 @@
             
 //        }
 
-<<<<<<< HEAD
-        public void Render(Map.StageNum stageNUm)
-        {
-            map.Render(stageNUm);
-        }
-=======
-//        public void Render()
-//        {
-            
-//        }
->>>>>>> d60a74c18dcf4fa8cf8c86f5f3f8ed14e90a6e8e
+        //public void Render(Map.StageNum stageNUm)
+        //{
+        //    map.Render(stageNUm);
+        //}
+
 
 //        public void Release()
 //        {
