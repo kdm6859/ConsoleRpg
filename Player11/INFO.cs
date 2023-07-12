@@ -17,9 +17,7 @@ namespace TeamRPG
         public int pEXP;
         public int MaxHp;
         public int MaxMp;
-
-        public int pX;
-        public int pY;
+       
 
     }
 }

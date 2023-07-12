@@ -47,7 +47,7 @@ namespace ConsoleRpg
             field[0].AddObjectPosition(Field.ObjectName.Island3, new Position(65, 10));
             field[0].AddObjectPosition(Field.ObjectName.Island4, new Position(20, 24));
             field[0].AddObjectPosition(Field.ObjectName.Portal, new Position(140, 27));
-            field[0].AddObjectPosition(Field.ObjectName.Trap, new Position(120, 30));
+            field[0].AddObjectPosition(Field.ObjectName.Trap, new Position(120, 30), new Position(25, 10));
             field[0].AddObjectPosition(Field.ObjectName.Ground,
                 new Position(0, 30), new Position(10, 30), new Position(20, 30)
                 , new Position(30, 30), new Position(40, 30), new Position(50, 30)

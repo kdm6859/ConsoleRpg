@@ -17,28 +17,14 @@ namespace TeamRPG
         public int playerX;
         public int playerY;
 
-        bool isJumping = false;
-        bool isJumpUp = false;
-        bool isJumpDown = false;
-        bool startJumping = false;
-        int jumpHeight = 5;  // 점프 높이 조정 (값이 클수록 더 높이 점프)
-        int jumpDuration = 500;  // 점프에 걸리는 시간 (밀리초)
-        int startJumpTime = 0;
-        int currentJumpTime = 0;
+        bool isJumping = false;             
         int jumpUpCount = 6;
         int jumpDownCount = 6;
         //public int playerJump = 2;
 
 
         public void SetDamage(int iAttack) { m_player.pHp -= iAttack; } //데미지 받는 함수
-        public void PlayerGameOver()
-        {
-            if(m_player.pHp==0) 
-            {
-                
-            }
-        }
-
+       
         public void SetEXP(int exp)  //경험치 받아서 플레이어 레벨 올림
         { 
             m_player.pEXP += exp;
@@ -62,9 +48,7 @@ namespace TeamRPG
         
         public void Initailize()
         {
-            m_player = new INFO();
-            playerX = m_player.pX;
-            playerY = m_player.pY;
+            m_player = new INFO();            
             m_player.pLevel = 1;
             m_player.pEXP = 0;
 
@@ -137,19 +121,23 @@ namespace TeamRPG
             
         }
         public void Render() 
-        {                  
-            DrawPlayer();  //플레이어 출력           
-
-            for (int i = 0; i < skill.Length; i++)  // 스킬 출력
+        {
+            if (m_player.pHp > 0)
             {
-                skill[i].Render();
-            }                                       
+                DrawPlayer();  //플레이어 출력           
+
+                for (int i = 0; i < skill.Length; i++)  // 스킬 출력
+                {
+                    skill[i].Render();
+                }
+            }
+                                      
         }
         public void DrawPlayer() //플레이어 그리기
         {
             string[] player = new string[]
             {
-                "  ●",
+                "  ● ",
                 "↙┃ ↘",
                 " ┃ ┃",
                 " ┘ └",
@@ -165,28 +153,30 @@ namespace TeamRPG
         {
             if (Console.KeyAvailable)
             {
-                                             
-                ConsoleKey pressKey = Console.ReadKey(true).Key;
-                
-                switch (pressKey)
+                int input;
+                input = Program._getch();
+                if (input == 224)
                 {
-                    case ConsoleKey.RightArrow:                       
+                    input = Program._getch();
+                }
+
+                //ConsoleKey pressKey = Console.ReadKey(true).Key;
+
+                switch (input)
+                {
+                    case 77:                       
                         playerX += 1;                       
                         break;
 
-                    case ConsoleKey.LeftArrow:
+                    case 75:
                         playerX -= 1;
                         break;
 
-                    case ConsoleKey.Spacebar:
-                        isJumping = true;
-                        //if (playerY > 1 && playerY == 25)
-                        //playerJump = 0;
-
-                        //Jump();                                              
+                    case 32:
+                        isJumping = true;                                                                     
                         break;
 
-                    case ConsoleKey.Z: // z 노말 공격 발사  
+                    case 90: // z 노말 공격 발사  
 
                         if (lWeapon) // 지팡이 트루일떄
                         {
@@ -210,7 +200,7 @@ namespace TeamRPG
                         }
                         break;
 
-                    case ConsoleKey.X:  // x 누르면 스킬 발사
+                    case 88:  // x 누르면 스킬 발사
 
                         if (lWeapon) //지팡이 트루일 때
                         {
@@ -246,11 +236,7 @@ namespace TeamRPG
         {                       
             if(isJumping)
             {
-                //if (startJumping)
-                //{
-                //    startJumpTime = Environment.TickCount;
-                //    startJumping = false;
-                //}
+                
 
                 if (jumpUpCount > 0)
                 {
@@ -267,79 +253,9 @@ namespace TeamRPG
                     isJumping = false;
                     jumpUpCount = 6;
                     jumpDownCount = 6;
-                }
-                
-
-                //if (Environment.TickCount - startJumpTime >= 500)
-                //{
-
-                //}
-
-                //while (isJumping)
-                //{
-                //    int currentJumpTime = Environment.TickCount - startJumpTime;
-
-                //    //for(int i = 0;)
-
-                //    //Console.Clear();
-
-                //    if (currentJumpTime >= jumpDuration)
-                //    {
-                //        // 점프 종료
-                //        isJumping = false;
-                //        playerY = 25;
-
-                //    }
-                //    /*
-                //    else if (doJumping == false)
-                //    { 
-                        
-                //    }*/
-                //    else
-                //    {
-                        
-                //        int jumpProgress = (int)((float)currentJumpTime / jumpDuration * jumpHeight);
-                //        playerY = 25 - jumpProgress;
-                //        //Render();
-
-                //    }
-                //}
-                //playerY -= 2;
-                //playerX += 2;
-
-                //if (playerY < 35)
-                //{
-
-                //    if (playerJump < 4)
-                //        playerJump += 1;
-
-                //    playerY -= playerJump;
-                //    playerX += playerJump;
-
-                //    while(playerY > targetY)
-                //    {
-                //        if (Current + 1000 < Environment.TickCount)
-                //        {
-                //            playerY--;
-                //            playerX += 2;
-                //            Current = Environment.TickCount;
-                //        }
-                //    }
-                //    playerY = Math.Max(playerY, 35);
-
-
-
-                //}
-                //else
-                //{
-                //    playerJump = 0;
-                //    playerY = 35;
-                //}
-
-            }
-            
-        }
-     
+                }                              
+            }          
+        }    
     }
 }
 

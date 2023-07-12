@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 namespace TeamRPG
 {
     internal class Program
-    {       
+    {
+        [DllImport("msvcrt.dll")]
+        public static extern int _getch();
         static void Main(string[] args)
         {
 

@@ -53,7 +53,7 @@ namespace ConsoleRpg
 
         string[] trap =
         {
-            "┃        ┃",
+            "┓        ┏",
             "┗▲▲▲▲┛"
         };
 
