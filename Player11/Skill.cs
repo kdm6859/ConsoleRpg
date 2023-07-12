@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 namespace TeamRPG
 {
     internal class Skill
-    {       
-        public int nAttack;   //스킬 공격력
-        public int SkillAtaack;
+    {               
+        public float SkillAtaack; //스킬 공격력
 
         public int SkillX;    //스킬 좌표
         public int SkillY;
@@ -28,13 +27,12 @@ namespace TeamRPG
         public int Current;
         
         public Skill(Player player)
-        {
-            
-
+        {           
             SkillX = 0;
             SkillY = 0;
             isActive = false;
             m_player = player;
+            SkillAtaack = player.GetINFO().pAttack ; //스킬 데미지
         }
         public void Activate(int playerX, int playerY)
         {
@@ -89,9 +87,20 @@ namespace TeamRPG
 
 
             if (sSkill) //근거리 스킬공격
-            {                         
-                Console.SetCursorPosition(SkillX+2, SkillY + 1);
-                Console.Write("---->->->");
+            {
+                string[] sMagic = new string[]
+               {
+                    "---->->->",
+                    "---->->->",
+                    "---->->->"
+               };
+                for (int i = 0; i < sMagic.Length; i++)
+                {
+                    Console.SetCursorPosition(SkillX+3, SkillY + i);
+                    Console.WriteLine(sMagic[i]);
+                }
+                //Console.SetCursorPosition(SkillX+2, SkillY + 1);
+                //Console.Write("---->->->");
 
             }
             if (sAttack)  //근거리 일반공격
@@ -108,6 +117,7 @@ namespace TeamRPG
             if(isActive)
             {                                         
                 SkillDraw();
+                //Console.WriteLine(SkillAtaack);
 
                 Current = Environment.TickCount;
 

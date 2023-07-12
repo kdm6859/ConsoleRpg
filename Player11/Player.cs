@@ -16,9 +16,25 @@ namespace TeamRPG
         
         public int playerX;
         public int playerY;
+        public int playerJump = 2;
 
         public void SetDamage(int iAttack) { m_player.pHp -= iAttack; } //데미지 받는 함수
-        public INFO GetINFO() { return m_player; }
+
+        public void SetEXP(int exp)  //경험치 받아서 플레이어 레벨 올림
+        { 
+            m_player.pEXP += exp;
+
+            if(m_player.pEXP >= 100)
+            {
+                m_player.pLevel += 1;   //경험치100되면 레벨 1증가
+                m_player.pMp = 100;     //레벨 오르면 mp,hp 100으로 초기화
+                m_player.pHp = 100;
+                m_player.pAttack += 10; //레벨 오르면 공격력 10증가
+                m_player.pEXP = 0;      //레벨 오르면 경험치 0으로 초기화
+            }
+        }
+
+        public INFO GetINFO() { return m_player; } //플레이어 정보
 
         public bool sWeapon=false; //근접 무기
         public bool lWeapon=false; //원거리 무기
@@ -30,10 +46,15 @@ namespace TeamRPG
             m_player = new INFO();
             playerX = m_player.pX;
             playerY = m_player.pY;
+            m_player.pLevel = 1;
+            m_player.pEXP = 0;
+
+            playerX = 0;  //플레이어 처음 x좌표
+            playerY = 35; //플레이어 처음 y좌표
 
             Select();
 
-            skill = new Skill[5];
+            skill = new Skill[100]; //스킬 갯수
 
                       
             for (int i = 0; i < skill.Length; i++)
@@ -43,11 +64,7 @@ namespace TeamRPG
                 skill[i].SkillY = playerY;
                 skill[i].isActive = false;
             }
-            
-           
-            playerX = 0;  //플레이어 처음 x좌표
-            playerY = 35; //플레이어 처음 y좌표
-
+                                                        
         }
         public void Select() //직업 선택
         {
@@ -101,8 +118,7 @@ namespace TeamRPG
             
         }
         public void Render() 
-        {           
-                   
+        {                  
             DrawPlayer();  //플레이어 출력           
 
             for (int i = 0; i < skill.Length; i++)  // 스킬 출력
@@ -144,23 +160,23 @@ namespace TeamRPG
                         break;
 
                     case ConsoleKey.Spacebar:
-                        playerX += 1;
-                        playerY -= 1;
+
+                        if (playerY > 1 && playerY == 35)
+                            playerJump = 0;
+
+                        Jump();                                              
                         break;
 
                     case ConsoleKey.Z: // z 노말 공격 발사  
 
                         if (lWeapon) // 지팡이 트루일떄
                         {
-                            for (skillIndex = 0; skillIndex < skill.Length; skillIndex++)
-                            {
                                 if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
                                 {
                                     skill[skillIndex].lAttack = true;
                                     skill[skillIndex].Activate(playerX, playerY);
                                     skillIndex++;
-                                }
-                            }                             
+                                }                                                         
                         }
 
                         if (sWeapon) //근접무기 트루일떄
@@ -179,30 +195,113 @@ namespace TeamRPG
 
                         if (lWeapon) //지팡이 트루일 때
                         {
-                            for(skillIndex=0; skillIndex<skill.Length; skillIndex++)
+                            
+                            if (skillIndex < skill.Length && skill[skillIndex].isActive == false && m_player.pMp >= 10)
                             {
-                                if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
-                                {
-                                    skill[skillIndex].lSkill = true;
-                                    skill[skillIndex].Activate(playerX, playerY);
-                                    skillIndex++;
-                                }
+                                skill[skillIndex].lSkill = true;
+                                skill[skillIndex].Activate(playerX, playerY);
+                                skill[skillIndex].SkillAtaack = m_player.pAttack * 1.5f;
+                                m_player.pMp -= 10;
+                                skillIndex++;
                             }
+                            
                            
                         }
                         if (sWeapon)
-                        {
-                            if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
+                        {                           
+                            if (skillIndex < skill.Length && skill[skillIndex].isActive == false && m_player.pMp >= 10)
                             {
                                 skill[skillIndex].sSkill = true;
                                 skill[skillIndex].Activate(playerX, playerY);
+                                skill[skillIndex].SkillAtaack = m_player.pAttack * 1.5f;
+                                m_player.pMp -= 10;
                                 skillIndex++;
-                            }
+                            }                                                         
                         }
                         break;
                 }
             }   
         }
+
+        public void Jump()
+        {                       
+            if(playerY >= 35)
+            {
+                int jumpHeight = 5;  // 점프 높이 조정 (값이 클수록 더 높이 점프)
+                
+                int jumpDuration = 500;  // 점프에 걸리는 시간 (밀리초)
+
+                bool isJumping = true;
+                bool doJumping = true;
+                int startJumpTime = Environment.TickCount;
+
+                while (isJumping)
+                {
+                    int currentJumpTime = Environment.TickCount - startJumpTime;
+
+                    //for(int i = 0;)
+
+                    //Console.Clear();
+
+                    if (currentJumpTime >= jumpDuration)
+                    {
+                        // 점프 종료
+                        isJumping = false;
+                        playerY = 35;
+
+                    }
+                    /*
+                    else if (doJumping == false)
+                    { 
+                        
+                    }*/
+                    else
+                    {
+                        // 중력 적용
+                        int jumpProgress = (int)((float)currentJumpTime / jumpDuration * jumpHeight);
+                        playerY = 35 - jumpProgress;
+                        doJumping = false;
+
+                        Render();
+
+                    }
+                }
+                //playerY -= 2;
+                //playerX += 2;
+
+                //if (playerY < 35)
+                //{
+
+                //    if (playerJump < 4)
+                //        playerJump += 1;
+
+                //    playerY -= playerJump;
+                //    playerX += playerJump;
+
+                //    while(playerY > targetY)
+                //    {
+                //        if (Current + 1000 < Environment.TickCount)
+                //        {
+                //            playerY--;
+                //            playerX += 2;
+                //            Current = Environment.TickCount;
+                //        }
+                //    }
+                //    playerY = Math.Max(playerY, 35);
+
+
+
+                //}
+                //else
+                //{
+                //    playerJump = 0;
+                //    playerY = 35;
+                //}
+
+            }
+            
+        }
+     
     }
 }
 

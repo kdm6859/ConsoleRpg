@@ -23,6 +23,7 @@ namespace TeamRPG
         {
             Console.Clear();
             player.Render();
+            
         }
             
     }
