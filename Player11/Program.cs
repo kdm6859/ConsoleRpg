@@ -23,8 +23,7 @@ namespace TeamRPG
                 {
                     Current = Environment.TickCount;
                     gm.Progress();
-                    gm.Render();
-                    
+                    gm.Render();                                       
                 }
             }                        
         }

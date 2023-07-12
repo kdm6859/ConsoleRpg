@@ -33,7 +33,7 @@ namespace TeamRPG
 
             Select();
 
-            skill = new Skill[50];
+            skill = new Skill[5];
 
                       
             for (int i = 0; i < skill.Length; i++)
@@ -46,7 +46,7 @@ namespace TeamRPG
             
            
             playerX = 0;  //플레이어 처음 x좌표
-            playerY = 40; //플레이어 처음 y좌표
+            playerY = 35; //플레이어 처음 y좌표
 
         }
         public void Select() //직업 선택
@@ -89,16 +89,14 @@ namespace TeamRPG
                     skill[i].isActive = false;
                 }                   
             }
-            
-            
-
+                        
             if (playerX < 0) //플레이어 x좌 0 밑으로 가면 x좌표 초기화
             {
                 playerX = 0;
             }
-            if(playerX > 140)
+            if(playerX > 145)
             {
-                playerX = 140;
+                playerX = 145;
             }  
             
         }
@@ -144,6 +142,7 @@ namespace TeamRPG
                     case ConsoleKey.LeftArrow:
                         playerX -= 1;
                         break;
+
                     case ConsoleKey.Spacebar:
                         playerX += 1;
                         playerY -= 1;
@@ -153,12 +152,15 @@ namespace TeamRPG
 
                         if (lWeapon) // 지팡이 트루일떄
                         {
-                            if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
+                            for (skillIndex = 0; skillIndex < skill.Length; skillIndex++)
                             {
-                                skill[skillIndex].lAttack = true;
-                                skill[skillIndex].Activate(playerX, playerY);
-                                skillIndex++;
-                            }
+                                if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
+                                {
+                                    skill[skillIndex].lAttack = true;
+                                    skill[skillIndex].Activate(playerX, playerY);
+                                    skillIndex++;
+                                }
+                            }                             
                         }
 
                         if (sWeapon) //근접무기 트루일떄
@@ -177,14 +179,17 @@ namespace TeamRPG
 
                         if (lWeapon) //지팡이 트루일 때
                         {
-                            if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
+                            for(skillIndex=0; skillIndex<skill.Length; skillIndex++)
                             {
-                                skill[skillIndex].lSkill = true;
-                                skill[skillIndex].Activate(playerX, playerY);
-                                skillIndex++;
+                                if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
+                                {
+                                    skill[skillIndex].lSkill = true;
+                                    skill[skillIndex].Activate(playerX, playerY);
+                                    skillIndex++;
+                                }
                             }
+                           
                         }
-
                         if (sWeapon)
                         {
                             if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
