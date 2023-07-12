@@ -10,13 +10,14 @@ namespace ConsoleRpg
     
     public class Map
     {
-        Field field;
+        Field[] field;
+        const int fieldNum = 3;
         //FieldObject fieldObject;
 
 
         public void Initialize()
         {
-            
+            field = new Field[fieldNum];
         }
 
         public void Progress()
@@ -26,7 +27,7 @@ namespace ConsoleRpg
 
         public void Render()
         {
-
+            field[0].island1Pos = new List<Position>();
         }
 
         public void Release()

@@ -20,9 +20,9 @@ namespace ConsoleRpg
 
         public string[] island1 =
         {
-            "┏━━━━━━━━━━━━━━━━━━━━━━┓",
-            "┃                      ┃",
-            "┗━━━━━━━━━━━━━━━━━━━━━━┛"
+            "┏━━━━━━━━━━━━━━━━━┓",
+            "┃                 ┃",
+            "┗━━━━━━━━━━━━━━━━━┛"
         };
 
         public string[] island2 =
@@ -46,7 +46,10 @@ namespace ConsoleRpg
             "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
         };
 
-        public string ground = "━━━━━━━━━━";
+        public string[] ground =
+        {
+            "━━━━━━━━━━"
+        };
 
         public string[] trap =
         {
@@ -61,12 +64,10 @@ namespace ConsoleRpg
             "▒▒▒▒▒"
         };
 
-        public string meteo = "♨";
-
-        public string GetObject()
+        public string[] meteo =
         {
-            return "";
-        }
+            "♨"
+        };
 
     }
 }
