@@ -1,18 +1,19 @@
-﻿using ConsoleRPG;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TeamRPG
+namespace ConsoleRPG
 {
     internal class GameManager
     {
         Player player = null;
         Monster mon = null;
+        Skill skill = null;
         public void Initialize()
         {
+            skill = new Skill();
             player = new Player();
             player.Initailize();
 
@@ -29,6 +30,9 @@ namespace TeamRPG
         public void Render()
         {
             Console.Clear();
+            Console.WriteLine("플레이어 dir :" + player.getSkill().dir);
+            Console.WriteLine("이즈엑티브 :" + player.getSkill().isActive);
+            Console.WriteLine("스킬 x좌표 : " + player.getSkill().SkillX);
             Console.Write(player.GetINFO().pMp);
             player.Render();
             mon.Render();

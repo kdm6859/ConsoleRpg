@@ -5,13 +5,14 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using TeamRPG;
 
-namespace TeamRPG
+namespace ConsoleRPG
 {
     public class Player
-    {       
-        Skill[] skill = null;
+    {
+        ShortSkill shortSkill = null;
+        LongSkill[] longSkills = null;
+        Skill skill = null;
         INFO m_player = null;
         
         public int playerX;
@@ -19,9 +20,17 @@ namespace TeamRPG
 
         bool isJumping = false;             
         int jumpUpCount = 6;
-        int jumpDownCount = 6;       
+        int jumpDownCount = 6;
 
+        public bool sWeapon = false; //근접 무기
+        public bool lWeapon = false; //원거리 무기
 
+        int skillIndex = 0;
+
+        public Skill getSkill()
+        {
+            return this.skill;
+        }
         public void SetDamage(int iAttack) { m_player.pHp -= iAttack; } //데미지 받는 함수
        
         public void SetEXP(int exp)  //경험치 받아서 플레이어 레벨 올림
@@ -40,31 +49,32 @@ namespace TeamRPG
 
         public INFO GetINFO() { return m_player; } //플레이어 정보
 
-        public bool sWeapon=false; //근접 무기
-        public bool lWeapon=false; //원거리 무기
-
-        int skillIndex = 0;
-        
+       
         public void Initailize()
         {
+            longSkills = new LongSkill[100];
+            
             m_player = new INFO();            
             m_player.pLevel = 1;
             m_player.pEXP = 0;
+
+            skill = new Skill(this);
+
+            shortSkill = new ShortSkill(this, skill);
 
             playerX = 0;  //플레이어 처음 x좌표
             playerY = 25; //플레이어 처음 y좌표
 
             Select();
-
-            skill = new Skill[100]; //스킬 갯수
+            
 
                       
-            for (int i = 0; i < skill.Length; i++)
+            for (int i = 0; i < longSkills.Length; i++)
             {
-                skill[i] = new Skill(this);
-                skill[i].SkillX = playerX+5;
-                skill[i].SkillY = playerY;
-                skill[i].isActive = false;
+                longSkills[i] = new LongSkill(this, skill);
+                longSkills[i].GetINFO().SkillX= playerX+5;
+                longSkills[i].GetINFO().SkillY = playerY;
+                longSkills[i].GetINFO().isActive = false;
             }
                                                         
         }
@@ -74,7 +84,7 @@ namespace TeamRPG
 
             Console.WriteLine("직업을 선택하시오 1.전사 2.마법사");
 
-            int Input = 0;
+            int Input;
             Input = int.Parse(Console.ReadLine());
 
             switch (Input)
@@ -100,12 +110,13 @@ namespace TeamRPG
 
             KeyControl();
             Jump();
-            for (int i = 0; i < skill.Length; i++)
+
+            for (int i = 0; i < longSkills.Length; i++)
             {
-                skill[i].Progress();  //스킬 나가는 좌표
-                if (skill[i].SkillX > 145)
+                longSkills[i].Progress();  //스킬 나가는 좌표
+                if (longSkills[i].GetINFO().SkillX > 145)
                 {
-                    skill[i].isActive = false;
+                    longSkills[i].GetINFO().isActive = false;
                 }                   
             }
                         
@@ -125,9 +136,10 @@ namespace TeamRPG
             {
                 DrawPlayer();  //플레이어 출력           
 
-                for (int i = 0; i < skill.Length; i++)  // 스킬 출력
+                for (int i = 0; i < longSkills.Length; i++)  // 스킬 출력
                 {
-                    skill[i].Render();
+                    longSkills[i].Render();
+                    shortSkill.Render();
                 }
             }
                                       
@@ -161,11 +173,13 @@ namespace TeamRPG
                 
                 switch (input)
                 {
-                    case 77:                       
+                    case 77:
+                        skill.dir = true;
                         playerX += 3;                       
                         break;
 
                     case 75:
+                        skill.dir = false;
                         playerX -= 3;                                                                      
                         break;
 
@@ -177,22 +191,23 @@ namespace TeamRPG
 
                         if (lWeapon) // 지팡이 트루일떄
                         {
-                                if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
+                            for(skillIndex = 0; skillIndex <20; skillIndex++)
+                            {
+                                if (skillIndex < longSkills.Length && longSkills[skillIndex].GetINFO().isActive == false)
                                 {
-                                    skill[skillIndex].lAttack = true;
-                                    skill[skillIndex].Activate(playerX, playerY);
-                                    skillIndex++;
-                                }                                                         
+                                    longSkills[skillIndex].GetINFO().isActive = true;
+                                    longSkills[skillIndex].GetINFO().lAttack = true;
+                                    longSkills[skillIndex].Activate(playerX, playerY);                                  
+                                }
+
+                            }                                                                                        
                         }
 
                         if (sWeapon) //근접무기 트루일떄
                         {
-                            if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
-                            {
-                                skill[skillIndex].sAttack = true;
-                                skill[skillIndex].Activate(playerX, playerY);
-                                skillIndex++;
-                            }
+                            shortSkill.GetINFO().sAttack = true;
+                            shortSkill.Activate(playerX, playerY);
+                            
 
                         }
                         break;
@@ -202,27 +217,25 @@ namespace TeamRPG
                         if (lWeapon) //지팡이 트루일 때
                         {
                             
-                            if (skillIndex < skill.Length && skill[skillIndex].isActive == false && m_player.pMp >= 10)
+                            if (skillIndex < longSkills.Length && longSkills[skillIndex].GetINFO().isActive == false && m_player.pMp >= 10)
                             {
-                                skill[skillIndex].lSkill = true;
-                                skill[skillIndex].Activate(playerX, playerY);
-                                skill[skillIndex].SkillAtaack = m_player.pAttack * 1.5f;
+                                longSkills[skillIndex].GetINFO().lSkill = true;
+                                longSkills[skillIndex].Activate(playerX, playerY);
+                                longSkills[skillIndex].GetINFO().SkillAtaack = m_player.pAttack * 1.5f;
                                 m_player.pMp -= 10;
                                 skillIndex++;
                             }
                             
                            
                         }
-                        if (sWeapon)
-                        {                           
-                            if (skillIndex < skill.Length && skill[skillIndex].isActive == false && m_player.pMp >= 10)
-                            {
-                                skill[skillIndex].sSkill = true;
-                                skill[skillIndex].Activate(playerX, playerY);
-                                skill[skillIndex].SkillAtaack = m_player.pAttack * 1.5f;
-                                m_player.pMp -= 10;
-                                skillIndex++;
-                            }                                                         
+                        if (sWeapon && m_player.pMp >=10) //근접 트루일 떄
+                        {
+                            shortSkill.GetINFO().sSkill = true;
+                            shortSkill.Activate(playerX, playerY);
+                            shortSkill.GetINFO().SkillAtaack = m_player.pAttack * 1.5f;
+                            m_player.pMp -= 10;
+
+                                                                                    
                         }
                         break;
                 }
