@@ -29,7 +29,7 @@ namespace ConsoleRpg
             map = new Map();
             player = new Player();
 
-            map.Initialize();
+            //map.Initialize();
             player.Initailize();
             
         }
@@ -39,9 +39,9 @@ namespace ConsoleRpg
             
         }
 
-        public void Render()
+        public void Render(Map.StageNum stageNUm)
         {
-            
+            map.Render(stageNUm);
         }
 
         public void Release()

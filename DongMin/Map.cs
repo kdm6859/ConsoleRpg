@@ -26,6 +26,13 @@ namespace ConsoleRpg
             {
                 field[i] = new Field();
             }
+
+
+        }
+
+        void MakeMap()
+        {
+            //field[0].AddObjectPosition(Field)
         }
 
         public void Progress()
