@@ -6,15 +6,16 @@ namespace TeamRPG
     internal class INVENPANEL
     {
         static Dictionary<ConsoleKey, Action> inventory;
-        static Player player;
+        public static Player player;
 
         public static void OpenInventory(Player p)
         {
             player = p;
+            InitializeInventory();
 
             Console.WriteLine("게임을 시작합니다.");
 
-            DisplayInfoPanel(); // 초기 정보창 표시
+            DisplayInfoPanel();
 
             while (true)
             {
@@ -23,72 +24,133 @@ namespace TeamRPG
                 if (keyInfo.Key == ConsoleKey.I)
                 {
                     OpenInventory();
-                    DisplayInfoPanel(); // 인벤토리를 열고 닫은 후 정보창을 표시
+                    DisplayInfoPanel();
                 }
                 else if (inventory.ContainsKey(keyInfo.Key))
                 {
                     inventory[keyInfo.Key]();
-                    DisplayInfoPanel(); // 아이템을 사용한 후 정보창을 표시
+                    DisplayInfoPanel();
                 }
-
-                // 게임 로직 진행
-                // ...
             }
         }
 
-        static void OpenInventory()
+        static void InitializeInventory()
         {
-            Console.SetCursorPosition(135, 32);
+            inventory = new Dictionary<ConsoleKey, Action>();
+
+            inventory[ConsoleKey.D1] = UseHPotion;
+            inventory[ConsoleKey.D2] = UseMPotion;
+        }
+
+        public static void OpenInventory()
+        {
+            //Console.Clear();
+            Console.SetCursorPosition(125, 32);
             Console.WriteLine("=== 인벤토리 ===");
-            Console.SetCursorPosition(135, 33);
+            Console.SetCursorPosition(125, 33);
             Console.WriteLine("1. HP 포션");
-            Console.SetCursorPosition(135, 34);
+            Console.SetCursorPosition(125, 34);
             Console.WriteLine("2. MP 포션");
-            Console.SetCursorPosition(135, 34);
+            Console.SetCursorPosition(125, 35);
             Console.WriteLine("================");
-            Console.SetCursorPosition(120, 35);
+            Console.SetCursorPosition(100, 36);
             Console.WriteLine("아이템을 선택해주세요 (esc: 닫기):");
 
             while (true)
             {
-                ConsoleKeyInfo keyInfo = Console.ReadKey();
-
-                if (keyInfo.Key == ConsoleKey.Escape)
+                if (Console.KeyAvailable)
                 {
-                    break;
-                }
+                    ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
-                if (inventory.ContainsKey(keyInfo.Key))
-                {
-                    inventory[keyInfo.Key]();
+                    if (keyInfo.Key == ConsoleKey.Escape)
+                    {
+                        break;
+                    }
+                    else if (inventory.ContainsKey(keyInfo.Key))
+                    {
+                        inventory[keyInfo.Key]();
+                        DisplayInfoPanel();
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(120, 1);
+                        Console.WriteLine("잘못된 아이템입니다.");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("잘못된 아이템입니다.");
+                    player.KeyControl();
                 }
+
+                DisplayInfoPanel();
             }
 
-            Console.Clear();
+            //Console.Clear();
+            DisplayInfoPanel();
         }
 
-        static void DisplayInfoPanel()
+        public static void DisplayInfoPanel()
         {
-            Console.SetCursorPosition(0, Console.WindowHeight - 8);
+            Console.SetCursorPosition(0, Console.WindowHeight - 5);
             Console.WriteLine("========= 플레이어 정보 =========");
-            Console.WriteLine("이름: " + player.Name + "       직업: " + player.Job);
-            Console.WriteLine("HP: " + player.HP + " / " + PlayerMaxHP() + "       MP: " + player.MP + " / " + PlayerMaxMP());
-            Console.WriteLine("공격력: " + player.Attack);
+            Console.WriteLine("직업: " + player.GetINFO()?.pName);
+            Console.WriteLine("HP: " + player.GetINFO()?.pHp + " / " + PlayerMaxHP() + "  MP: " + player.GetINFO()?.pMp + " / " + PlayerMaxMP());
+            Console.WriteLine("공격력: " + player.GetINFO()?.pAttack);
             Console.WriteLine("================================");
         }
 
         static int PlayerMaxHP()
         {
-            return 80; // 최대 HP 값 반환
+            return player.GetINFO()?.MaxHp ?? 0;
         }
 
         static int PlayerMaxMP()
         {
-            return 120; // 최대 MP 값 반환
+            return player.GetINFO()?.MaxMp ?? 0;
+        }
+
+        static void UseHPotion()
+        {
+            int healAmount = 30;
+            int currentHP = player.GetINFO()?.pHp ?? 0;
+            int maxHP = PlayerMaxHP();
+
+            if (currentHP == maxHP)
+            {
+                Console.SetCursorPosition(120, 1);
+                Console.WriteLine("이미 체력은 최대치 입니다..");
+                return;
+            }
+
+            int newHP = currentHP + healAmount;
+            if (newHP > maxHP)
+                newHP = maxHP;
+
+            player.GetINFO().pHp = newHP;
+            Console.SetCursorPosition(120, 1);
+            Console.WriteLine("체력을 {0} 회복하였습니다.", newHP - currentHP);
+        }
+
+        static void UseMPotion()
+        {
+            int healAmount = 30;
+            int currentMP = player.GetINFO()?.pMp ?? 0;
+            int maxMP = PlayerMaxMP();
+
+            if (currentMP == maxMP)
+            {
+                Console.SetCursorPosition(120, 1);
+                Console.WriteLine("이미 마나는 최대치 입니다.");
+                return;
+            }
+
+            int newMP = currentMP + healAmount;
+            if (newMP > maxMP)
+                newMP = maxMP;
+
+            player.GetINFO().pMp = newMP;
+            Console.SetCursorPosition(120, 1);
+            Console.WriteLine("마나를 {0} 회복하였습니다.", newMP - currentMP);
         }
     }
 }
