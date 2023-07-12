@@ -11,6 +11,7 @@ namespace ConsoleRPG
         Player player = null;
         Monster mon = null;
         Skill skill = null;
+        public Player GetPlayer() { return player; }
         public void Initialize()
         {
             skill = new Skill();
@@ -18,9 +19,7 @@ namespace ConsoleRPG
             player.Initailize();
 
             mon  = new Monster("Monster",40,25,"☆",1);
-         
-           
-
+        
         }
         public void Progress()
         {

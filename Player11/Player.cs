@@ -59,7 +59,6 @@ namespace ConsoleRPG
             m_player.pEXP = 0;
 
             skill = new Skill(this);
-
             shortSkill = new ShortSkill(this, skill);
 
             playerX = 0;  //플레이어 처음 x좌표
@@ -110,16 +109,18 @@ namespace ConsoleRPG
 
             KeyControl();
             Jump();
-
-            for (int i = 0; i < longSkills.Length; i++)
+            if (lWeapon)
             {
-                longSkills[i].Progress();  //스킬 나가는 좌표
-                if (longSkills[i].GetINFO().SkillX > 145)
+                for (int i = 0; i < longSkills.Length; i++)
                 {
-                    longSkills[i].GetINFO().isActive = false;
-                }                   
+                    longSkills[i].Progress();  //스킬 나가는 좌표
+                    if (longSkills[i].GetINFO().SkillX > 145)
+                    {
+                        longSkills[i].GetINFO().isActive = false;
+                    }
+                }
             }
-                        
+
             if (playerX < 0) //플레이어 x좌 0 밑으로 가면 x좌표 초기화
             {
                 playerX = 0;
@@ -192,14 +193,9 @@ namespace ConsoleRPG
                         if (lWeapon) // 지팡이 트루일떄
                         {
                             for(skillIndex = 0; skillIndex <20; skillIndex++)
-                            {
-                                if (skillIndex < longSkills.Length && longSkills[skillIndex].GetINFO().isActive == false)
-                                {
-                                    longSkills[skillIndex].GetINFO().isActive = true;
-                                    longSkills[skillIndex].GetINFO().lAttack = true;
-                                    longSkills[skillIndex].Activate(playerX, playerY);                                  
-                                }
-
+                            {                          
+                                longSkills[skillIndex].GetINFO().lAttack = true;
+                                longSkills[skillIndex].Activate(playerX, playerY);
                             }                                                                                        
                         }
 
@@ -207,8 +203,6 @@ namespace ConsoleRPG
                         {
                             shortSkill.GetINFO().sAttack = true;
                             shortSkill.Activate(playerX, playerY);
-                            
-
                         }
                         break;
 
@@ -225,8 +219,6 @@ namespace ConsoleRPG
                                 m_player.pMp -= 10;
                                 skillIndex++;
                             }
-                            
-                           
                         }
                         if (sWeapon && m_player.pMp >=10) //근접 트루일 떄
                         {
@@ -234,8 +226,6 @@ namespace ConsoleRPG
                             shortSkill.Activate(playerX, playerY);
                             shortSkill.GetINFO().SkillAtaack = m_player.pAttack * 1.5f;
                             m_player.pMp -= 10;
-
-                                                                                    
                         }
                         break;
                 }
@@ -250,8 +240,6 @@ namespace ConsoleRPG
         {                       
             if(isJumping)
             {
-                
-
                 if (jumpUpCount > 0)
                 {
                     playerY -= 1;

@@ -21,14 +21,12 @@ namespace ConsoleRPG
 
             while (true)
             {
-            
+               
                 if(Current + 150 < Environment.TickCount)
                 {
-                    
                     Current = Environment.TickCount;
                     gm.Progress();
                     gm.Render();
-                  
                 }
             }                        
         }
