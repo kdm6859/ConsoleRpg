@@ -17,8 +17,16 @@ namespace TeamRPG
         public int playerX;
         public int playerY;
         public int playerJump = 2;
+        
 
         public void SetDamage(int iAttack) { m_player.pHp -= iAttack; } //데미지 받는 함수
+        public void PlayerGameOver()
+        {
+            if(m_player.pHp==0) 
+            {
+                
+            }
+        }
 
         public void SetEXP(int exp)  //경험치 받아서 플레이어 레벨 올림
         { 
@@ -27,8 +35,8 @@ namespace TeamRPG
             if(m_player.pEXP >= 100)
             {
                 m_player.pLevel += 1;   //경험치100되면 레벨 1증가
-                m_player.pMp = 100;     //레벨 오르면 mp,hp 100으로 초기화
-                m_player.pHp = 100;
+                m_player.pMp = m_player.MaxMp;     //레벨 오르면 mp,hp 100으로 초기화
+                m_player.pHp = m_player.MaxHp;
                 m_player.pAttack += 10; //레벨 오르면 공격력 10증가
                 m_player.pEXP = 0;      //레벨 오르면 경험치 0으로 초기화
             }
@@ -262,7 +270,7 @@ namespace TeamRPG
                         playerY = 35 - jumpProgress;
                         doJumping = false;
 
-                        Render();
+                        //Render();
 
                     }
                 }
