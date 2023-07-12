@@ -14,7 +14,7 @@ namespace ConsoleRpg
 
         static void Main(string[] args)
         {
-            
+           
         }
     }
 }
