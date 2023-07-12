@@ -16,8 +16,19 @@ namespace TeamRPG
         
         public int playerX;
         public int playerY;
-        public int playerJump = 2;
-        
+
+        bool isJumping = false;
+        bool isJumpUp = false;
+        bool isJumpDown = false;
+        bool startJumping = false;
+        int jumpHeight = 5;  // 점프 높이 조정 (값이 클수록 더 높이 점프)
+        int jumpDuration = 500;  // 점프에 걸리는 시간 (밀리초)
+        int startJumpTime = 0;
+        int currentJumpTime = 0;
+        int jumpUpCount = 3;
+        int jumpDownCount = 3;
+        //public int playerJump = 2;
+
 
         public void SetDamage(int iAttack) { m_player.pHp -= iAttack; } //데미지 받는 함수
         public void PlayerGameOver()
@@ -104,8 +115,8 @@ namespace TeamRPG
         public void Progress()
         {
 
-            KeyControl();        
-
+            KeyControl();
+            Jump();
             for (int i = 0; i < skill.Length; i++)
             {
                 skill[i].Progress();  //스킬 나가는 좌표
@@ -168,11 +179,11 @@ namespace TeamRPG
                         break;
 
                     case ConsoleKey.Spacebar:
+                        isJumping = true;
+                        //if (playerY > 1 && playerY == 25)
+                        //playerJump = 0;
 
-                        if (playerY > 1 && playerY == 25)
-                            playerJump = 0;
-
-                        Jump();                                              
+                        //Jump();                                              
                         break;
 
                     case ConsoleKey.Z: // z 노말 공격 발사  
@@ -233,47 +244,66 @@ namespace TeamRPG
 
         public void Jump()
         {                       
-            if(playerY >= 25)
+            if(isJumping)
             {
-                int jumpHeight = 5;  // 점프 높이 조정 (값이 클수록 더 높이 점프)
-                
-                int jumpDuration = 500;  // 점프에 걸리는 시간 (밀리초)
+                //if (startJumping)
+                //{
+                //    startJumpTime = Environment.TickCount;
+                //    startJumping = false;
+                //}
 
-                bool isJumping = true;
-                bool doJumping = true;
-                int startJumpTime = Environment.TickCount;
-
-                while (isJumping)
+                if (jumpUpCount > 0)
                 {
-                    int currentJumpTime = Environment.TickCount - startJumpTime;
-
-                    //for(int i = 0;)
-
-                    //Console.Clear();
-
-                    if (currentJumpTime >= jumpDuration)
-                    {
-                        // 점프 종료
-                        isJumping = false;
-                        playerY = 25;
-
-                    }
-                    /*
-                    else if (doJumping == false)
-                    { 
-                        
-                    }*/
-                    else
-                    {
-                        // 중력 적용
-                        int jumpProgress = (int)((float)currentJumpTime / jumpDuration * jumpHeight);
-                        playerY = 25 - jumpProgress;
-                        doJumping = false;
-
-                        //Render();
-
-                    }
+                    playerY -= 1;
+                    jumpUpCount--;
                 }
+                else if(jumpDownCount > 0)
+                {
+                    playerY += 1;
+                    jumpDownCount--;
+                }
+                else
+                {
+                    isJumping = false;
+                    jumpUpCount = 3;
+                    jumpDownCount = 3;
+                }
+                
+
+                //if (Environment.TickCount - startJumpTime >= 500)
+                //{
+
+                //}
+
+                //while (isJumping)
+                //{
+                //    int currentJumpTime = Environment.TickCount - startJumpTime;
+
+                //    //for(int i = 0;)
+
+                //    //Console.Clear();
+
+                //    if (currentJumpTime >= jumpDuration)
+                //    {
+                //        // 점프 종료
+                //        isJumping = false;
+                //        playerY = 25;
+
+                //    }
+                //    /*
+                //    else if (doJumping == false)
+                //    { 
+                        
+                //    }*/
+                //    else
+                //    {
+                        
+                //        int jumpProgress = (int)((float)currentJumpTime / jumpDuration * jumpHeight);
+                //        playerY = 25 - jumpProgress;
+                //        //Render();
+
+                //    }
+                //}
                 //playerY -= 2;
                 //playerX += 2;
 
