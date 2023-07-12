@@ -9,8 +9,6 @@ namespace TeamRPG
 {
     internal class Program
     {
-        [DllImport("msvcrt.dll")]
-        public static extern int _getch();
         static void Main(string[] args)
         {
 
@@ -21,16 +19,17 @@ namespace TeamRPG
 
             while (true)
             {
-            
-                if(Current + 150 < Environment.TickCount)
+
+                if (Current + 150 < Environment.TickCount)
                 {
                     //Console.Clear();
                     Current = Environment.TickCount;
                     gm.Progress();
                     gm.Render();
-                  
+
                 }
-            }                        
+            }
         }
     }
 }
+
