@@ -19,8 +19,7 @@ namespace TeamRPG
 
         bool isJumping = false;             
         int jumpUpCount = 6;
-        int jumpDownCount = 6;
-        //public int playerJump = 2;
+        int jumpDownCount = 6;       
 
 
         public void SetDamage(int iAttack) { m_player.pHp -= iAttack; } //데미지 받는 함수
