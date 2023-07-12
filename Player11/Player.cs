@@ -58,7 +58,7 @@ namespace TeamRPG
             m_player.pEXP = 0;
 
             playerX = 0;  //플레이어 처음 x좌표
-            playerY = 35; //플레이어 처음 y좌표
+            playerY = 25; //플레이어 처음 y좌표
 
             Select();
 
@@ -169,7 +169,7 @@ namespace TeamRPG
 
                     case ConsoleKey.Spacebar:
 
-                        if (playerY > 1 && playerY == 35)
+                        if (playerY > 1 && playerY == 25)
                             playerJump = 0;
 
                         Jump();                                              
@@ -233,7 +233,7 @@ namespace TeamRPG
 
         public void Jump()
         {                       
-            if(playerY >= 35)
+            if(playerY >= 25)
             {
                 int jumpHeight = 5;  // 점프 높이 조정 (값이 클수록 더 높이 점프)
                 
@@ -255,7 +255,7 @@ namespace TeamRPG
                     {
                         // 점프 종료
                         isJumping = false;
-                        playerY = 35;
+                        playerY = 25;
 
                     }
                     /*
@@ -267,7 +267,7 @@ namespace TeamRPG
                     {
                         // 중력 적용
                         int jumpProgress = (int)((float)currentJumpTime / jumpDuration * jumpHeight);
-                        playerY = 35 - jumpProgress;
+                        playerY = 25 - jumpProgress;
                         doJumping = false;
 
                         //Render();
