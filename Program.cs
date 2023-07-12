@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ConsoleRpg
-{
+{ 
     public class Program
     {
         [DllImport("msvcrt.dll")]
