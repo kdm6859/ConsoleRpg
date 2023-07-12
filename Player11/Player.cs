@@ -166,11 +166,7 @@ namespace TeamRPG
                         break;
 
                     case 75:
-                        playerX -= 3;
-                        if (skillIndex < skill.Length && skill[skillIndex].isActive == false)
-                        { skill[skillIndex].dir = true;
-                            skillIndex++;
-                        }
+                        playerX -= 3;                                                                      
                         break;
 
                     case 32:
