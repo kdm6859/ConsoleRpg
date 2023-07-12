@@ -31,6 +31,11 @@ namespace ConsoleRpg
 
         }
 
+        public void Testmap()
+        {
+            field[0].AddObjectPosition(Field.ObjectName.Ground, new Position(0, 30), new Position(10, 30), new Position(20, 30));
+        }
+
         public void Render(StageNum stageNUm)
         {
             field[(int)stageNUm].MakeField();
