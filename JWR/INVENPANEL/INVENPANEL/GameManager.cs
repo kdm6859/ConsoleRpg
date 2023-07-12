@@ -23,7 +23,7 @@ namespace TeamRPG
         {
             Console.Clear();
             player.Render();
-            INVENPANEL.OpenInventory(player);
+            INVENPANEL.Instanse().OpenInventory(player);
             
         }
 
