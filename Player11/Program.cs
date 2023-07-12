@@ -19,11 +19,14 @@ namespace TeamRPG
 
             while (true)
             {
-                if(Current + 100 < Environment.TickCount)
+            
+                if(Current + 150 < Environment.TickCount)
                 {
+                    //Console.Clear();
                     Current = Environment.TickCount;
                     gm.Progress();
-                    gm.Render();                                       
+                    gm.Render();
+                  
                 }
             }                        
         }

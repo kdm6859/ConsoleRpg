@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TeamRPG;
-
 namespace ConsoleRpg
 {
     
@@ -38,6 +36,11 @@ namespace ConsoleRpg
         public void Progress()
         {
 
+        }
+
+        public void Testmap()
+        {
+            field[0].AddObjectPosition(Field.ObjectName.Ground, new Position(0, 30), new Position(10, 30), new Position(20, 30));
         }
 
         public void Render(StageNum stageNUm)
