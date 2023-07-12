@@ -25,8 +25,8 @@ namespace TeamRPG
         int jumpDuration = 500;  // 점프에 걸리는 시간 (밀리초)
         int startJumpTime = 0;
         int currentJumpTime = 0;
-        int jumpUpCount = 3;
-        int jumpDownCount = 3;
+        int jumpUpCount = 6;
+        int jumpDownCount = 6;
         //public int playerJump = 2;
 
 
@@ -265,8 +265,8 @@ namespace TeamRPG
                 else
                 {
                     isJumping = false;
-                    jumpUpCount = 3;
-                    jumpDownCount = 3;
+                    jumpUpCount = 6;
+                    jumpDownCount = 6;
                 }
                 
 
