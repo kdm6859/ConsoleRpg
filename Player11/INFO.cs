@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TeamRPG
 {
-    internal class INFO
+    public class INFO
     {
         public int pHp;
         public int pAttack;

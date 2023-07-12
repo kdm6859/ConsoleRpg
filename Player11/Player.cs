@@ -9,7 +9,7 @@ using TeamRPG;
 
 namespace TeamRPG
 {
-    internal class Player
+    public class Player
     {       
         Skill[] skill = null;
         INFO m_player = null;
@@ -158,9 +158,7 @@ namespace TeamRPG
                 {
                     input = Program._getch();
                 }
-
-                //ConsoleKey pressKey = Console.ReadKey(true).Key;
-
+                
                 switch (input)
                 {
                     case 77:                       
@@ -229,6 +227,10 @@ namespace TeamRPG
                         break;
                 }
             }   
+        }
+        public int GetPlayerFootPosition()
+        {
+            return playerY + 3;
         }
 
         public void Jump()

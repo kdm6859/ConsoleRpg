@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TeamRPG
 {
-    internal class Skill
+    public class Skill
     {               
         public float SkillAtaack; //스킬 공격력
 
@@ -98,9 +98,7 @@ namespace TeamRPG
                 {
                     Console.SetCursorPosition(SkillX+3, SkillY + i);
                     Console.WriteLine(sMagic[i]);
-                }
-                //Console.SetCursorPosition(SkillX+2, SkillY + 1);
-                //Console.Write("---->->->");
+                }              
 
             }
             if (sAttack)  //근거리 일반공격
