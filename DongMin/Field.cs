@@ -19,14 +19,14 @@ namespace ConsoleRpg
             Portal,
             Meteo
         }
-        public List<Position> island1Pos = null;
-        public List<Position> island2Pos = null;
-        public List<Position> island3Pos = null;
-        public List<Position> island4Pos = null;
-        public List<Position> groundPos = null;
-        public List<Position> trapPos = null;
-        public List<Position> portalPos = null;
-        public List<Position> meteoPos = null;
+        List<Position> island1Pos = null;
+        List<Position> island2Pos = null;
+        List<Position> island3Pos = null;
+        List<Position> island4Pos = null;
+        List<Position> groundPos = null;
+        List<Position> trapPos = null;
+        List<Position> portalPos = null;
+        List<Position> meteoPos = null;
 
         public void AddObjectPosition(ObjectName objectName, int x, int y)
         {
@@ -160,7 +160,7 @@ namespace ConsoleRpg
                 //island1오브젝트 배치
                 for (int i = 0; i < island1Pos.Count; i++)
                 {
-                    MakeFieldObject(FieldObject.Instance().island1, island1Pos[i].x, island1Pos[i].y);
+                    MakeFieldObject(FieldObject.Instance().Island1, island1Pos[i].x, island1Pos[i].y);
                 }
             }
 
@@ -169,7 +169,7 @@ namespace ConsoleRpg
                 //island2오브젝트 배치
                 for (int i = 0; i < island2Pos.Count; i++)
                 {
-                    MakeFieldObject(FieldObject.Instance().island2, island2Pos[i].x, island2Pos[i].y);
+                    MakeFieldObject(FieldObject.Instance().Island2, island2Pos[i].x, island2Pos[i].y);
                 }
             }
 
@@ -178,7 +178,7 @@ namespace ConsoleRpg
                 //island3오브젝트 배치
                 for (int i = 0; i < island3Pos.Count; i++)
                 {
-                    MakeFieldObject(FieldObject.Instance().island3, island3Pos[i].x, island3Pos[i].y);
+                    MakeFieldObject(FieldObject.Instance().Island3, island3Pos[i].x, island3Pos[i].y);
                 }
             }
 
@@ -187,7 +187,7 @@ namespace ConsoleRpg
                 //island4오브젝트 배치
                 for (int i = 0; i < island4Pos.Count; i++)
                 {
-                    MakeFieldObject(FieldObject.Instance().island4, island4Pos[i].x, island4Pos[i].y);
+                    MakeFieldObject(FieldObject.Instance().Island4, island4Pos[i].x, island4Pos[i].y);
                 }
             }
 
@@ -196,7 +196,7 @@ namespace ConsoleRpg
                 //ground오브젝트 배치
                 for (int i = 0; i < groundPos.Count; i++)
                 {
-                    MakeFieldObject(FieldObject.Instance().ground, groundPos[i].x, groundPos[i].y);
+                    MakeFieldObject(FieldObject.Instance().Ground, groundPos[i].x, groundPos[i].y);
                 }
             }
             
@@ -205,7 +205,7 @@ namespace ConsoleRpg
                 //trap오브젝트 배치
                 for (int i = 0; i < trapPos.Count; i++)
                 {
-                    MakeFieldObject(FieldObject.Instance().trap, trapPos[i].x, trapPos[i].y);
+                    MakeFieldObject(FieldObject.Instance().Trap, trapPos[i].x, trapPos[i].y);
                 }
             }
             
@@ -214,7 +214,7 @@ namespace ConsoleRpg
                 //portal오브젝트 배치
                 for (int i = 0; i < portalPos.Count; i++)
                 {
-                    MakeFieldObject(FieldObject.Instance().portal, portalPos[i].x, portalPos[i].y);
+                    MakeFieldObject(FieldObject.Instance().Portal, portalPos[i].x, portalPos[i].y);
                 }
             }
             
@@ -223,7 +223,7 @@ namespace ConsoleRpg
                 //meteo오브젝트 배치
                 for (int i = 0; i < meteoPos.Count; i++)
                 {
-                    MakeFieldObject(FieldObject.Instance().meteo, meteoPos[i].x, meteoPos[i].y);
+                    MakeFieldObject(FieldObject.Instance().Meteo, meteoPos[i].x, meteoPos[i].y);
                 }
             }
             

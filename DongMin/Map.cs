@@ -10,14 +10,22 @@ namespace ConsoleRpg
     
     public class Map
     {
+        public enum StageNum
+        {
+            stage1,
+            stage2,
+            stage3
+        }
         Field[] field;
         const int fieldNum = 3;
-        //FieldObject fieldObject;
-
 
         public void Initialize()
         {
             field = new Field[fieldNum];
+            for (int i = 0; i < fieldNum; i++)
+            {
+                field[i] = new Field();
+            }
         }
 
         public void Progress()
@@ -25,9 +33,9 @@ namespace ConsoleRpg
 
         }
 
-        public void Render()
+        public void Render(StageNum stageNUm)
         {
-            field[0].island1Pos = new List<Position>();
+            field[(int)stageNUm].MakeField();
         }
 
         public void Release()

@@ -18,56 +18,95 @@ namespace ConsoleRpg
             return instance;
         }
 
-        public string[] island1 =
+        string[] island1 =
         {
             "┏━━━━━━━━━━━━━━━━━┓",
             "┃                 ┃",
             "┗━━━━━━━━━━━━━━━━━┛"
         };
 
-        public string[] island2 =
+        string[] island2 =
         {
             "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓",
             "┃                              ┃",
             "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
         };
 
-        public string[] island3 =
+        string[] island3 =
         {
             "┏━━━━━━━━━━━━━━┓",
             "┃              ┗━━━━━━━━━━━━━━━┓",
             "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
         };
 
-        public string[] island4 =
+        string[] island4 =
         {
             "                ┏━━━━━━━━━━━━━━┓",
             "┏━━━━━━━━━━━━━━━┛              ┃",
             "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
         };
 
-        public string[] ground =
+        string[] ground =
         {
             "━━━━━━━━━━"
         };
 
-        public string[] trap =
+        string[] trap =
         {
             "┃        ┃",
             "┗▲▲▲▲┛"
         };
 
-        public string[] portal =
+        string[] portal =
         {
             "▒▒▒▒▒",
             "▒▒▒▒▒",
             "▒▒▒▒▒"
         };
 
-        public string[] meteo =
+        string[] meteo =
         {
             "♨"
         };
 
+        public string[] Island1
+        {
+            get { return island1; }
+        }
+
+        public string[] Island2
+        {
+            get { return island2; }
+        }
+
+        public string[] Island3
+        {
+            get { return island3; }
+        }
+
+        public string[] Island4
+        {
+            get { return island4; }
+        }
+
+        public string[] Ground
+        {
+            get { return ground; }
+        }
+
+        public string[] Trap
+        {
+            get { return trap; }
+        }
+
+        public string[] Portal
+        {
+            get { return portal; }
+        }
+
+        public string[] Meteo
+        {
+            get { return meteo; }
+        }
     }
 }
