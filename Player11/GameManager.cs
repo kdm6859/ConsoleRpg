@@ -12,12 +12,14 @@ namespace ConsoleRPG
         Player player = null;
         Monster mon = null;
         Skill skill = null;
+        
         public Player GetPlayer() { return player; }
         public void Initialize()
         {
            
             skill = new Skill();
             player = new Player();
+            
             player.Initailize();
             
 
@@ -30,15 +32,16 @@ namespace ConsoleRPG
             KeyControlManager.Instance().KeyControl();
             player.Progress();
             mon.Progress(player);
+
         }
         public void Render()
         {
-            Console.Clear();
-           
+            //Console.Clear();
+
             Console.WriteLine("플레이어 dir :" + player.getSkill().dir);
-            Console.WriteLine("이즈엑티브 :" + player.getSkill().isActive);
-            Console.WriteLine("스킬 x좌표 : " + player.getSkill().SkillX);            
-            Console.Write(player.GetINFO().pMp);
+            //Console.WriteLine("이즈엑티브 :" + player.getSkill().isActive);
+            //Console.WriteLine("스킬 x좌표 : " + player.getSkill().SkillX);
+            
 
 
             INVENPANEL.Instance().OpenInventory();
@@ -48,7 +51,7 @@ namespace ConsoleRPG
 
             player.Render();
             mon.Render();
-            mon.PrintLocation();
+            //mon.PrintLocation();
             
             
         }
