@@ -14,7 +14,7 @@ namespace ConsoleRPG
         ShortSkill shortSkill = null;
         LongSkill[] longSkills = null;
         Skill skill = null;
-        INFO m_player = null; 
+        INFO m_player = null;       
         
 
         public int playerX;
@@ -54,8 +54,7 @@ namespace ConsoleRPG
 
         public void Initailize()
         {
-            longSkills = new LongSkill[100];
-
+            longSkills = new LongSkill[100];           
             m_player = new INFO();
             m_player.pLevel = 1;
             m_player.pEXP = 0;
@@ -69,8 +68,8 @@ namespace ConsoleRPG
             playerY = 27; //플레이어 처음 y좌표
 
             Select();
-
-
+            skill.SkillAttack = m_player.pAttack;
+           
 
             for (int i = 0; i < longSkills.Length; i++)
             {
@@ -112,12 +111,13 @@ namespace ConsoleRPG
                     break;
             }
         }
-        public void Progress()
+        public void Progress(Monster m_monster)
         {
+            
             KeySensing();
           
             Jump();
-         
+            shortSkill.Progress(m_monster);
             
             for (int i = 0; i < longSkills.Length; i++)
             {
@@ -142,10 +142,10 @@ namespace ConsoleRPG
                 DrawPlayer();  //플레이어 출력
                 shortSkill.Render();
 
-                for (int i = 0; i < longSkills.Length; i++)  // 스킬 출력
+               /* for (int i = 0; i < longSkills.Length; i++)  // 스킬 출력
                 {
                     longSkills[i].Render();                 
-                }
+                }*/
             }
 
         }
@@ -193,9 +193,10 @@ namespace ConsoleRPG
                 }
             }
         }
-
+      
         public void KeySensing()
         {
+            
             if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.right)) //오른쪽 키
             {
                 skill.dir = true;
@@ -224,6 +225,7 @@ namespace ConsoleRPG
                 {
                     shortSkill.GetINFO().sAttack = true;
                     shortSkill.Activate(playerX, playerY);
+                    shortSkill.GetINFO().SkillAttack = m_player.pAttack;
                 }
             }
             else if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.x)) //x
@@ -234,7 +236,7 @@ namespace ConsoleRPG
                     {
                         longSkills[skillIndex].GetINFO().lSkill = true;
                         longSkills[skillIndex].Activate(playerX, playerY);
-                        longSkills[skillIndex].GetINFO().SkillAtaack = m_player.pAttack * 2;
+                        longSkills[skillIndex].GetINFO().SkillAttack = m_player.pAttack * 2;
                         m_player.pMp -= 10;
                     }
                 }
@@ -242,7 +244,7 @@ namespace ConsoleRPG
                 {
                     shortSkill.GetINFO().sSkill = true;
                     shortSkill.Activate(playerX, playerY);
-                    shortSkill.GetINFO().SkillAtaack = m_player.pAttack * 2;
+                    shortSkill.GetINFO().SkillAttack = m_player.pAttack * 2;
                     m_player.pMp -= 10;
                 }
             }

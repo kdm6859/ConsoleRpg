@@ -25,6 +25,7 @@ namespace ConsoleRPG
         Player player = null;
         Monster mon = null;
         Skill skill = null;
+        ShortSkill shortskill = null;
         
         public Player GetPlayer() { return player; }
         public Monster GetMonster() { return mon;}
@@ -33,19 +34,20 @@ namespace ConsoleRPG
             map = new Map();
             skill = new Skill();
             player = new Player();
-
+            shortskill = new ShortSkill(player, skill);
+            
             map.Initialize();
             player.Initailize();
             
 
-            mon  = new Monster("Monster",40,28, Monster.monsterStr, 1, 300);
+            mon  = new Monster("Monster",40,28, Monster.monsterStr, 1, 500);
         
         }
         public void Progress()
         {
             INVENPANEL.Instance().KeySensing();
             KeyControlManager.Instance().KeyControl();
-            player.Progress();
+            player.Progress(mon);
             mon.Progress(player);
 
 
@@ -54,8 +56,8 @@ namespace ConsoleRPG
         public void Render()
         {
             //Console.Clear();
-
-            Console.WriteLine("플레이어 dir :" + player.getSkill().dir);
+            
+            //Console.WriteLine("플레이어 dir :" + player.getSkill().dir);
             //Console.WriteLine("이즈엑티브 :" + player.getSkill().isActive);
             //Console.WriteLine("스킬 x좌표 : " + player.getSkill().SkillX);
 
@@ -68,10 +70,13 @@ namespace ConsoleRPG
             INVENPANEL.Instance().UseMPotion();
 
             player.Render();
-            mon.Render();
+            mon.Render();            
+            Console.WriteLine("캐릭터 공격력 :"+ player.GetINFO().pAttack);  
+            Console.WriteLine("몬스터 체력 :"+ mon.Hp);  
+            
             //mon.PrintLocation();
-            
-            
+
+
         }
             
     }

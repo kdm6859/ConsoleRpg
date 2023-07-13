@@ -13,7 +13,7 @@ namespace ConsoleRPG
     //스킬 정보 저장하는 클래스
     public class Skill
     {
-        public int SkillAtaack; //스킬 공격력
+        public int SkillAttack; //스킬 공격력
 
         public int SkillX;    //스킬 좌표
         public int SkillY;
@@ -28,23 +28,23 @@ namespace ConsoleRPG
         public bool sSkill;   //근거리 노말공격
         public bool sAttack;  //근거리 스킬 공격
 
-        Player m_player = new Player();
+        Player m_player = null;
                 
         public int Current;
 
         public Skill(Player player)
         {
-            
+            m_player = player;
+
             SkillX = 0;
             SkillY = 0;
             isActive = false;
-            m_player = player;
-            SkillAtaack = player.GetINFO().pAttack; //스킬 데미지
             dir = true;
             lAttack = false;
             lSkill = false;
             sSkill = false;
             sAttack = false;
+            SkillAttack = m_player.GetINFO().pAttack; //스킬 데미지
         }
 
         public Skill()
