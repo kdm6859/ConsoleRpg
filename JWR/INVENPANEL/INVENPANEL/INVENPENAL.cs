@@ -6,19 +6,19 @@ namespace ConsoleRpg
 {
     internal class INVENPANEL
     {
-        public static INVENPANEL instanse = null;
+        public static INVENPANEL instance = null;
 
-        public static INVENPANEL Instanse()
+        public static INVENPANEL Instance()
         {
-            if(instanse == null)
+            if(instance == null)
             {
-                instanse = new INVENPANEL();
+                instance = new INVENPANEL();
             }
-            return instanse;
+            return instance;
         }
 
         Dictionary<ConsoleKey, Action> inventory;
-        public static Player player;
+        private static Player player;
 
         bool invenOnOff = false;
 
@@ -130,7 +130,7 @@ namespace ConsoleRpg
                 else
                 {
                     invenOnOff = true;
-                    INVENPANEL.Instanse().OpenInventory(player);
+                    INVENPANEL.Instance().OpenInventory(player);
                 }
                 DisplayInfoPanel();
             }
