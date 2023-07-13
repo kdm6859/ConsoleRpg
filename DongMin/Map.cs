@@ -25,12 +25,12 @@ namespace ConsoleRpg
                 field[i] = new Field();
             }
 
-
+            MakeMap();
         }
 
         public void Progress()
         {
-
+            
         }
 
         public void MakeMap()

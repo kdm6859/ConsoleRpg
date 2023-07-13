@@ -12,17 +12,21 @@ namespace ConsoleRpg
         public int[] width;
         public int[] height;
 
-        public SensingArea(int[] width, int[] height, params Position[] position)
+        public SensingArea(int[] width, int[] height, params Position[][] position)
         {
             positions = new Position[position.Length];
-            width = new int[position.Length];
-            height = new int[position.Length];
+
+            this.width = new int[position.Length];
+            this.height = new int[position.Length];
 
             for (int i = 0; i < position.Length; i++)
             {
-                positions[i] = position[i];
                 this.width[i] = width[i];
                 this.height[i] = height[i];
+                for (int j = 0; j < position[i].Length; j++)
+                {
+                    positions[i] = position[i][j];
+                }
             }
         }
     }

@@ -18,7 +18,13 @@ namespace ConsoleRpg
             return instance;
         }
 
+        SensingArea playerArea = null;
 
+        public void Initialize(SensingArea playerArea)
+        {
+            this.playerArea = playerArea;
+
+        }
 
     }
 }

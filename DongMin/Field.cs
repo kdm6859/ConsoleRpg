@@ -19,128 +19,187 @@ namespace ConsoleRpg
             Portal,
             Meteo
         }
-        List<Position> island1Pos = null;
-        List<Position> island2Pos = null;
-        List<Position> island3Pos = null;
-        List<Position> island4Pos = null;
-        List<Position> groundPos = null;
-        List<Position> trapPos = null;
-        List<Position> portalPos = null;
-        List<Position> meteoPos = null;
+        List<SensingArea> island1Pos = null;
+        List<SensingArea> island2Pos = null;
+        List<SensingArea> island3Pos = null;
+        List<SensingArea> island4Pos = null;
+        List<SensingArea> groundPos = null;
+        List<SensingArea> trapPos = null;
+        List<SensingArea> portalPos = null;
+        List<SensingArea> meteoPos = null;
 
-        public void AddObjectPosition(ObjectName objectName, int x, int y)
-        {
-            switch(objectName)
-            {
-                case ObjectName.Island1:
-                    if (island1Pos == null)
-                        island1Pos = new List<Position>();
-                    island1Pos.Add(new Position(x, y));
-                    break;
-                case ObjectName.Island2:
-                    if (island2Pos == null)
-                        island2Pos = new List<Position>();
-                    island2Pos.Add(new Position(x, y));
-                    break;
-                case ObjectName.Island3:
-                    if (island3Pos == null)
-                        island3Pos = new List<Position>();
-                    island3Pos.Add(new Position(x, y));
-                    break;
-                case ObjectName.Island4:
-                    if (island4Pos == null)
-                        island4Pos = new List<Position>();
-                    island4Pos.Add(new Position(x, y));
-                    break;
-                case ObjectName.Ground:
-                    if (groundPos == null)
-                        groundPos = new List<Position>();
-                    groundPos.Add(new Position(x, y));
-                    break;
-                case ObjectName.Trap:
-                    if (trapPos == null)
-                        trapPos = new List<Position>();
-                    trapPos.Add(new Position(x, y));
-                    break;
-                case ObjectName.Portal:
-                    if (portalPos == null)
-                        portalPos = new List<Position>();
-                    portalPos.Add(new Position(x, y));
-                    break;
-                case ObjectName.Meteo:
-                    if (meteoPos == null)
-                        meteoPos = new List<Position>();
-                    meteoPos.Add(new Position(x, y));
-                    break;
-            }
-        }
+        //public void AddObjectPosition(ObjectName objectName, int x, int y)
+        //{
+        //    switch(objectName)
+        //    {
+        //        case ObjectName.Island1:
+        //            if (island1Pos == null)
+        //                island1Pos = new List<Position>();
+        //            island1Pos.Add(new Position(x, y));
+        //            break;
+        //        case ObjectName.Island2:
+        //            if (island2Pos == null)
+        //                island2Pos = new List<Position>();
+        //            island2Pos.Add(new Position(x, y));
+        //            break;
+        //        case ObjectName.Island3:
+        //            if (island3Pos == null)
+        //                island3Pos = new List<Position>();
+        //            island3Pos.Add(new Position(x, y));
+        //            break;
+        //        case ObjectName.Island4:
+        //            if (island4Pos == null)
+        //                island4Pos = new List<Position>();
+        //            island4Pos.Add(new Position(x, y));
+        //            break;
+        //        case ObjectName.Ground:
+        //            if (groundPos == null)
+        //                groundPos = new List<Position>();
+        //            groundPos.Add(new Position(x, y));
+        //            break;
+        //        case ObjectName.Trap:
+        //            if (trapPos == null)
+        //                trapPos = new List<Position>();
+        //            trapPos.Add(new Position(x, y));
+        //            break;
+        //        case ObjectName.Portal:
+        //            if (portalPos == null)
+        //                portalPos = new List<Position>();
+        //            portalPos.Add(new Position(x, y));
+        //            break;
+        //        case ObjectName.Meteo:
+        //            if (meteoPos == null)
+        //                meteoPos = new List<Position>();
+        //            meteoPos.Add(new Position(x, y));
+        //            break;
+        //    }
+        //}
 
         public void AddObjectPosition(ObjectName objectName, params Position[] pos)
         {
+            int[] width;
+            int[] height;
+
             switch (objectName)
             {
                 case ObjectName.Island1:
                     if (island1Pos == null)
-                        island1Pos = new List<Position>();
-                    for(int i = 0; i < pos.Length; i++)
+                        island1Pos = new List<SensingArea>();
+                    width = new int[1];
+                    height = new int[1];
+                    width[0] = 19;
+                    height[0] = 3;     
+                    for (int i = 0; i < pos.Length; i++)
                     {
-                        island1Pos.Add(pos[i]);
+                        island1Pos.Add(new SensingArea(width, height, 
+                            new Position[] { pos[i] }));
                     }
                     break;
+
                 case ObjectName.Island2:
                     if (island2Pos == null)
-                        island2Pos = new List<Position>();
+                        island2Pos = new List<SensingArea>();
+                    width = new int[1];
+                    height = new int[1];
+                    width[0] = 32;
+                    height[0] = 3;
                     for (int i = 0; i < pos.Length; i++)
                     {
-                        island2Pos.Add(pos[i]);
+                        island2Pos.Add(new SensingArea(width, height, 
+                            new Position[] { pos[i] }));
                     } 
                     break;
+
                 case ObjectName.Island3:
                     if (island3Pos == null)
-                        island3Pos = new List<Position>();
+                        island3Pos = new List<SensingArea>();
+                    width = new int[2];
+                    height = new int[2];
+                    width[0] = 16;
+                    height[0] = 3;
+                    width[1] = 16;
+                    height[1] = 2;
                     for (int i = 0; i < pos.Length; i++)
                     {
-                        island3Pos.Add(pos[i]);
+                        island3Pos.Add(new SensingArea(new int[2] { 16, 16 }, height,
+                            new Position[] { pos[i], new Position(pos[i].x + 16, pos[i].y + 1) }));
                     }
                     break;
+
                 case ObjectName.Island4:
                     if (island4Pos == null)
-                        island4Pos = new List<Position>();
+                        island4Pos = new List<SensingArea>();
+                    width = new int[2];
+                    height = new int[2];
+                    width[0] = 16;
+                    height[0] = 2;
+                    width[1] = 16;
+                    height[1] = 3;
                     for (int i = 0; i < pos.Length; i++)
                     {
-                        island4Pos.Add(pos[i]);
+                        island4Pos.Add(new SensingArea(width, height,
+                            new Position[] { pos[i], new Position(pos[i].x + 16, pos[i].y - 1) }));
                     }
                     break;
+
                 case ObjectName.Ground:
                     if (groundPos == null)
-                        groundPos = new List<Position>();
+                        groundPos = new List<SensingArea>();
+                    width = new int[1];
+                    height = new int[1];
+                    width[0] = 10;
+                    height[0] = 1;
                     for (int i = 0; i < pos.Length; i++)
                     {
-                        groundPos.Add(pos[i]);
+                        groundPos.Add(new SensingArea(width, height,
+                            new Position[] { pos[i] }));
                     }
                     break;
+
                 case ObjectName.Trap:
                     if (trapPos == null)
-                        trapPos = new List<Position>();
+                        trapPos = new List<SensingArea>();
+                    width = new int[3];
+                    height = new int[3];
+                    width[0] = 1;
+                    height[0] = 2;
+                    width[1] = 9;
+                    height[1] = 1;
+                    width[2] = 1;
+                    height[2] = 2;
                     for (int i = 0; i < pos.Length; i++)
                     {
-                        trapPos.Add(pos[i]);
+                        trapPos.Add(new SensingArea(width, height,
+                            new Position[] { pos[i], new Position(pos[i].x + 1, pos[i].y + 1),
+                            new Position(pos[i].x+9,pos[i].y)}));
                     }
                     break;
+
                 case ObjectName.Portal:
                     if (portalPos == null)
-                        portalPos = new List<Position>();
+                        portalPos = new List<SensingArea>();
+                    width = new int[1];
+                    height = new int[1];
+                    width[0] = 5;
+                    height[0] = 3;
                     for (int i = 0; i < pos.Length; i++)
                     {
-                        portalPos.Add(pos[i]);
+                        portalPos.Add(new SensingArea(width, height,
+                            new Position[] { pos[i] }));
                     }
                     break;
+
                 case ObjectName.Meteo:
                     if (meteoPos == null)
-                        meteoPos = new List<Position>();
+                        meteoPos = new List<SensingArea>();
+                    width = new int[1];
+                    height = new int[1];
+                    width[0] = 1;
+                    height[0] = 1;
                     for (int i = 0; i < pos.Length; i++)
                     {
-                        meteoPos.Add(pos[i]);
+                        meteoPos.Add(new SensingArea(width, height, 
+                            new Position[] { pos[i] }));
                     }
                     break;
             }
@@ -160,7 +219,8 @@ namespace ConsoleRpg
                 //island1오브젝트 배치
                 for (int i = 0; i < island1Pos.Count; i++)
                 {
-                    MakeFieldObject(FieldObject.Instance().Island1, island1Pos[i].x, island1Pos[i].y);
+                    MakeFieldObject(FieldObject.Instance().Island1,
+                        island1Pos[i].positions[0].x, island1Pos[i].positions[0].y);
                 }
             }
 
@@ -169,7 +229,8 @@ namespace ConsoleRpg
                 //island2오브젝트 배치
                 for (int i = 0; i < island2Pos.Count; i++)
                 {
-                    MakeFieldObject(FieldObject.Instance().Island2, island2Pos[i].x, island2Pos[i].y);
+                    MakeFieldObject(FieldObject.Instance().Island2, 
+                        island2Pos[i].positions[0].x, island2Pos[i].positions[0].y);
                 }
             }
 
@@ -178,7 +239,8 @@ namespace ConsoleRpg
                 //island3오브젝트 배치
                 for (int i = 0; i < island3Pos.Count; i++)
                 {
-                    MakeFieldObject(FieldObject.Instance().Island3, island3Pos[i].x, island3Pos[i].y);
+                    MakeFieldObject(FieldObject.Instance().Island3, 
+                        island3Pos[i].positions[0].x, island3Pos[i].positions[0].y);
                 }
             }
 
@@ -187,7 +249,8 @@ namespace ConsoleRpg
                 //island4오브젝트 배치
                 for (int i = 0; i < island4Pos.Count; i++)
                 {
-                    MakeFieldObject(FieldObject.Instance().Island4, island4Pos[i].x, island4Pos[i].y);
+                    MakeFieldObject(FieldObject.Instance().Island4, 
+                        island4Pos[i].positions[0].x, island4Pos[i].positions[0].y);
                 }
             }
 
@@ -196,7 +259,8 @@ namespace ConsoleRpg
                 //ground오브젝트 배치
                 for (int i = 0; i < groundPos.Count; i++)
                 {
-                    MakeFieldObject(FieldObject.Instance().Ground, groundPos[i].x, groundPos[i].y);
+                    MakeFieldObject(FieldObject.Instance().Ground, 
+                        groundPos[i].positions[0].x, groundPos[i].positions[0].y);
                 }
             }
             
@@ -205,7 +269,8 @@ namespace ConsoleRpg
                 //trap오브젝트 배치
                 for (int i = 0; i < trapPos.Count; i++)
                 {
-                    MakeFieldObject(FieldObject.Instance().Trap, trapPos[i].x, trapPos[i].y);
+                    MakeFieldObject(FieldObject.Instance().Trap, 
+                        trapPos[i].positions[0].x, trapPos[i].positions[0].y);
                 }
             }
             
@@ -214,7 +279,8 @@ namespace ConsoleRpg
                 //portal오브젝트 배치
                 for (int i = 0; i < portalPos.Count; i++)
                 {
-                    MakeFieldObject(FieldObject.Instance().Portal, portalPos[i].x, portalPos[i].y);
+                    MakeFieldObject(FieldObject.Instance().Portal, 
+                        portalPos[i].positions[0].x, portalPos[i].positions[0].y);
                 }
             }
             
@@ -223,7 +289,8 @@ namespace ConsoleRpg
                 //meteo오브젝트 배치
                 for (int i = 0; i < meteoPos.Count; i++)
                 {
-                    MakeFieldObject(FieldObject.Instance().Meteo, meteoPos[i].x, meteoPos[i].y);
+                    MakeFieldObject(FieldObject.Instance().Meteo, 
+                        meteoPos[i].positions[0].x, meteoPos[i].positions[0].y);
                 }
             }
             

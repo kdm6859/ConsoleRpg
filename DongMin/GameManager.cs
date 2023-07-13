@@ -35,13 +35,16 @@ namespace ConsoleRpg
         public void Progress()
         {
             KeyControlManager.Instance().KeyControl();
+            map.Progress();
+
             player.Progress();
+            
         }
 
         public void Render(Map.StageNum stageNUm)
         {
             Console.Clear();
-            //map.Render(stageNUm);
+            map.Render(stageNUm);
             player.Render();
         }
 

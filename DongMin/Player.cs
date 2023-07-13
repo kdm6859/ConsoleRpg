@@ -14,6 +14,7 @@ namespace ConsoleRpg
         //LongSkill[] longSkills = null;
         Skill skill = null;
         INFO m_player = null;
+        SensingArea playerArea = null;
         
         public int playerX;
         public int playerY;
@@ -26,6 +27,14 @@ namespace ConsoleRpg
         public bool lWeapon = false; //원거리 무기
 
         int skillIndex = 0;
+
+        string[] player = new string[]
+        {
+                "  ● ",
+                "↙┃ ↘",
+                " ┃ ┃",
+                " ┘ └",
+        };
 
         public Skill getSkill()
         {
@@ -53,7 +62,9 @@ namespace ConsoleRpg
         public void Initailize()
         {
             //longSkills = new LongSkill[100];
+
             
+
             m_player = new INFO();            
             m_player.pLevel = 1;
             m_player.pEXP = 0;
@@ -64,6 +75,9 @@ namespace ConsoleRpg
 
             playerX = 0;  //플레이어 처음 x좌표
             playerY = 25; //플레이어 처음 y좌표
+
+            playerArea = new SensingArea(new int[1] { 4 }, new int[1] { 4 }, 
+                new Position[1] { new Position(playerX, playerY) });
 
             Select();
             
@@ -146,13 +160,7 @@ namespace ConsoleRpg
         }
         public void DrawPlayer() //플레이어 그리기
         {
-            string[] player = new string[]
-            {
-                "  ● ",
-                "↙┃ ↘",
-                " ┃ ┃",
-                " ┘ └",
-            };
+            
 
             for(int i=0; i<player.Length; i++)
             {
