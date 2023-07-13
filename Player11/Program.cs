@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TeamRPG
+namespace ConsoleRPG
 {
     internal class Program
     {
@@ -21,14 +21,12 @@ namespace TeamRPG
 
             while (true)
             {
-            
+               
                 if(Current + 150 < Environment.TickCount)
                 {
-                    //Console.Clear();
                     Current = Environment.TickCount;
                     gm.Progress();
                     gm.Render();
-                  
                 }
             }                        
         }

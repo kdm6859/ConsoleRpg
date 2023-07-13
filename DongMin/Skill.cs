@@ -1,5 +1,4 @@
-﻿using ConsoleRPG;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ConsoleRPG
+namespace ConsoleRpg
 {
     //스킬 정보 저장하는 클래스
     public class Skill
