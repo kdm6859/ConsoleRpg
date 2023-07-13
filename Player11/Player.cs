@@ -10,10 +10,11 @@ namespace ConsoleRPG
 {
     public class Player
     {
+        INVENPANEL inv = null;
         ShortSkill shortSkill = null;
         LongSkill[] longSkills = null;
         Skill skill = null;
-        INFO m_player = null;
+        INFO m_player = null;       
 
         public int playerX;
         public int playerY;
@@ -58,8 +59,9 @@ namespace ConsoleRPG
             m_player.pLevel = 1;
             m_player.pEXP = 0;
 
+            inv = new INVENPANEL(this);
             skill = new Skill(this);
-            shortSkill = new ShortSkill(this, skill);
+            shortSkill = new ShortSkill(this, skill);            
 
             playerX = 0;  //플레이어 처음 x좌표
             playerY = 25; //플레이어 처음 y좌표
@@ -93,6 +95,8 @@ namespace ConsoleRPG
                     m_player.pHp = 100;
                     m_player.pMp = 100;
                     m_player.pAttack = 100;
+                    m_player.MaxHp = 100;
+                    m_player.MaxMp = 100;
                     sWeapon = true;
                     break;
                 case 2:
@@ -100,6 +104,8 @@ namespace ConsoleRPG
                     m_player.pHp = 80;
                     m_player.pMp = 120;
                     m_player.pAttack = 120;
+                    m_player.MaxHp = 80;
+                    m_player.MaxMp = 120;
                     lWeapon = true;
                     break;
             }
