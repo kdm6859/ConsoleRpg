@@ -45,7 +45,7 @@ namespace ConsoleRPG
                 Console.SetCursorPosition(125, 35);
                 Console.WriteLine("================");
                 Console.SetCursorPosition(100, 36);
-                Console.WriteLine("아이템을 선택해주세요 (esc: 닫기):");
+                Console.WriteLine("아이템을 선택해주세요 (i: 닫기):");
 
                 DisplayInfoPanel();
             }
