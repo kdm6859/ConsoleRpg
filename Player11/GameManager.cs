@@ -37,7 +37,7 @@ namespace ConsoleRPG
             player.Initailize();
             
 
-            mon  = new Monster("Monster",40,25, Monster.monsterStr, 1);
+            mon  = new Monster("Monster",40,28, Monster.monsterStr, 1);
         
         }
         public void Progress()
