@@ -45,10 +45,14 @@
   <ItemGroup>
     <Compile Include="DongMin\Field.cs" />
     <Compile Include="DongMin\FieldObject.cs" />
+    <Compile Include="DongMin\INFO.cs" />
+    <Compile Include="DongMin\KeyControlManager.cs" />
     <Compile Include="DongMin\Map.cs" />
     <Compile Include="DongMin\ObjectManager.cs" />
     <Compile Include="DongMin\GameManager.cs" />
+    <Compile Include="DongMin\Player.cs" />
     <Compile Include="DongMin\Position.cs" />
+    <Compile Include="DongMin\Skill.cs" />
     <Compile Include="Info.cs" />
     <Compile Include="Monster.cs" />
     <Compile Include="Program.cs" />
