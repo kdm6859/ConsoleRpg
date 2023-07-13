@@ -162,30 +162,30 @@ namespace ConsoleRpg
         }
 
         public void KeySensing()
-        {           
-            if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.right)) //오른쪽 키
+        {
+            if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.right))
             {
                 skill.dir = true;
                 playerX += 3;
             }
-            else if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.left)) //왼쪽 키
+            else if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.left))
             {
                 skill.dir = false;
                 playerX -= 3;
             }
-            else if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.spaceBar)) //스페이스바
+            else if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.spaceBar))
             {
                 isJumping = true;
             }
-            else if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.z)) //z
+            else if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.z))
             {
                 
             }
-            else if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.x)) //x
+            else if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.x))
             {
                 
             }
-            
+
 
             ////switch문 ex)
             //switch (KeyControlManager.Instance().keyState)
