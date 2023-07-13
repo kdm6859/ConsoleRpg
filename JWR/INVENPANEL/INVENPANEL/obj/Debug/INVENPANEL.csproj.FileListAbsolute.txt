@@ -1,8 +1,0 @@
-C:\Users\User\Desktop\unityJ\visual studio\INVENPANEL\INVENPANEL\bin\Debug\INVENPANEL.exe.config
-C:\Users\User\Desktop\unityJ\visual studio\INVENPANEL\INVENPANEL\bin\Debug\INVENPANEL.exe
-C:\Users\User\Desktop\unityJ\visual studio\INVENPANEL\INVENPANEL\bin\Debug\INVENPANEL.pdb
-C:\Users\User\Desktop\unityJ\visual studio\INVENPANEL\INVENPANEL\obj\Debug\INVENPANEL.csproj.AssemblyReference.cache
-C:\Users\User\Desktop\unityJ\visual studio\INVENPANEL\INVENPANEL\obj\Debug\INVENPANEL.csproj.SuggestedBindingRedirects.cache
-C:\Users\User\Desktop\unityJ\visual studio\INVENPANEL\INVENPANEL\obj\Debug\INVENPANEL.csproj.CoreCompileInputs.cache
-C:\Users\User\Desktop\unityJ\visual studio\INVENPANEL\INVENPANEL\obj\Debug\INVENPANEL.exe
-C:\Users\User\Desktop\unityJ\visual studio\INVENPANEL\INVENPANEL\obj\Debug\INVENPANEL.pdb
