@@ -14,7 +14,8 @@ namespace ConsoleRPG
         ShortSkill shortSkill = null;
         LongSkill[] longSkills = null;
         Skill skill = null;
-        INFO m_player = null;       
+        INFO m_player = null; 
+        
 
         public int playerX;
         public int playerY;
@@ -233,7 +234,7 @@ namespace ConsoleRPG
                     {
                         longSkills[skillIndex].GetINFO().lSkill = true;
                         longSkills[skillIndex].Activate(playerX, playerY);
-                        longSkills[skillIndex].GetINFO().SkillAtaack = m_player.pAttack * 1.5f;
+                        longSkills[skillIndex].GetINFO().SkillAtaack = m_player.pAttack * 2;
                         m_player.pMp -= 10;
                     }
                 }
@@ -241,7 +242,7 @@ namespace ConsoleRPG
                 {
                     shortSkill.GetINFO().sSkill = true;
                     shortSkill.Activate(playerX, playerY);
-                    shortSkill.GetINFO().SkillAtaack = m_player.pAttack * 1.5f;
+                    shortSkill.GetINFO().SkillAtaack = m_player.pAttack * 2;
                     m_player.pMp -= 10;
                 }
             }

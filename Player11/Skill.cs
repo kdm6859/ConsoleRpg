@@ -13,7 +13,7 @@ namespace ConsoleRPG
     //스킬 정보 저장하는 클래스
     public class Skill
     {
-        public float SkillAtaack; //스킬 공격력
+        public int SkillAtaack; //스킬 공격력
 
         public int SkillX;    //스킬 좌표
         public int SkillY;

@@ -27,6 +27,7 @@ namespace ConsoleRPG
         Skill skill = null;
         
         public Player GetPlayer() { return player; }
+        public Monster GetMonster() { return mon;}
         public void Initialize()
         {
             map = new Map();
@@ -37,7 +38,7 @@ namespace ConsoleRPG
             player.Initailize();
             
 
-            mon  = new Monster("Monster",40,28, Monster.monsterStr, 1);
+            mon  = new Monster("Monster",40,28, Monster.monsterStr, 1, 300);
         
         }
         public void Progress()
@@ -46,6 +47,8 @@ namespace ConsoleRPG
             KeyControlManager.Instance().KeyControl();
             player.Progress();
             mon.Progress(player);
+
+
 
         }
         public void Render()
