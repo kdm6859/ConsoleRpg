@@ -36,12 +36,12 @@ namespace ConsoleRpg
         public void MakeMap()
         {
             //스테이지1
-            field[0].AddObjectPosition(Field.ObjectName.Island2, new Position(60, 20), new Position(100, 15)
+            field[0].AddObjectPosition(Field.ObjectName.Island2, new Position(60, 20), new Position(100, 17)
                 , new Position(25, 10), new Position(0, 10));
-            field[0].AddObjectPosition(Field.ObjectName.Island3, new Position(65, 10));
-            field[0].AddObjectPosition(Field.ObjectName.Island4, new Position(20, 24));
+            field[0].AddObjectPosition(Field.ObjectName.Island3, new Position(50, 12));
+            field[0].AddObjectPosition(Field.ObjectName.Island4, new Position(8, 25));
             field[0].AddObjectPosition(Field.ObjectName.Portal, new Position(140, 27));
-            field[0].AddObjectPosition(Field.ObjectName.Trap, new Position(120, 30), new Position(25, 10));
+            field[0].AddObjectPosition(Field.ObjectName.Trap, new Position(110, 30), new Position(20, 10));
             field[0].AddObjectPosition(Field.ObjectName.Ground,
                 new Position(0, 30), new Position(10, 30), new Position(20, 30)
                 , new Position(30, 30), new Position(40, 30), new Position(50, 30)

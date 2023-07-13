@@ -14,11 +14,11 @@ namespace ConsoleRPG
         static void Main(string[] args)
         {
 
-            GameManager gm = new GameManager();
+            
             int Current = Environment.TickCount;
 
-            gm.Initialize();
-
+           
+            GameManager.Instance().Initialize();
             while (true)
             {
                
@@ -26,8 +26,8 @@ namespace ConsoleRPG
                 {
                     Console.Clear();
                     Current = Environment.TickCount;
-                    gm.Progress();
-                    gm.Render();
+                    GameManager.Instance().Progress();
+                    GameManager.Instance().Render();
                 }
             }                        
         }

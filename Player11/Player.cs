@@ -65,7 +65,7 @@ namespace ConsoleRPG
             
 
             playerX = 0;  //플레이어 처음 x좌표
-            playerY = 25; //플레이어 처음 y좌표
+            playerY = 27; //플레이어 처음 y좌표
 
             Select();
 
@@ -167,7 +167,7 @@ namespace ConsoleRPG
        
         public int GetPlayerFootPosition()
         {
-            return playerY + 3;
+            return playerY + 1;
         }
 
         public void Jump()
