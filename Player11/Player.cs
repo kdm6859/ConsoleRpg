@@ -10,10 +10,11 @@ namespace ConsoleRPG
 {
     public class Player
     {
+        INVENPANEL inv = null;
         ShortSkill shortSkill = null;
         LongSkill[] longSkills = null;
         Skill skill = null;
-        INFO m_player = null;
+        INFO m_player = null;       
 
         public int playerX;
         public int playerY;
@@ -58,8 +59,10 @@ namespace ConsoleRPG
             m_player.pLevel = 1;
             m_player.pEXP = 0;
 
+            inv = new INVENPANEL(this);
             skill = new Skill(this);
-            shortSkill = new ShortSkill(this, skill);
+            shortSkill = new ShortSkill(this, skill); 
+            
 
             playerX = 0;  //플레이어 처음 x좌표
             playerY = 25; //플레이어 처음 y좌표
@@ -71,7 +74,7 @@ namespace ConsoleRPG
             for (int i = 0; i < longSkills.Length; i++)
             {
                 longSkills[i] = new LongSkill(this, skill);
-                longSkills[i].GetINFO().SkillX = playerX + 5;
+                longSkills[i].GetINFO().SkillX = playerX;
                 longSkills[i].GetINFO().SkillY = playerY;
                 longSkills[i].GetINFO().isActive = false;
             }
@@ -93,6 +96,8 @@ namespace ConsoleRPG
                     m_player.pHp = 100;
                     m_player.pMp = 100;
                     m_player.pAttack = 100;
+                    m_player.MaxHp = 100;
+                    m_player.MaxMp = 100;
                     sWeapon = true;
                     break;
                 case 2:
@@ -100,6 +105,8 @@ namespace ConsoleRPG
                     m_player.pHp = 80;
                     m_player.pMp = 120;
                     m_player.pAttack = 120;
+                    m_player.MaxHp = 80;
+                    m_player.MaxMp = 120;
                     lWeapon = true;
                     break;
             }
@@ -107,19 +114,15 @@ namespace ConsoleRPG
         public void Progress()
         {
             KeySensing();
-           //KeyControl();
+          
             Jump();
-            if (lWeapon)
+         
+            
+            for (int i = 0; i < longSkills.Length; i++)
             {
-                for (int i = 0; i < longSkills.Length; i++)
-                {
-                    longSkills[i].Progress();  //스킬 나가는 좌표
-                    if (longSkills[i].GetINFO().SkillX > 145)
-                    {
-                        longSkills[i].GetINFO().isActive = false;
-                    }
-                }
+                longSkills[i].Progress();  //스킬 나가는 좌표                   
             }
+            
 
             if (playerX < 0) //플레이어 x좌 0 밑으로 가면 x좌표 초기화
             {
@@ -135,12 +138,12 @@ namespace ConsoleRPG
         {
             if (m_player.pHp > 0)
             {
-                DrawPlayer();  //플레이어 출력           
+                DrawPlayer();  //플레이어 출력
+                shortSkill.Render();
 
                 for (int i = 0; i < longSkills.Length; i++)  // 스킬 출력
                 {
-                    longSkills[i].Render();
-                    shortSkill.Render();
+                    longSkills[i].Render();                 
                 }
             }
 
@@ -208,14 +211,14 @@ namespace ConsoleRPG
             }
             else if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.z)) //z
             {
-                /*if (lWeapon) // 지팡이 트루일떄
+                if (lWeapon) // 지팡이 트루일떄
                 {
-                    for (skillIndex = 0; skillIndex < 20; skillIndex++)
+                    for (skillIndex = 0; skillIndex < 100; skillIndex++)
                     {
                         longSkills[skillIndex].GetINFO().lAttack = true;
                         longSkills[skillIndex].Activate(playerX, playerY);
                     }
-                }*/
+                }
                 if (sWeapon) //근접무기 트루일떄
                 {
                     shortSkill.GetINFO().sAttack = true;
@@ -224,18 +227,16 @@ namespace ConsoleRPG
             }
             else if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.x)) //x
             {
-                /*if (lWeapon) //지팡이 트루일 때
+                if (lWeapon) //지팡이 트루일 때
                 {
-
-                    if (skillIndex < longSkills.Length && longSkills[skillIndex].GetINFO().isActive == false && m_player.pMp >= 10)
+                    for (skillIndex = 0; skillIndex < 100; skillIndex++)
                     {
                         longSkills[skillIndex].GetINFO().lSkill = true;
                         longSkills[skillIndex].Activate(playerX, playerY);
                         longSkills[skillIndex].GetINFO().SkillAtaack = m_player.pAttack * 1.5f;
                         m_player.pMp -= 10;
-                        skillIndex++;
                     }
-                }*/
+                }
                 if (sWeapon && m_player.pMp >= 10) //근접 트루일 떄
                 {
                     shortSkill.GetINFO().sSkill = true;

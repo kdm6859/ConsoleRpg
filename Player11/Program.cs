@@ -22,8 +22,9 @@ namespace ConsoleRPG
             while (true)
             {
                
-                if(Current + 150 < Environment.TickCount)
+                if(Current + 100 < Environment.TickCount)
                 {
+                    Console.Clear();
                     Current = Environment.TickCount;
                     gm.Progress();
                     gm.Render();

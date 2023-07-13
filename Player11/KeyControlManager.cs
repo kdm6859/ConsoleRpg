@@ -27,7 +27,9 @@ namespace ConsoleRPG
             spaceBar,
             z,
             x,
-            i
+            i,
+            num1,
+            num2,
         }
 
         public KeyState keyState = KeyState.None;
@@ -78,6 +80,12 @@ namespace ConsoleRPG
 
                     case 'i':
                         keyState = KeyState.i;
+                        break;
+                    case '1':
+                        keyState = KeyState.num1;
+                        break;
+                    case '2':
+                        keyState = KeyState.num2;
                         break;
                 }
             }
