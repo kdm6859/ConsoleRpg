@@ -12,8 +12,15 @@ namespace ConsoleRPG
         public string Name { get; private set; }
         public int X { get; private set; }
         public int Y { get; private set; }
-        public string Symbol { get; private set; }
+        public string[] Symbol { get; private set; }
         //public int Speed { get; private set; }
+
+        public static string[] monsterStr =
+        {
+           "o  o /￣＼",
+            " )( ｜   ｜",
+           " 〓〓〓〓",
+        };
 
         private int prevX;
         private int prevY;
@@ -23,7 +30,7 @@ namespace ConsoleRPG
         private int jumpHeight = 3; // 몬스터의 점프 높이 설정
         private int initialY; // 몬스터의 초기 Y 좌표
 
-        public Monster(string name, int x, int y, string symbol, int speed)
+        public Monster(string name, int x, int y, string[] symbol, int speed)
         {
             Name = name;
             X = x;
@@ -36,7 +43,11 @@ namespace ConsoleRPG
         public void Render()
         {
             Console.SetCursorPosition(X, Y);
-            Console.WriteLine(Symbol);
+            for (int j = 0; j < 3; j++)
+            {
+                Console.Write(Symbol[j]);
+                Console.SetCursorPosition(X, Y+j+1);
+            }
         }
         
         public void JumpToPlayer(Player player)
@@ -44,60 +55,90 @@ namespace ConsoleRPG
             int playerX = player.playerX;
             int playerFootPosition = player.GetPlayerFootPosition();
 
-            if (playerX == X && playerFootPosition == Y)
+            if (playerX == X)
             {
                 Jump();
             }
             else
             {
+                Y = initialY;
+                JumpOX = true;
+
                 prevX = X;
                 prevY = Y;
 
-                if (playerX < X)
+                int DesX = Math.Abs(X - playerX);
+
+                if (DesX < 15)
                 {
-                    X--;
-                    // Thread.Sleep(100);
+
+                    if (playerX < X)
+                    {
+                        X--;
+                        // Thread.Sleep(100);
+                    }
+                    else if (playerX > X)
+                    {
+                        X++;
+                        //Thread.Sleep(100);
+                    }
+
                 }
-                else if (playerX > X)
-                {
-                    X++;
-                    //Thread.Sleep(100);
-                }
-                if (playerFootPosition < Y)
+                /*if (playerFootPosition < Y)
                     Y--;
                 else if (playerFootPosition > Y)
-                    Y++;
+                    Y++;*/
             }
         }
 
-        private void Jump()
+        public bool JumpOX = true;
+        public void Jump()
         {
-            if (isJumping)
+
+            if (JumpOX)
             {
                 Y--;
-
-                if (Y == prevY)
-                {
-                    Y = initialY;
-                    isJumping = false;
-                }
+                JumpOX = false;
             }
             else
             {
-                if (Y > initialY - jumpHeight)
-                {
-                    Y--;
-                    if (X > prevX)
-                        X--;
-                    else if (X < prevX)
-                        X++;
-                }
-                else if (Y == initialY - jumpHeight)
-                {
-                    isJumping = true;
-                }
+                Y++;
+                JumpOX = true;
             }
+            //if (isJumping)
+            //{
+                
+            //}
         }
+
+        //private void Jump()
+        //{
+        //    if (isJumping)
+        //    {
+        //        Y--;
+
+        //        if (Y == prevY)
+        //        {
+        //            Y = initialY;
+        //            isJumping = false;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (Y > initialY - jumpHeight)
+        //        {
+        //            Y--;
+        //            if (X > prevX)
+        //                X--;
+        //            else if (X < prevX)
+        //                X++;
+        //        }
+        //        else if (Y == initialY - jumpHeight)
+        //        {
+        //            isJumping = true;
+        //        }
+        //    }
+        //}
         
         public void Progress(Player player)
         {
