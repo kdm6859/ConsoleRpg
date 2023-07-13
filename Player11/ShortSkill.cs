@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ConsoleRPG
@@ -11,12 +12,16 @@ namespace ConsoleRPG
     {
         Player m_player = null;
         Skill m_skill = null;
+        /*Monster m_monster = null;*/
+        
         public ShortSkill(Player player, Skill skill)
         {
             this.m_player = player;
-            this.m_skill = skill;
+            this.m_skill = skill;           
         }
         ShortSkill() { }
+
+        
         public Skill GetINFO() { return m_skill; }
         public void SkillDraw()
         {
@@ -30,7 +35,6 @@ namespace ConsoleRPG
                         "---->->->",
                         "---->->->",
                         "---->->->"
-
                     };
 
                     for (int i = 0; i < sMagic.Length; i++)
@@ -63,7 +67,8 @@ namespace ConsoleRPG
             {
                 if (m_player.getSkill().dir)
                 {
-                    Console.SetCursorPosition(m_skill.SkillX + 5, m_skill.SkillY + 1); 
+                    Console.WriteLine(m_skill.SkillX);
+                    Console.SetCursorPosition(m_skill.SkillX + 3, m_skill.SkillY + 1); 
                     Console.Write("--->");
                 }
                 else
@@ -74,17 +79,37 @@ namespace ConsoleRPG
                 
             }
         }
-
-        public void Progress()
+        public void Progress(Monster m_monster)
         {
+            
+
             if (m_player.sWeapon && m_skill.dir) //근거리 무기 true일 떄
             {
                 //스킬 플레이어 x좌표 앞에서 생성
                 m_skill.SkillX = m_player.playerX + 5;
+                
+                if (m_monster.X - m_skill.SkillX+5<=20 && m_skill.sSkill && m_monster.Hp > 0)  // 스킬과 몬스터 거리 20이하일 때 데미지
+                {
+                    m_monster.SetDamage(m_skill.SkillAttack);
+                }
+                if(m_monster.X - m_skill.SkillX + 5 <= 15 && m_skill.sAttack && m_monster.Hp > 0) //일반공격과 몬스터 거리 15이하일 때 데미지
+                {
+                    m_monster.SetDamage(m_player.GetINFO().pAttack);
+                }
+                
             }
             else if (m_player.sWeapon && m_skill.dir == false)
             {
-                m_skill.SkillX = m_player.playerX - 7;
+                m_skill.SkillX = m_player.playerX - 3;
+
+                if (m_monster.X+8 - m_skill.SkillX + 3 >= -8 && m_skill.sSkill && m_monster.Hp>0) //왼쪽 스킬공격
+                {
+                    m_monster.SetDamage(m_skill.SkillAttack);
+                }
+                if (m_monster.X+8 - m_skill.SkillX + 3 >= -4 && m_skill.sAttack && m_monster.Hp > 0) //왼쪽 공격
+                {
+                    m_monster.SetDamage(m_player.GetINFO().pAttack);
+                }
             }
 
             if (m_skill.SkillX > 145) //x좌표 한계 넘어가면 초기화
