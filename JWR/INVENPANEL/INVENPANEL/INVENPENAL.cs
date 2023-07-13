@@ -64,12 +64,12 @@ namespace ConsoleRpg
             Console.WriteLine("================================");
         }
 
-        static int PlayerMaxHP()
+        int PlayerMaxHP()
         {
             return player.GetINFO()?.MaxHp ?? 0;
         }
 
-        static int PlayerMaxMP()
+        int PlayerMaxMP()
         {
             return player.GetINFO()?.MaxMp ?? 0;
         }
