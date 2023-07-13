@@ -17,7 +17,7 @@ namespace ConsoleRpg
             return instanse;
         }
 
-        static Dictionary<ConsoleKey, Action> inventory;
+        Dictionary<ConsoleKey, Action> inventory;
         public static Player player;
 
         bool invenOnOff = false;
@@ -54,7 +54,7 @@ namespace ConsoleRpg
             Console.Write(new string(' ', Console.WindowWidth - 100));
         }
 
-        public static void DisplayInfoPanel()
+        public void DisplayInfoPanel()
         {
             Console.SetCursorPosition(0, Console.WindowHeight - 5);
             Console.WriteLine("========= 플레이어 정보 =========");
@@ -74,7 +74,7 @@ namespace ConsoleRpg
             return player.GetINFO()?.MaxMp ?? 0;
         }
 
-        static void UseHPotion()
+        void UseHPotion()
         {
             int healAmount = 30;
             int currentHP = player.GetINFO()?.pHp ?? 0;
@@ -96,7 +96,7 @@ namespace ConsoleRpg
             Console.WriteLine("체력을 {0} 회복하였습니다.", newHP - currentHP);
         }
 
-        static void UseMPotion()
+        void UseMPotion()
         {
             int healAmount = 30;
             int currentMP = player.GetINFO()?.pMp ?? 0;
