@@ -81,6 +81,7 @@ namespace ConsoleRPG
                     case 'i':
                         keyState = KeyState.i;
                         break;
+                    
                     case '1':
                         keyState = KeyState.num1;
                         break;
