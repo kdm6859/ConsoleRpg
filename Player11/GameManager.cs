@@ -23,6 +23,7 @@ namespace ConsoleRPG
         }
         public void Progress()
         {
+            KeyControlManager.Instance().KeyControl();
             player.Progress();
             mon.Progress(player);
         }
@@ -32,6 +33,7 @@ namespace ConsoleRPG
             Console.WriteLine("플레이어 dir :" + player.getSkill().dir);
             Console.WriteLine("이즈엑티브 :" + player.getSkill().isActive);
             Console.WriteLine("스킬 x좌표 : " + player.getSkill().SkillX);
+            
             Console.Write(player.GetINFO().pMp);
             player.Render();
             mon.Render();
