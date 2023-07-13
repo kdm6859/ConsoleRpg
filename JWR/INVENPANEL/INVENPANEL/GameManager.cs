@@ -4,29 +4,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TeamRPG
+namespace ConsoleRpg
 {
-    internal class GameManager
+    public class GameManager
     {
+        public static GameManager instance;
+        public static GameManager Instance()
+        {
+            if (instance == null)
+            {
+                instance = new GameManager();
+            }
+            return instance;
+        }
+
+        Map map = null;
         Player player = null;
+
+
 
         public void Initialize()
         {
+            map = new Map();
             player = new Player();
+
+            map.Initialize();
             player.Initailize();
         }
+
         public void Progress()
         {
+            KeyControlManager.Instance().KeyControl();
             player.Progress();
         }
-        public void Render()
+
+        public void Render(Map.StageNum stageNUm)
         {
             Console.Clear();
+            //map.Render(stageNUm);
             player.Render();
-            INVENPANEL.Instanse().OpenInventory(player);
-            
         }
 
-    }
 
+        public void Release()
+        {
+
+        }
+    }
 }

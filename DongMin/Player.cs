@@ -185,7 +185,7 @@ namespace ConsoleRpg
             {
                 
             }
-
+            
 
             ////switch문 ex)
             //switch (KeyControlManager.Instance().keyState)
