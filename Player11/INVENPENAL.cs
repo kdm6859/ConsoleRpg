@@ -44,8 +44,7 @@ namespace ConsoleRPG
                 Console.WriteLine("2. MP 포션");
                 Console.SetCursorPosition(125, 35);
                 Console.WriteLine("================");
-                Console.SetCursorPosition(100, 36);
-                Console.WriteLine("아이템을 선택해주세요 (i: 닫기):");
+               
 
                 DisplayInfoPanel();
             }
@@ -68,7 +67,7 @@ namespace ConsoleRPG
 
         public void DisplayInfoPanel()
         {
-            Console.SetCursorPosition(0, Console.WindowHeight - 5);
+            Console.SetCursorPosition(0, Console.WindowHeight - 8);
             Console.WriteLine("========= 플레이어 정보 =========");
             Console.WriteLine("직업: " + player.GetINFO()?.pName);
             Console.WriteLine("HP: " + player.GetINFO()?.pHp + " / " + PlayerMaxHP() + "  MP: " + player.GetINFO()?.pMp + " / " + PlayerMaxMP());
