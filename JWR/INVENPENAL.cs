@@ -10,7 +10,7 @@ namespace ConsoleRpg
 
         public static INVENPANEL Instance()
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = new INVENPANEL();
             }
