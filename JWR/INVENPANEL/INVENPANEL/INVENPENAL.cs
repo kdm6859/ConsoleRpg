@@ -22,8 +22,9 @@ namespace ConsoleRpg
 
         bool invenOnOff = false;
 
-        public void OpenInventory()
+        public void OpenInventory(Player player)
         {
+            INVENPANEL.player = player;
             Console.SetCursorPosition(125, 32);
             Console.WriteLine("=== 인벤토리 ===");
             Console.SetCursorPosition(125, 33);
@@ -129,7 +130,7 @@ namespace ConsoleRpg
                 else
                 {
                     invenOnOff = true;
-                    OpenInventory();
+                    INVENPANEL.Instanse().OpenInventory(player);
                 }
                 DisplayInfoPanel();
             }
