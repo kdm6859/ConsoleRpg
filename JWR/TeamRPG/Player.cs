@@ -53,10 +53,7 @@ namespace ConsoleRPG
 
         public INFO GetINFO() { return m_player; } //플레이어 정보
 
-        public void SetTrapDamage(ObjectManager objectManager)
-        {
-            
-        }
+       
 
 
         public void Initailize()
@@ -156,11 +153,11 @@ namespace ConsoleRPG
             playerArea.positions[0].y = playerY;
 
 
-            //if (ObjectManager.Instance().isTrap && m_player.pHp>0)
-            //{
-            //    m_player.pHp -= 10;
-            //    ObjectManager.Instance().isTrap = false;
-            //}
+            if (ObjectManager.Instance().isTrap && m_player.pHp > 0)
+            {
+                m_player.pHp -= 10;
+                ObjectManager.Instance().isTrap = false;
+            }
 
         }
         public void Render()
@@ -170,7 +167,7 @@ namespace ConsoleRPG
                 DrawPlayer();  //플레이어 출력
                 shortSkill.Render();
 
-                /* for (int i = 0; i < longSkills.Length; i++)  // 스킬 출력
+                 /*for (int i = 0; i < longSkills.Length; i++)  // 스킬 출력
                  {
                      longSkills[i].Render();                 
                  }*/
