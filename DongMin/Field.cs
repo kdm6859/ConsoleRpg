@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleRpg
+namespace ConsoleRPG
 {
     public class Field
     {
@@ -175,7 +175,7 @@ namespace ConsoleRpg
                     //}
                     width = new int[1];
                     height = new int[1];
-                    width[0] = 6;
+                    width[0] = 10;
                     height[0] = 1;
                     for (int i = 0; i < pos.Length; i++)
                     {

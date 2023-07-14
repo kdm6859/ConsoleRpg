@@ -91,7 +91,7 @@ namespace ConsoleRPG
             {
                 for (int j = 0; j < trapObjectArea[i].positions.Length; j++)
                 {
-                    if (trapObjectArea[i].positions[j].x <= playerX &&
+                    if (trapObjectArea[i].positions[j].x <=playerX &&
                         trapObjectArea[i].positions[j].x + trapObjectArea[i].width[j] > playerX &&
                         trapObjectArea[i].positions[j].y == playerY)
                     {
