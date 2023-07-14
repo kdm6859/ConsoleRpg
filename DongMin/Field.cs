@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleRPG
+namespace ConsoleRpg
 {
     public class Field
     {
@@ -159,19 +159,28 @@ namespace ConsoleRPG
                 case ObjectName.Trap:
                     if (trapPos == null)
                         trapPos = new List<SensingArea>();
-                    width = new int[3];
-                    height = new int[3];
-                    width[0] = 1;
-                    height[0] = 2;
-                    width[1] = 9;
-                    height[1] = 1;
-                    width[2] = 1;
-                    height[2] = 2;
+                    //width = new int[3];
+                    //height = new int[3];
+                    //width[0] = 1;
+                    //height[0] = 2;
+                    //width[1] = 9;
+                    //height[1] = 1;
+                    //width[2] = 1;
+                    //height[2] = 2;
+                    //for (int i = 0; i < pos.Length; i++)
+                    //{
+                    //    trapPos.Add(new SensingArea(width, height,
+                    //        new Position[] { pos[i], new Position(pos[i].x + 1, pos[i].y + 1),
+                    //        new Position(pos[i].x+9,pos[i].y)}));
+                    //}
+                    width = new int[1];
+                    height = new int[1];
+                    width[0] = 6;
+                    height[0] = 1;
                     for (int i = 0; i < pos.Length; i++)
                     {
                         trapPos.Add(new SensingArea(width, height,
-                            new Position[] { pos[i], new Position(pos[i].x + 1, pos[i].y + 1),
-                            new Position(pos[i].x+9,pos[i].y)}));
+                            new Position[] { pos[i] }));
                     }
                     break;
 
@@ -293,7 +302,6 @@ namespace ConsoleRPG
                         meteoPos[i].positions[0].x, meteoPos[i].positions[0].y);
                 }
             }
-            
         }
 
         //필드 오브젝트 그려주는 함수
