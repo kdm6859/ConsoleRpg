@@ -45,7 +45,7 @@ namespace ConsoleRPG
 
             map.Initialize();
             player.Initailize();
-            
+
             if (map.currentStageNum == Map.StageNum.stage1)
             {
                 mon = new Monster("Monster", 40, 28, 1, 500); //string[] symbol
@@ -54,12 +54,15 @@ namespace ConsoleRPG
                 mon4 = new Monster("Monster", 15, 8, 1, 500); //string[] symbol
                 mon5 = new Monster("Monster", 80, 10, 1, 500); //string[] symbol
                 mon6 = new Monster("Monster", 110, 15, 1, 500); //string[] symbol
+
+
             }
 
 
 
             ObjectManager.Instance().Initialize(ref player, ref mon, ref map);
-           
+
+
         }
         public void Progress()
         {
@@ -79,12 +82,14 @@ namespace ConsoleRPG
 
 
             ObjectManager.Instance().Progress();
+
+
         }
         public void Render()
         {
             Console.SetCursorPosition(3, 3);
             Console.Write("isLanding = " + ObjectManager.Instance().isLanding);
-           
+
             map.Render();
 
             INVENPANEL.Instance().OpenInventory();
@@ -98,6 +103,8 @@ namespace ConsoleRPG
             mon5.Render();
             mon6.Render();
             player.Render();
+
+
 
             //mon.PrintLocation();
         }

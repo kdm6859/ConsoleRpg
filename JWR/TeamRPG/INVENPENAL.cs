@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 using System.Runtime.InteropServices;
 
-
 namespace ConsoleRPG
 {
     internal class INVENPANEL
@@ -67,13 +66,15 @@ namespace ConsoleRPG
         }*/
 
         public void DisplayInfoPanel()
+            //몬스터 1마리 죽이면 경험치를 50얻음. 레벨업은 경험치 100이 되어야 오르고,
+            //레벨업하면 플레이어 공격력이 10이 오른다.
         {
             Console.SetCursorPosition(0, Console.WindowHeight - 8);
-            Console.WriteLine("========= 플레이어 정보 =========");
-            Console.WriteLine("직업: " + player.GetINFO()?.pName);
+            Console.WriteLine("============== 플레이어 정보 ==============");
+            Console.WriteLine("직업: " + player.GetINFO()?.pName+"  레벨: "+ player.GetINFO()?.pLevel + "  경혐치: "+player.GetINFO()?.pEXP + "/"+"100");
             Console.WriteLine("HP: " + player.GetINFO()?.pHp + " / " + PlayerMaxHP() + "  MP: " + player.GetINFO()?.pMp + " / " + PlayerMaxMP());
             Console.WriteLine("공격력: " + player.GetINFO()?.pAttack);
-            Console.WriteLine("================================");
+            Console.WriteLine("==========================================");
         }
 
         int PlayerMaxHP()
@@ -129,7 +130,7 @@ namespace ConsoleRPG
             ///int ResetMp = 0;
             if (usemppotion)
             {
-                if ( currentMP > 0)
+                if (currentMP> maxMP)
                 {
                     if (currentMP == maxMP)
                     {
