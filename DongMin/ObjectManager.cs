@@ -5,7 +5,7 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleRpg
+namespace ConsoleRPG
 {
     public class ObjectManager
     {
@@ -24,29 +24,6 @@ namespace ConsoleRpg
         Map map = null;
 
         public bool isLanding = true;
-
-        //SensingArea playerArea = null;
-        //SensingArea playerShortSkill = null;
-        //SensingArea monsterArea = null;
-        //List<SensingArea> island1Area = null;
-        //List<SensingArea> island2Area = null;
-        //List<SensingArea> island3Area = null;
-        //List<SensingArea> island4Area = null;
-        //List<SensingArea> groundArea = null;
-        //List<SensingArea> trapArea = null;
-        //List<SensingArea> portalArea = null;
-        //List<SensingArea> meteoArea = null;
-
-        //public void Initialize(ref SensingArea playerArea,
-        //    ref SensingArea playerShortSkill,ref SensingArea monsterArea,
-        //    ref SensingArea fieldObject)
-        //{
-        //    this.playerArea = playerArea;
-        //    this.playerShortSkill = playerShortSkill;
-        //    this.monsterArea = monsterArea;
-
-
-        //}
 
         public void Initialize(ref Player player, ref Monster monster, ref Map map)
         {

@@ -14,13 +14,15 @@ namespace ConsoleRPG
         ShortSkill shortSkill = null;
         LongSkill[] longSkills = null;
         Skill skill = null;
-        INFO m_player = null;       
-        
+        INFO m_player = null;
+
+        public SensingArea playerArea = null;
 
         public int playerX;
         public int playerY;
 
         bool isJumping = false;
+        bool isLanding = true;
         int jumpUpCount = 6;
         int jumpDownCount = 6;
 
@@ -54,22 +56,26 @@ namespace ConsoleRPG
 
         public void Initailize()
         {
-            longSkills = new LongSkill[100];           
+            longSkills = new LongSkill[100];
             m_player = new INFO();
             m_player.pLevel = 1;
             m_player.pEXP = 0;
 
             inv = new INVENPANEL(this);
             skill = new Skill(this);
-            shortSkill = new ShortSkill(this, skill); 
-            
+            shortSkill = new ShortSkill(this, skill);
+
+
 
             playerX = 0;  //플레이어 처음 x좌표
             playerY = 27; //플레이어 처음 y좌표
 
+            playerArea = new SensingArea(new int[] { 4 }, new int[] { 4 },
+                new Position[] { new Position(playerX, playerY) });
+
             Select();
             skill.SkillAttack = m_player.pAttack;
-           
+
 
             for (int i = 0; i < longSkills.Length; i++)
             {
@@ -113,17 +119,17 @@ namespace ConsoleRPG
         }
         public void Progress(Monster m_monster)
         {
-            
+
             KeySensing();
-          
+
             Jump();
             shortSkill.Progress(m_monster);
-            
+
             for (int i = 0; i < longSkills.Length; i++)
             {
                 longSkills[i].Progress();  //스킬 나가는 좌표                   
             }
-            
+
 
             if (playerX < 0) //플레이어 x좌 0 밑으로 가면 x좌표 초기화
             {
@@ -134,6 +140,9 @@ namespace ConsoleRPG
                 playerX = 145;
             }
 
+            playerArea.positions[0].x = playerX;
+            playerArea.positions[0].y = playerY;
+
         }
         public void Render()
         {
@@ -142,10 +151,10 @@ namespace ConsoleRPG
                 DrawPlayer();  //플레이어 출력
                 shortSkill.Render();
 
-               /* for (int i = 0; i < longSkills.Length; i++)  // 스킬 출력
-                {
-                    longSkills[i].Render();                 
-                }*/
+                /* for (int i = 0; i < longSkills.Length; i++)  // 스킬 출력
+                 {
+                     longSkills[i].Render();                 
+                 }*/
             }
 
         }
@@ -165,7 +174,7 @@ namespace ConsoleRPG
                 Console.WriteLine(player[i]);
             }
         }
-       
+
         public int GetPlayerFootPosition()
         {
             return playerY + 1;
@@ -173,6 +182,8 @@ namespace ConsoleRPG
 
         public void Jump()
         {
+            isLanding = ObjectManager.Instance().isLanding;
+
             if (isJumping)
             {
                 if (jumpUpCount > 0)
@@ -180,23 +191,21 @@ namespace ConsoleRPG
                     playerY -= 1;
                     jumpUpCount--;
                 }
-                else if (jumpDownCount > 0)
-                {
-                    playerY += 1;
-                    jumpDownCount--;
-                }
                 else
                 {
-                    isJumping = false;
                     jumpUpCount = 6;
-                    jumpDownCount = 6;
+                    isJumping = false;
                 }
             }
+
+            if (!isLanding && !isJumping)
+            {
+                playerY += 1;
+            }
         }
-      
         public void KeySensing()
         {
-            
+
             if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.right)) //오른쪽 키
             {
                 skill.dir = true;
@@ -209,7 +218,10 @@ namespace ConsoleRPG
             }
             else if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.spaceBar)) //스페이스바
             {
-                isJumping = true;
+                if (isLanding)
+                {
+                    isJumping = true;
+                }
             }
             else if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.z)) //z
             {
@@ -249,7 +261,7 @@ namespace ConsoleRPG
                 }
             }
         }
-    }
+    }   
 }
 
 

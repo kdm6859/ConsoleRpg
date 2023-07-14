@@ -22,7 +22,7 @@ namespace ConsoleRPG
             while (true)
             {
                
-                if(Current + 100 < Environment.TickCount)
+                if(Current + 100< Environment.TickCount)
                 {
                     Console.Clear();
                     Current = Environment.TickCount;
