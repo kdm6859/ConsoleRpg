@@ -53,8 +53,8 @@ namespace ConsoleRPG
 
         string[] trap =
         {
-            //"┓        ┏",
-            "━▲▲▲▲━"
+            "┓        ┏",
+            "┗▲▲▲▲┛"
         };
 
         string[] portal =

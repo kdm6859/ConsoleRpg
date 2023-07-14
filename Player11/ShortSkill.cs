@@ -56,7 +56,7 @@ namespace ConsoleRPG
 
                     for (int i = 0; i < sMagic.Length; i++)
                     {
-                        Console.SetCursorPosition(m_skill.SkillX - 8, m_skill.SkillY + i);
+                        Console.SetCursorPosition(m_skill.SkillX - 7, m_skill.SkillY + i);
                         Console.WriteLine(sMagic[i]);
                     }
                 }
@@ -73,7 +73,7 @@ namespace ConsoleRPG
                 }
                 else
                 {
-                    Console.SetCursorPosition(m_skill.SkillX-5, m_skill.SkillY + 1);  
+                    Console.SetCursorPosition(m_skill.SkillX-3, m_skill.SkillY + 1);  
                     Console.Write("<---");
                 }
                 
@@ -88,25 +88,29 @@ namespace ConsoleRPG
                 //스킬 플레이어 x좌표 앞에서 생성
                 m_skill.SkillX = m_player.playerX + 5;
                 
-                if (m_monster.X - m_skill.SkillX+5<=20 && m_skill.sSkill && m_monster.Hp > 0)  // 스킬과 몬스터 거리 20이하일 때 데미지
+                if (m_monster.X - m_skill.SkillX+5<=20 && m_skill.sSkill && m_monster.Hp > 0
+                    &&m_monster.Y == m_skill.SkillY+1)  // 스킬과 몬스터 거리 20이하일 때 데미지
                 {
                     m_monster.SetDamage(m_skill.SkillAttack);
                 }
-                if(m_monster.X - m_skill.SkillX + 5 <= 15 && m_skill.sAttack && m_monster.Hp > 0) //일반공격과 몬스터 거리 15이하일 때 데미지
+                if(m_monster.X - m_skill.SkillX + 5 <= 15 && m_skill.sAttack && m_monster.Hp > 0
+                    && m_monster.Y == m_skill.SkillY+1) //일반공격과 몬스터 거리 15이하일 때 데미지
                 {
                     m_monster.SetDamage(m_player.GetINFO().pAttack);
                 }
                 
             }
-            else if (m_player.sWeapon && m_skill.dir == false)
+            else if (m_player.sWeapon && m_skill.dir == false && m_player.playerX > m_monster.X)
             {
                 m_skill.SkillX = m_player.playerX - 3;
 
-                if (m_monster.X+8 - m_skill.SkillX + 3 >= -8 && m_skill.sSkill && m_monster.Hp>0) //왼쪽 스킬공격
+                if (m_monster.X+8 - m_skill.SkillX + 3 >= -8 && m_skill.sSkill && m_monster.Hp>0
+                    && m_monster.Y == m_skill.SkillY + 1) //왼쪽 스킬공격
                 {
                     m_monster.SetDamage(m_skill.SkillAttack);
                 }
-                if (m_monster.X+8 - m_skill.SkillX + 3 >= -4 && m_skill.sAttack && m_monster.Hp > 0) //왼쪽 공격
+                if (m_monster.X+8 - m_skill.SkillX + 3 >= -4 && m_skill.sAttack && m_monster.Hp > 0
+                    && m_monster.Y == m_skill.SkillY + 1) //왼쪽 공격
                 {
                     m_monster.SetDamage(m_player.GetINFO().pAttack);
                 }
@@ -114,7 +118,11 @@ namespace ConsoleRPG
 
             if (m_skill.SkillX > 145) //x좌표 한계 넘어가면 초기화
             {
-                m_player.sWeapon = false;
+                m_skill.SkillX = 145;
+            }
+            else if (m_skill.SkillX < 0)
+            {
+                m_skill.SkillX = 0;
             }
         }
 

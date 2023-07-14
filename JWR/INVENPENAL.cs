@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 using System.Runtime.InteropServices;
 
+
 namespace ConsoleRPG
 {
     internal class INVENPANEL
     {
-        public static INVENPANEL instance = null;      
+        public static INVENPANEL instance = null;
 
         public static INVENPANEL Instance()
         {
@@ -25,16 +26,16 @@ namespace ConsoleRPG
         bool invenOnOff = false;
         bool usehppotion = false;
         bool usemppotion = false;
-             
+
 
         public INVENPANEL(Player player)
         {
-            INVENPANEL.player = player;            
+            INVENPANEL.player = player;
         }
 
         public void OpenInventory()
         {
-            if(invenOnOff)
+            if (invenOnOff)
             {
                 Console.SetCursorPosition(125, 32);
                 Console.WriteLine("=== 인벤토리 ===");
@@ -44,8 +45,7 @@ namespace ConsoleRPG
                 Console.WriteLine("2. MP 포션");
                 Console.SetCursorPosition(125, 35);
                 Console.WriteLine("================");
-                Console.SetCursorPosition(100, 36);
-                Console.WriteLine("아이템을 선택해주세요 (esc: 닫기):");
+
 
                 DisplayInfoPanel();
             }
@@ -68,7 +68,7 @@ namespace ConsoleRPG
 
         public void DisplayInfoPanel()
         {
-            Console.SetCursorPosition(0, Console.WindowHeight - 5);
+            Console.SetCursorPosition(0, Console.WindowHeight - 8);
             Console.WriteLine("========= 플레이어 정보 =========");
             Console.WriteLine("직업: " + player.GetINFO()?.pName);
             Console.WriteLine("HP: " + player.GetINFO()?.pHp + " / " + PlayerMaxHP() + "  MP: " + player.GetINFO()?.pMp + " / " + PlayerMaxMP());
@@ -93,7 +93,7 @@ namespace ConsoleRPG
             int maxHP = PlayerMaxHP();
             int newHP = currentHP + healAmount;
 
-            if (usehppotion)
+            if (usehppotion && currentHP > 0)
             {
                 if (currentHP == maxHP)
                 {
@@ -102,10 +102,10 @@ namespace ConsoleRPG
                     return;
                 }
 
-                if(currentHP < maxHP)
+                if (currentHP < maxHP)
                 {
                     newHP = currentHP + healAmount;
-                    if(newHP > currentHP)
+                    if (newHP > currentHP)
                     {
                         usehppotion = false;
                     }
@@ -127,26 +127,29 @@ namespace ConsoleRPG
             int maxMP = PlayerMaxMP();
             int newMP = currentMP + healAmount;
             ///int ResetMp = 0;
-            if(usemppotion)
+            if (usemppotion)
             {
-                if (currentMP == maxMP)
+                if ( currentMP > 0)
                 {
-                    Console.SetCursorPosition(120, 1);
-                    Console.WriteLine("이미 마나는 최대치 입니다.");
-                    return;
+                    if (currentMP == maxMP)
+                    {
+                        Console.SetCursorPosition(120, 1);
+                        Console.WriteLine("이미 마나는 최대치 입니다.");
+                        return;
+                    }
                 }//마나 최대 체크
 
-                
+
                 if (currentMP < maxMP) //현재 마나가 최대치보다 작은가?
-                {                  
+                {
                     newMP = currentMP + healAmount; //현재마나가 최대치보다 작으면 30 회복
 
                     if (newMP > currentMP) //현재 마나에 회복 마나 값을 던한 값. = newMp
                     {
-                        usemppotion = false;                       
-                    }                   
+                        usemppotion = false;
+                    }
                 }
-                if(newMP >= maxMP)
+                if (newMP >= maxMP)
                     newMP = maxMP;
 
                 player.GetINFO().pMp = newMP;
@@ -173,11 +176,11 @@ namespace ConsoleRPG
             }
             else if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.num1))
             {
-                if(!usehppotion)
+                if (!usehppotion)
                 {
-                    usehppotion = true;                    
+                    usehppotion = true;
                 }
-               
+
                 /*UseHPotion();
                 DisplayInfoPanel();*/
             }
@@ -186,13 +189,13 @@ namespace ConsoleRPG
                 if (!usemppotion)
                 {
                     usemppotion = true;
-                    
+
                 }
-                
+
                 /*UseMPotion();
                 DisplayInfoPanel();*/
             }
-            
+
 
 
             ////switch문 ex)
@@ -207,39 +210,39 @@ namespace ConsoleRPG
             //}
         }
 
-    //    public void InvenKeyControl(ConsoleKey key)
-    //    {
+        //    public void InvenKeyControl(ConsoleKey key)
+        //    {
 
-    //        switch (key)
-    //        {
-    //            case ConsoleKey.I:
-    //                if (invenOnOff)
-    //                {
-    //                    invenOnOff = false;
-    //                    ClearInventory();
-    //                }
-    //                else
-    //                {
-    //                    invenOnOff = true;
-    //                    OpenInventory();
-    //                }
-    //                DisplayInfoPanel();
-    //                break;
-    //            case ConsoleKey.D1:
-    //                // 1번키 처리 내용: 인벤토리 내의 HP포션을 사용하는 버튼 동작
-    //                UseHPotion();
-    //                DisplayInfoPanel();
-    //                break;
-    //            case ConsoleKey.D2:
-    //                // 2번키 처리 내용: 인벤토리 내의 MP포션을 사용하는 버튼 동작
-    //                UseMPotion();
-    //                DisplayInfoPanel();
-    //                break;
-    //            default:
-    //                Console.SetCursorPosition(120, 1);
-    //                Console.WriteLine("잘못된 아이템입니다.");
-    //                break;
-    //        }
-    //    }
+        //        switch (key)
+        //        {
+        //            case ConsoleKey.I:
+        //                if (invenOnOff)
+        //                {
+        //                    invenOnOff = false;
+        //                    ClearInventory();
+        //                }
+        //                else
+        //                {
+        //                    invenOnOff = true;
+        //                    OpenInventory();
+        //                }
+        //                DisplayInfoPanel();
+        //                break;
+        //            case ConsoleKey.D1:
+        //                // 1번키 처리 내용: 인벤토리 내의 HP포션을 사용하는 버튼 동작
+        //                UseHPotion();
+        //                DisplayInfoPanel();
+        //                break;
+        //            case ConsoleKey.D2:
+        //                // 2번키 처리 내용: 인벤토리 내의 MP포션을 사용하는 버튼 동작
+        //                UseMPotion();
+        //                DisplayInfoPanel();
+        //                break;
+        //            default:
+        //                Console.SetCursorPosition(120, 1);
+        //                Console.WriteLine("잘못된 아이템입니다.");
+        //                break;
+        //        }
+        //    }
     }
 }

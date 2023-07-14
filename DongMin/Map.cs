@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ConsoleRPG;
 
-namespace ConsoleRpg
+namespace ConsoleRPG
 {
     
     public class Map
@@ -39,10 +40,10 @@ namespace ConsoleRpg
         public void MakeMap()
         {
             //스테이지1
-            field[0].AddObjectPosition(Field.ObjectName.Island2, new Position(60, 20), new Position(100, 17)
-                , new Position(25, 10), new Position(0, 10));
-            field[0].AddObjectPosition(Field.ObjectName.Island3, new Position(50, 12));
-            field[0].AddObjectPosition(Field.ObjectName.Island4, new Position(8, 25));
+            field[0].AddObjectPosition(Field.ObjectName.Island2, new Position(55, 20), new Position(100, 17)
+                , new Position(25, 10), new Position(0, 10), new Position(15, 24), new Position(63, 12));
+            //field[0].AddObjectPosition(Field.ObjectName.Island3, new Position(50, 12));
+            //field[0].AddObjectPosition(Field.ObjectName.Island4, new Position(8, 25));
             field[0].AddObjectPosition(Field.ObjectName.Portal, new Position(140, 27));
             field[0].AddObjectPosition(Field.ObjectName.Trap, new Position(110, 30), new Position(20, 10));
             field[0].AddObjectPosition(Field.ObjectName.Ground,

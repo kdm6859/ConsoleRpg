@@ -92,7 +92,7 @@ namespace ConsoleRPG
             int maxHP = PlayerMaxHP();
             int newHP = currentHP + healAmount;
 
-            if (usehppotion)
+            if (usehppotion && currentHP>0)
             {
                 if (currentHP == maxHP)
                 {
@@ -128,11 +128,14 @@ namespace ConsoleRPG
             ///int ResetMp = 0;
             if(usemppotion)
             {
-                if (currentMP == maxMP)
+                if (currentMP && maxMP>0)
                 {
-                    Console.SetCursorPosition(120, 1);
-                    Console.WriteLine("이미 마나는 최대치 입니다.");
-                    return;
+                    if (currentMP == maxMP)
+                    {
+                        Console.SetCursorPosition(120, 1);
+                        Console.WriteLine("이미 마나는 최대치 입니다.");
+                        return;
+                    }
                 }//마나 최대 체크
 
                 

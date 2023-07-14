@@ -24,7 +24,6 @@ namespace ConsoleRPG
         Map map = null;
 
         public bool isLanding = true;
-        public bool isTrap = false;
 
         public void Initialize(ref Player player, ref Monster monster, ref Map map)
         {
@@ -43,8 +42,7 @@ namespace ConsoleRPG
             //    PlayerLandState(playerX, playerY);
             //}
             isLanding = PlayerLandState(playerX, playerY);
-            isTrap = PlayerTrapState(map.field[(int)map.currentStageNum].trapPos, playerX, playerY);
-
+            
 
         }
 
@@ -81,26 +79,5 @@ namespace ConsoleRPG
             }
             return false;
         }
-
-        bool PlayerTrapState(List<SensingArea> trapObjectArea, int playerX, int playerY)
-        {
-            if (trapObjectArea == null)
-                return false;
-
-            for (int i = 0; i < trapObjectArea.Count; i++)
-            {
-                for (int j = 0; j < trapObjectArea[i].positions.Length; j++)
-                {
-                    if (trapObjectArea[i].positions[j].x <= playerX &&
-                        trapObjectArea[i].positions[j].x + trapObjectArea[i].width[j] > playerX &&
-                        trapObjectArea[i].positions[j].y == playerY)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
     }
 }
