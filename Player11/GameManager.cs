@@ -26,6 +26,11 @@ namespace ConsoleRPG
         Map map = null;
         Player player = null;
         Monster mon = null;
+        Monster mon2 = null;
+        Monster mon3 = null;
+        Monster mon4 = null;
+        Monster mon5 = null;
+        Monster mon6 = null;
         Skill skill = null;
         ShortSkill shortskill = null;
 
@@ -44,9 +49,16 @@ namespace ConsoleRPG
             if (map.currentStageNum == Map.StageNum.stage1)
             {
                 mon = new Monster("Monster", 40, 28, 1, 500); //string[] symbol
+                mon2 = new Monster("Monster", 80, 28, 1, 500); //string[] symbol
+                mon3 = new Monster("Monster", 70, 18, 1, 500); //string[] symbol
+                mon4 = new Monster("Monster", 15, 8, 1, 500); //string[] symbol
+                mon5 = new Monster("Monster", 80, 10, 1, 500); //string[] symbol
+                mon6 = new Monster("Monster", 110, 15, 1, 500); //string[] symbol
+
+
             }
 
-            
+
 
             ObjectManager.Instance().Initialize(ref player, ref mon, ref map);
 
@@ -56,8 +68,19 @@ namespace ConsoleRPG
         {
             INVENPANEL.Instance().KeySensing();
             KeyControlManager.Instance().KeyControl();
-            player.Progress(mon);
+
+
+
+            player.Progress(mon, mon2, mon3, mon4, mon5, mon6);
+
             mon.Progress(player);
+            mon2.Progress(player);
+            mon3.Progress(player);
+            mon4.Progress(player);
+            mon5.Progress(player);
+            mon6.Progress(player);
+
+
             ObjectManager.Instance().Progress();
             
 
@@ -74,6 +97,11 @@ namespace ConsoleRPG
             INVENPANEL.Instance().UseHPotion();
             INVENPANEL.Instance().UseMPotion();
             mon.Render();
+            mon2.Render();
+            mon3.Render();
+            mon4.Render();
+            mon5.Render();
+            mon6.Render();
             player.Render();
 
            

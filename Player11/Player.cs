@@ -117,13 +117,16 @@ namespace ConsoleRPG
                     break;
             }
         }
-        public void Progress(Monster m_monster)
+        public void Progress(params Monster[] m_monster)
         {
 
             KeySensing();
 
             Jump();
-            shortSkill.Progress(m_monster);
+            for(int i = 0; i <m_monster.Length; i++)
+            {
+                shortSkill.Progress(m_monster[i]);
+            }
 
             for (int i = 0; i < longSkills.Length; i++)
             {
