@@ -37,9 +37,10 @@ namespace ConsoleRPG
         }
         public void SetDamage(int iAttack) { m_player.pHp -= iAttack; } //데미지 받는 함수
 
-        public void SetEXP(int exp)  //경험치 받아서 플레이어 레벨 올림
+        public void SetEXP(int exp, Monster monster)  //경험치 받아서 플레이어 레벨 올림
         {
             m_player.pEXP += exp;
+            monster.monsteralive = true;
 
             if (m_player.pEXP >= 100)
             {
