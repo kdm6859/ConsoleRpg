@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 using System.Runtime.InteropServices;
-using TextRpgGame;
+
 
 namespace ConsoleRPG
 {
@@ -129,7 +129,7 @@ namespace ConsoleRPG
             ///int ResetMp = 0;
             if (usemppotion)
             {
-                if (currentMP && maxMP > 0)
+                if ( currentMP > 0)
                 {
                     if (currentMP == maxMP)
                     {

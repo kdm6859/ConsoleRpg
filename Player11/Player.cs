@@ -139,6 +139,10 @@ namespace ConsoleRPG
             {
                 playerX = 145;
             }
+            if(playerY < 0)
+            {
+                playerY = 0;
+            }
 
             playerArea.positions[0].x = playerX;
             playerArea.positions[0].y = playerY;
