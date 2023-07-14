@@ -126,6 +126,14 @@ namespace ConsoleRPG
                     if (playerX < X)
                     {
                         X--;
+                        if(X < 3)
+                        {
+                            X = 3;
+                        }
+                        else if(X > 145)
+                        {
+                            X = 145;
+                        }
                         // Thread.Sleep(100);
                     }
                     else if (playerX > X)
