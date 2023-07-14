@@ -1,0 +1,8 @@
+C:\Users\User\Desktop\unityJ\visual studio\TeamRPG\TeamRPG\bin\Debug\TeamRPG.exe.config
+C:\Users\User\Desktop\unityJ\visual studio\TeamRPG\TeamRPG\bin\Debug\TeamRPG.exe
+C:\Users\User\Desktop\unityJ\visual studio\TeamRPG\TeamRPG\bin\Debug\TeamRPG.pdb
+C:\Users\User\Desktop\unityJ\visual studio\TeamRPG\TeamRPG\obj\Debug\TeamRPG.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\unityJ\visual studio\TeamRPG\TeamRPG\obj\Debug\TeamRPG.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\unityJ\visual studio\TeamRPG\TeamRPG\obj\Debug\TeamRPG.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\unityJ\visual studio\TeamRPG\TeamRPG\obj\Debug\TeamRPG.exe
+C:\Users\User\Desktop\unityJ\visual studio\TeamRPG\TeamRPG\obj\Debug\TeamRPG.pdb
