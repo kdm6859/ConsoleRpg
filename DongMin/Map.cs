@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ConsoleRPG;
 
-namespace ConsoleRPG
+namespace ConsoleRpg
 {
     
     public class Map
@@ -57,8 +56,8 @@ namespace ConsoleRPG
             field[1].AddObjectPosition(Field.ObjectName.Island1, new Position(0, 24), new Position(20, 24));
             field[1].AddObjectPosition(Field.ObjectName.Island2, new Position(32, 10), new Position(0, 10),
                 new Position(45, 20), new Position(115, 20));
-            field[1].AddObjectPosition(Field.ObjectName.Island3, new Position(80, 15));
-            field[1].AddObjectPosition(Field.ObjectName.Portal, new Position(140, 27), new Position(2, 7));
+            //field[1].AddObjectPosition(Field.ObjectName.Island3, new Position(80, 15));
+            field[1].AddObjectPosition(Field.ObjectName.Portal, new Position(2, 27), new Position(140, 27));
             field[1].AddObjectPosition(Field.ObjectName.Trap, new Position(50, 30), new Position(110, 30));
             field[1].AddObjectPosition(Field.ObjectName.Ground, new Position(0, 30), new Position(10, 30),
                 new Position(20, 30), new Position(30, 30), new Position(40, 30), new Position(50, 30)

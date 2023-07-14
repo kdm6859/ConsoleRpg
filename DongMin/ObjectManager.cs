@@ -26,6 +26,8 @@ namespace ConsoleRpg
         public bool isLanding = true;
         public bool isTrap = false;
         public bool isPortal = false;
+        public bool stageUpDown = false;
+        //public Position currPortalArea = null;
 
         //SensingArea playerArea = null;
         //SensingArea playerShortSkill = null;
@@ -115,7 +117,7 @@ namespace ConsoleRpg
             {
                 for (int j = 0; j < trapObjectArea[i].positions.Length; j++)
                 {
-                    if (trapObjectArea[i].positions[j].x <=playerX &&
+                    if (trapObjectArea[i].positions[j].x <= playerX &&
                         trapObjectArea[i].positions[j].x + trapObjectArea[i].width[j] > playerX &&
                         trapObjectArea[i].positions[j].y == playerY)
                     {
@@ -139,6 +141,17 @@ namespace ConsoleRpg
                         portalObjectArea[i].positions[j].x + portalObjectArea[i].width[j] > playerX &&
                         portalObjectArea[i].positions[j].y + portalObjectArea[i].height[j] == playerY)
                     {
+                        if (portalObjectArea[i].positions[j].x < 75)
+                        {
+                            stageUpDown = false;
+                            //currPortalArea = map.field[(int)map.currentStageNum].portalPos[1].positions[0];
+                        }
+                        else
+                        {
+                            stageUpDown = true;
+                            //currPortalArea = map.field[(int)map.currentStageNum].portalPos[0].positions[0];
+                        }
+                        
                         return true;
                     }
                 }

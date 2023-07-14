@@ -22,6 +22,7 @@ namespace ConsoleRpg
         {
             None,
             right,
+            up,
             left,
             spaceBar,
             z,
@@ -59,6 +60,10 @@ namespace ConsoleRpg
                 {
                     case 77: //오른쪽
                         keyState = KeyState.right;
+                        break;
+
+                    case 72: //위쪽
+                        keyState = KeyState.up;
                         break;
 
                     case 75: //왼쪽

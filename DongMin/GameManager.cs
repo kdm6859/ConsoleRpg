@@ -35,7 +35,7 @@ namespace ConsoleRpg
             shortskill = new ShortSkill(player, skill);
             
             map.Initialize();
-            player.Initailize();
+            player.Initailize(ref map);
 
             if (map.currentStageNum == Map.StageNum.stage1)
             {
@@ -61,8 +61,9 @@ namespace ConsoleRpg
         {
             Console.Clear();
 
-            Console.SetCursorPosition(3, 3);
-            Console.Write("isLanding = " + ObjectManager.Instance().isLanding);
+            //Console.SetCursorPosition(3, 3);
+            //Console.Write("isLanding = " + ObjectManager.Instance().isLanding);
+            //Console.Write("asd = " + player.asd);
             //Console.WriteLine("플레이어 dir :" + player.getSkill().dir);
             //Console.WriteLine("이즈엑티브 :" + player.getSkill().isActive);
             //Console.WriteLine("스킬 x좌표 : " + player.getSkill().SkillX);

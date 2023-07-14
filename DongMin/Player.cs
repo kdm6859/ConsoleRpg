@@ -14,7 +14,8 @@ namespace ConsoleRpg
         ShortSkill shortSkill = null;
         LongSkill[] longSkills = null;
         Skill skill = null;
-        INFO m_player = null;      
+        INFO m_player = null;     
+        Map map = null;
         
         public SensingArea playerArea = null;
 
@@ -54,12 +55,14 @@ namespace ConsoleRpg
         public INFO GetINFO() { return m_player; } //플레이어 정보
 
 
-        public void Initailize()
+        public void Initailize(ref Map map)
         {
             longSkills = new LongSkill[100];           
             m_player = new INFO();
             m_player.pLevel = 1;
             m_player.pEXP = 0;
+
+            this.map = map;
 
             inv = new INVENPANEL(this);
             skill = new Skill(this);
@@ -226,7 +229,6 @@ namespace ConsoleRpg
         //        }
         //    }
         //}
-
         public void KeySensing()
         {
             
@@ -239,6 +241,30 @@ namespace ConsoleRpg
             {
                 skill.dir = false;
                 playerX -= 3;
+            }
+            else if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.up)) //위쪽 키
+            {
+                if (ObjectManager.Instance().isPortal)
+                {
+                    if (ObjectManager.Instance().stageUpDown)
+                    {
+                        map.currentStageNum++;
+                        playerX = 2;
+                        playerY = 27;
+                        //playerX = map.field[(int)map.currentStageNum].portalPos[0].positions[0].x;
+                    }
+                    else
+                    {
+                        map.currentStageNum--;
+                        playerX = 140;
+                        playerY = 27;
+                        //playerY = map.field[(int)map.currentStageNum].portalPos[1].positions[0].y;
+                    }
+                    //playerX = ObjectManager.Instance().currPortalArea.x;
+                    //playerY = ObjectManager.Instance().currPortalArea.y;
+
+                    
+                }
             }
             else if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.spaceBar)) //스페이스바
             {
