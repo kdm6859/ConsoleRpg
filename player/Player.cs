@@ -14,9 +14,9 @@ namespace ConsoleRpg
         ShortSkill shortSkill = null;
         LongSkill[] longSkills = null;
         Skill skill = null;
-        INFO m_player = null;     
+        INFO m_player = null;
         Map map = null;
-        
+
         public SensingArea playerArea = null;
 
         public int playerX;
@@ -54,21 +54,21 @@ namespace ConsoleRpg
 
         public INFO GetINFO() { return m_player; } //플레이어 정보
 
+       
+
 
         public void Initailize(ref Map map)
         {
-            longSkills = new LongSkill[100];           
+            longSkills = new LongSkill[100];
             m_player = new INFO();
             m_player.pLevel = 1;
             m_player.pEXP = 0;
-
-            this.map = map;
 
             inv = new INVENPANEL(this);
             skill = new Skill(this);
             shortSkill = new ShortSkill(this, skill);
 
-            
+            this.map = map;
 
             playerX = 0;  //플레이어 처음 x좌표
             playerY = 27; //플레이어 처음 y좌표
@@ -78,7 +78,7 @@ namespace ConsoleRpg
 
             Select();
             skill.SkillAttack = m_player.pAttack;
-           
+
 
             for (int i = 0; i < longSkills.Length; i++)
             {
@@ -120,19 +120,23 @@ namespace ConsoleRpg
                     break;
             }
         }
-        public void Progress(Monster m_monster)
+        public void Progress(params Monster[][] m_monster)
         {
-            
+
             KeySensing();
-          
+
             Jump();
-            shortSkill.Progress(m_monster);
-            
+            for(int i = 0; i <m_monster.Length; i++)
+            {
+                for (int j = 0; j < m_monster[i].Length; j++)
+                    shortSkill.Progress(m_monster[i][j]);
+            }
+
             for (int i = 0; i < longSkills.Length; i++)
             {
                 longSkills[i].Progress();  //스킬 나가는 좌표                   
             }
-            
+
 
             if (playerX < 0) //플레이어 x좌 0 밑으로 가면 x좌표 초기화
             {
@@ -142,9 +146,20 @@ namespace ConsoleRpg
             {
                 playerX = 145;
             }
+            if(playerY < 0)
+            {
+                playerY = 0;
+            }
 
             playerArea.positions[0].x = playerX;
             playerArea.positions[0].y = playerY;
+
+
+            if (ObjectManager.Instance().isTrap && m_player.pHp > 0)
+            {
+                m_player.pHp -= 10;
+                ObjectManager.Instance().isTrap = false;
+            }
 
         }
         public void Render()
@@ -154,11 +169,12 @@ namespace ConsoleRpg
                 DrawPlayer();  //플레이어 출력
                 shortSkill.Render();
 
-               /* for (int i = 0; i < longSkills.Length; i++)  // 스킬 출력
-                {
-                    longSkills[i].Render();                 
-                }*/
+                 /*for (int i = 0; i < longSkills.Length; i++)  // 스킬 출력
+                 {
+                     longSkills[i].Render();                 
+                 }*/
             }
+
 
         }
         public void DrawPlayer() //플레이어 그리기
@@ -177,7 +193,7 @@ namespace ConsoleRpg
                 Console.WriteLine(player[i]);
             }
         }
-       
+
         public int GetPlayerFootPosition()
         {
             return playerY + 1;
@@ -206,32 +222,9 @@ namespace ConsoleRpg
                 playerY += 1;
             }
         }
-
-        //public void Jump()
-        //{
-        //    if (isJumping)
-        //    {
-        //        if (jumpUpCount > 0)
-        //        {
-        //            playerY -= 1;
-        //            jumpUpCount--;
-        //        }
-        //        else if (jumpDownCount > 0)
-        //        {
-        //            playerY += 1;
-        //            jumpDownCount--;
-        //        }
-        //        else
-        //        {
-        //            isJumping = false;
-        //            jumpUpCount = 6;
-        //            jumpDownCount = 6;
-        //        }
-        //    }
-        //}
         public void KeySensing()
         {
-            
+
             if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.right)) //오른쪽 키
             {
                 skill.dir = true;
@@ -263,7 +256,7 @@ namespace ConsoleRpg
                     //playerX = ObjectManager.Instance().currPortalArea.x;
                     //playerY = ObjectManager.Instance().currPortalArea.y;
 
-                    
+
                 }
             }
             else if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.spaceBar)) //스페이스바
@@ -311,7 +304,7 @@ namespace ConsoleRpg
                 }
             }
         }
-    }
+    }   
 }
 
 

@@ -12,13 +12,13 @@ namespace ConsoleRpg
     {
         Skill m_skill = null;
         Player m_player = null;
-        int Current =Environment.TickCount;
+        int Current = Environment.TickCount;
 
         public LongSkill(Player player, Skill skill)
         {
             m_skill = skill;
             m_player = player;
-        }  
+        }
         LongSkill() { }
 
         public Skill GetINFO() { return m_skill; }
@@ -44,7 +44,7 @@ namespace ConsoleRpg
                         Console.SetCursorPosition(m_skill.SkillX, m_skill.SkillY + i);
                         Console.WriteLine(sMagic[i]);
                     }
-                   
+
                 }
                 else
                 {
@@ -59,23 +59,23 @@ namespace ConsoleRpg
                         Console.SetCursorPosition(m_skill.SkillX, m_skill.SkillY + i);
                         Console.WriteLine(sMagic[i]);
                     }
-                    
+
                 }
-                if(m_skill.lAttack)
-                {                   
-                        Console.SetCursorPosition(m_skill.SkillX, m_skill.SkillY + 1);
-                        Console.Write("★");                    
-                }                                               
+                if (m_skill.lAttack)
+                {
+                    Console.SetCursorPosition(m_skill.SkillX, m_skill.SkillY + 1);
+                    Console.Write("★");
+                }
             }
-               
+
         }
 
         public void Progress() //스킬 좌표 설정
-        {          
+        {
             if (m_skill.isActive)
             {
                 if (m_player.lWeapon)
-                {                    
+                {
                     if (m_player.getSkill().dir)
                     {
                         // m_skill.SkillX = m_player.playerX + 5;
@@ -83,22 +83,22 @@ namespace ConsoleRpg
                     }
                     else
                     {
-                       //m_skill.SkillX = m_player.playerX - 1;
+                        //m_skill.SkillX = m_player.playerX - 1;
                         m_skill.SkillX -= 1;
                     }
                 }
 
-                if (m_skill.SkillX >= 145 || m_skill.SkillX <= 5) 
+                if (m_skill.SkillX >= 145 || m_skill.SkillX <= 5)
                 {
                     m_skill.isActive = false;
                 }
-            }          
+            }
         }
 
         public void Activate(int playerX, int playerY)
         {
             m_skill.isActive = true;
-         
+
             if (m_player.getSkill().dir)
             {
                 m_skill.SkillX = playerX + 1; //스킬 발사되는 위치 설정
@@ -109,7 +109,7 @@ namespace ConsoleRpg
                 m_skill.SkillX = playerX - 1; //스킬 발사되는 위치 설정
                 m_skill.SkillY = playerY;
             }
-            
+
         }
 
         public void Render()
@@ -117,7 +117,7 @@ namespace ConsoleRpg
 
             if (m_skill.isActive)
             {
-                SkillDraw();                                           
+                SkillDraw();
             }
         }
 

@@ -49,13 +49,15 @@
     <Compile Include="DongMin\KeyControlManager.cs" />
     <Compile Include="DongMin\Map.cs" />
     <Compile Include="DongMin\ObjectManager.cs" />
-    <Compile Include="DongMin\GameManager.cs" />
-    <Compile Include="DongMin\Player.cs" />
     <Compile Include="DongMin\Position.cs" />
     <Compile Include="DongMin\SensingArea.cs" />
-    <Compile Include="DongMin\Skill.cs" />
-    <Compile Include="Info.cs" />
-    <Compile Include="Monster.cs" />
+    <Compile Include="player\GameManager.cs" />
+    <Compile Include="player\INVENPENAL.cs" />
+    <Compile Include="player\LongSkill.cs" />
+    <Compile Include="player\Monster.cs" />
+    <Compile Include="player\Player.cs" />
+    <Compile Include="player\ShortSkill.cs" />
+    <Compile Include="player\Skill.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

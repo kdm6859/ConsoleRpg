@@ -52,10 +52,10 @@ namespace ConsoleRpg
 
         //}
 
-        public void Initialize(ref Player player, ref Monster monster, ref Map map)
+        public void Initialize(ref Player player, ref Map map)
         {
             this.player = player;
-            this.monster = monster;
+            //this.monster = monster;
             this.map = map;
         }
 

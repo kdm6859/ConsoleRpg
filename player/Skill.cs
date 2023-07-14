@@ -29,7 +29,7 @@ namespace ConsoleRpg
         public bool sAttack;  //근거리 스킬 공격
 
         Player m_player = null;
-                
+
         public int Current;
 
         public Skill(Player player)
@@ -51,7 +51,7 @@ namespace ConsoleRpg
         {
         }
 
-          
+
     }
 }
 

@@ -8,7 +8,7 @@ namespace ConsoleRpg
 {
     internal class INVENPANEL
     {
-        public static INVENPANEL instance = null;      
+        public static INVENPANEL instance = null;
 
         public static INVENPANEL Instance()
         {
@@ -25,16 +25,16 @@ namespace ConsoleRpg
         bool invenOnOff = false;
         bool usehppotion = false;
         bool usemppotion = false;
-             
+
 
         public INVENPANEL(Player player)
         {
-            INVENPANEL.player = player;            
+            INVENPANEL.player = player;
         }
 
         public void OpenInventory()
         {
-            if(invenOnOff)
+            if (invenOnOff)
             {
                 Console.SetCursorPosition(125, 32);
                 Console.WriteLine("=== 인벤토리 ===");
@@ -44,7 +44,7 @@ namespace ConsoleRpg
                 Console.WriteLine("2. MP 포션");
                 Console.SetCursorPosition(125, 35);
                 Console.WriteLine("================");
-               
+
 
                 DisplayInfoPanel();
             }
@@ -66,13 +66,15 @@ namespace ConsoleRpg
         }*/
 
         public void DisplayInfoPanel()
+            //몬스터 1마리 죽이면 경험치를 50얻음. 레벨업은 경험치 100이 되어야 오르고,
+            //레벨업하면 플레이어 공격력이 10이 오른다.
         {
             Console.SetCursorPosition(0, Console.WindowHeight - 8);
-            Console.WriteLine("========= 플레이어 정보 =========");
-            Console.WriteLine("직업: " + player.GetINFO()?.pName);
+            Console.WriteLine("============== 플레이어 정보 ==============");
+            Console.WriteLine("직업: " + player.GetINFO()?.pName+"  레벨: "+ player.GetINFO()?.pLevel + "  경혐치: "+player.GetINFO()?.pEXP + "/"+"100");
             Console.WriteLine("HP: " + player.GetINFO()?.pHp + " / " + PlayerMaxHP() + "  MP: " + player.GetINFO()?.pMp + " / " + PlayerMaxMP());
             Console.WriteLine("공격력: " + player.GetINFO()?.pAttack);
-            Console.WriteLine("================================");
+            Console.WriteLine("==========================================");
         }
 
         int PlayerMaxHP()
@@ -92,7 +94,7 @@ namespace ConsoleRpg
             int maxHP = PlayerMaxHP();
             int newHP = currentHP + healAmount;
 
-            if (usehppotion)
+            if (usehppotion && currentHP > 0)
             {
                 if (currentHP == maxHP)
                 {
@@ -101,10 +103,10 @@ namespace ConsoleRpg
                     return;
                 }
 
-                if(currentHP < maxHP)
+                if (currentHP < maxHP)
                 {
                     newHP = currentHP + healAmount;
-                    if(newHP > currentHP)
+                    if (newHP > currentHP)
                     {
                         usehppotion = false;
                     }
@@ -126,26 +128,29 @@ namespace ConsoleRpg
             int maxMP = PlayerMaxMP();
             int newMP = currentMP + healAmount;
             ///int ResetMp = 0;
-            if(usemppotion)
+            if (usemppotion)
             {
-                if (currentMP == maxMP)
+                if (currentMP> maxMP)
                 {
-                    Console.SetCursorPosition(120, 1);
-                    Console.WriteLine("이미 마나는 최대치 입니다.");
-                    return;
+                    if (currentMP == maxMP)
+                    {
+                        Console.SetCursorPosition(120, 1);
+                        Console.WriteLine("이미 마나는 최대치 입니다.");
+                        return;
+                    }
                 }//마나 최대 체크
 
-                
+
                 if (currentMP < maxMP) //현재 마나가 최대치보다 작은가?
-                {                  
+                {
                     newMP = currentMP + healAmount; //현재마나가 최대치보다 작으면 30 회복
 
                     if (newMP > currentMP) //현재 마나에 회복 마나 값을 던한 값. = newMp
                     {
-                        usemppotion = false;                       
-                    }                   
+                        usemppotion = false;
+                    }
                 }
-                if(newMP >= maxMP)
+                if (newMP >= maxMP)
                     newMP = maxMP;
 
                 player.GetINFO().pMp = newMP;
@@ -172,11 +177,11 @@ namespace ConsoleRpg
             }
             else if (KeyControlManager.Instance().KeyCompare(KeyControlManager.KeyState.num1))
             {
-                if(!usehppotion)
+                if (!usehppotion)
                 {
-                    usehppotion = true;                    
+                    usehppotion = true;
                 }
-               
+
                 /*UseHPotion();
                 DisplayInfoPanel();*/
             }
@@ -185,13 +190,13 @@ namespace ConsoleRpg
                 if (!usemppotion)
                 {
                     usemppotion = true;
-                    
+
                 }
-                
+
                 /*UseMPotion();
                 DisplayInfoPanel();*/
             }
-            
+
 
 
             ////switch문 ex)
@@ -206,39 +211,39 @@ namespace ConsoleRpg
             //}
         }
 
-    //    public void InvenKeyControl(ConsoleKey key)
-    //    {
+        //    public void InvenKeyControl(ConsoleKey key)
+        //    {
 
-    //        switch (key)
-    //        {
-    //            case ConsoleKey.I:
-    //                if (invenOnOff)
-    //                {
-    //                    invenOnOff = false;
-    //                    ClearInventory();
-    //                }
-    //                else
-    //                {
-    //                    invenOnOff = true;
-    //                    OpenInventory();
-    //                }
-    //                DisplayInfoPanel();
-    //                break;
-    //            case ConsoleKey.D1:
-    //                // 1번키 처리 내용: 인벤토리 내의 HP포션을 사용하는 버튼 동작
-    //                UseHPotion();
-    //                DisplayInfoPanel();
-    //                break;
-    //            case ConsoleKey.D2:
-    //                // 2번키 처리 내용: 인벤토리 내의 MP포션을 사용하는 버튼 동작
-    //                UseMPotion();
-    //                DisplayInfoPanel();
-    //                break;
-    //            default:
-    //                Console.SetCursorPosition(120, 1);
-    //                Console.WriteLine("잘못된 아이템입니다.");
-    //                break;
-    //        }
-    //    }
+        //        switch (key)
+        //        {
+        //            case ConsoleKey.I:
+        //                if (invenOnOff)
+        //                {
+        //                    invenOnOff = false;
+        //                    ClearInventory();
+        //                }
+        //                else
+        //                {
+        //                    invenOnOff = true;
+        //                    OpenInventory();
+        //                }
+        //                DisplayInfoPanel();
+        //                break;
+        //            case ConsoleKey.D1:
+        //                // 1번키 처리 내용: 인벤토리 내의 HP포션을 사용하는 버튼 동작
+        //                UseHPotion();
+        //                DisplayInfoPanel();
+        //                break;
+        //            case ConsoleKey.D2:
+        //                // 2번키 처리 내용: 인벤토리 내의 MP포션을 사용하는 버튼 동작
+        //                UseMPotion();
+        //                DisplayInfoPanel();
+        //                break;
+        //            default:
+        //                Console.SetCursorPosition(120, 1);
+        //                Console.WriteLine("잘못된 아이템입니다.");
+        //                break;
+        //        }
+        //    }
     }
 }
