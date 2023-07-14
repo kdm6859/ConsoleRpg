@@ -56,7 +56,7 @@ namespace ConsoleRPG
 
                     for (int i = 0; i < sMagic.Length; i++)
                     {
-                        Console.SetCursorPosition(m_skill.SkillX - 8, m_skill.SkillY + i);
+                        Console.SetCursorPosition(m_skill.SkillX - 7, m_skill.SkillY + i);
                         Console.WriteLine(sMagic[i]);
                     }
                 }
@@ -73,7 +73,7 @@ namespace ConsoleRPG
                 }
                 else
                 {
-                    Console.SetCursorPosition(m_skill.SkillX-5, m_skill.SkillY + 1);  
+                    Console.SetCursorPosition(m_skill.SkillX-3, m_skill.SkillY + 1);  
                     Console.Write("<---");
                 }
                 
@@ -100,7 +100,7 @@ namespace ConsoleRPG
                 }
                 
             }
-            else if (m_player.sWeapon && m_skill.dir == false)
+            else if (m_player.sWeapon && m_skill.dir == false && m_player.playerX > m_monster.X)
             {
                 m_skill.SkillX = m_player.playerX - 3;
 
@@ -118,7 +118,11 @@ namespace ConsoleRPG
 
             if (m_skill.SkillX > 145) //x좌표 한계 넘어가면 초기화
             {
-                m_player.sWeapon = false;
+                m_skill.SkillX = 145;
+            }
+            else if (m_skill.SkillX < 0)
+            {
+                m_skill.SkillX = 0;
             }
         }
 
