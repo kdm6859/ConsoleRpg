@@ -175,7 +175,7 @@ namespace ConsoleRpg
                     //}
                     width = new int[1];
                     height = new int[1];
-                    width[0] = 6;
+                    width[0] = 10;
                     height[0] = 1;
                     for (int i = 0; i < pos.Length; i++)
                     {
@@ -189,7 +189,7 @@ namespace ConsoleRpg
                         portalPos = new List<SensingArea>();
                     width = new int[1];
                     height = new int[1];
-                    width[0] = 5;
+                    width[0] = 6;
                     height[0] = 3;
                     for (int i = 0; i < pos.Length; i++)
                     {

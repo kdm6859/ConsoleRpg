@@ -5,7 +5,7 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleRPG
+namespace ConsoleRpg
 {
     public class ObjectManager
     {
@@ -25,6 +25,30 @@ namespace ConsoleRPG
 
         public bool isLanding = true;
         public bool isTrap = false;
+        public bool isPortal = false;
+
+        //SensingArea playerArea = null;
+        //SensingArea playerShortSkill = null;
+        //SensingArea monsterArea = null;
+        //List<SensingArea> island1Area = null;
+        //List<SensingArea> island2Area = null;
+        //List<SensingArea> island3Area = null;
+        //List<SensingArea> island4Area = null;
+        //List<SensingArea> groundArea = null;
+        //List<SensingArea> trapArea = null;
+        //List<SensingArea> portalArea = null;
+        //List<SensingArea> meteoArea = null;
+
+        //public void Initialize(ref SensingArea playerArea,
+        //    ref SensingArea playerShortSkill,ref SensingArea monsterArea,
+        //    ref SensingArea fieldObject)
+        //{
+        //    this.playerArea = playerArea;
+        //    this.playerShortSkill = playerShortSkill;
+        //    this.monsterArea = monsterArea;
+
+
+        //}
 
         public void Initialize(ref Player player, ref Monster monster, ref Map map)
         {
@@ -44,7 +68,7 @@ namespace ConsoleRPG
             //}
             isLanding = PlayerLandState(playerX, playerY);
             isTrap = PlayerTrapState(map.field[(int)map.currentStageNum].trapPos, playerX, playerY);
-
+            isPortal = PlayerPortalState(map.field[(int)map.currentStageNum].portalPos, playerX, playerY);
 
         }
 
@@ -102,5 +126,24 @@ namespace ConsoleRPG
             return false;
         }
 
+        bool PlayerPortalState(List<SensingArea> portalObjectArea, int playerX, int playerY)
+        {
+            if (portalObjectArea == null)
+                return false;
+
+            for (int i = 0; i < portalObjectArea.Count; i++)
+            {
+                for (int j = 0; j < portalObjectArea[i].positions.Length; j++)
+                {
+                    if (portalObjectArea[i].positions[j].x <= playerX &&
+                        portalObjectArea[i].positions[j].x + portalObjectArea[i].width[j] > playerX &&
+                        portalObjectArea[i].positions[j].y + portalObjectArea[i].height[j] == playerY)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     }
 }
