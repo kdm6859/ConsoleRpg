@@ -1,7 +1,8 @@
 C:\Users\kdm79\visualStudioProject\Unity_C#_Test\ConsoleRpg\ConsoleRpg\bin\Debug\ConsoleRpg.exe.config
 C:\Users\kdm79\visualStudioProject\Unity_C#_Test\ConsoleRpg\ConsoleRpg\bin\Debug\ConsoleRpg.exe
 C:\Users\kdm79\visualStudioProject\Unity_C#_Test\ConsoleRpg\ConsoleRpg\bin\Debug\ConsoleRpg.pdb
-C:\Users\kdm79\visualStudioProject\Unity_C#_Test\ConsoleRpg\ConsoleRpg\obj\Debug\ConsoleRpg.csprojAssemblyReference.cache
 C:\Users\kdm79\visualStudioProject\Unity_C#_Test\ConsoleRpg\ConsoleRpg\obj\Debug\ConsoleRpg.csproj.CoreCompileInputs.cache
 C:\Users\kdm79\visualStudioProject\Unity_C#_Test\ConsoleRpg\ConsoleRpg\obj\Debug\ConsoleRpg.exe
 C:\Users\kdm79\visualStudioProject\Unity_C#_Test\ConsoleRpg\ConsoleRpg\obj\Debug\ConsoleRpg.pdb
+C:\Users\kdm79\visualStudioProject\Unity_C#_Test\ConsoleRpg\ConsoleRpg\obj\Debug\ConsoleRpg.csproj.AssemblyReference.cache
+C:\Users\kdm79\visualStudioProject\Unity_C#_Test\ConsoleRpg\ConsoleRpg\obj\Debug\ConsoleRpg.csproj.SuggestedBindingRedirects.cache

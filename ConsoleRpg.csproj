@@ -52,6 +52,7 @@
     <Compile Include="DongMin\GameManager.cs" />
     <Compile Include="DongMin\Player.cs" />
     <Compile Include="DongMin\Position.cs" />
+    <Compile Include="DongMin\SensingArea.cs" />
     <Compile Include="DongMin\Skill.cs" />
     <Compile Include="Info.cs" />
     <Compile Include="Monster.cs" />
