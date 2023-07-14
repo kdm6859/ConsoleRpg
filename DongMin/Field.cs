@@ -19,14 +19,14 @@ namespace ConsoleRpg
             Portal,
             Meteo
         }
-        List<SensingArea> island1Pos = null;
-        List<SensingArea> island2Pos = null;
-        List<SensingArea> island3Pos = null;
-        List<SensingArea> island4Pos = null;
-        List<SensingArea> groundPos = null;
-        List<SensingArea> trapPos = null;
-        List<SensingArea> portalPos = null;
-        List<SensingArea> meteoPos = null;
+        public List<SensingArea> island1Pos = null;
+        public List<SensingArea> island2Pos = null;
+        public List<SensingArea> island3Pos = null;
+        public List<SensingArea> island4Pos = null;
+        public List<SensingArea> groundPos = null;
+        public List<SensingArea> trapPos = null;
+        public List<SensingArea> portalPos = null;
+        public List<SensingArea> meteoPos = null;
 
         //public void AddObjectPosition(ObjectName objectName, int x, int y)
         //{

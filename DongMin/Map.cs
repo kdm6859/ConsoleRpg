@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 namespace ConsoleRpg
 {
     
@@ -14,8 +15,10 @@ namespace ConsoleRpg
             stage2,
             stage3
         }
-        Field[] field;
+        public Field[] field;
         const int fieldNum = 3;
+
+        public StageNum currentStageNum = StageNum.stage1;
 
         public void Initialize()
         {
@@ -77,9 +80,9 @@ namespace ConsoleRpg
 
         }
 
-        public void Render(StageNum stageNUm)
+        public void Render()
         {
-            field[(int)stageNUm].MakeField();
+            field[(int)currentStageNum].MakeField();
         }
 
         public void Release()

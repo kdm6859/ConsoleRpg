@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using ConsoleRPG;
 
-namespace ConsoleRPG
+
+namespace ConsoleRpg
 {
     public class Monster
     {       
